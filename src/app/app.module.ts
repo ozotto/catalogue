@@ -10,6 +10,10 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { SysDashboardComponent } from './sys-dashboard/sys-dashboard.component';
 import { EvArtgeneveComponent } from './ev-artgeneve/ev-artgeneve.component';
+import { ExhibitorsComponent } from './ev-artgeneve/exhibitors/exhibitors.component';
+import { GaleriesComponent } from './ev-artgeneve/galeries/galeries.component';
+import { ArtworksComponent } from './ev-artgeneve/artworks/artworks.component';
+import { ArtistsComponent } from './ev-artgeneve/artists/artists.component';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient) {
@@ -20,7 +24,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     SysDashboardComponent,
-    EvArtgeneveComponent
+    EvArtgeneveComponent,
+    ExhibitorsComponent,
+    GaleriesComponent,
+    ArtworksComponent,
+    ArtistsComponent
   ],
   imports: [
     BrowserModule,
