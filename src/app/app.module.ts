@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
@@ -9,6 +10,10 @@ import { AppComponent } from './app.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+
+//Http Clien and Memory data
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './sys-services/in-memory-data.service';
 
 import { AppRoutingModule } from './/app-routing.module';
 import { SysDashboardComponent } from './sys-dashboard/sys-dashboard.component';
@@ -36,15 +41,23 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    AppRoutingModule,
     HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {  passThruUnknownUrl: true, dataEncapsulation: false }
+      //InMemoryDataService, { dataEncapsulation: false }
+    ),
     TranslateModule.forRoot({
         loader: {
             provide: TranslateLoader,
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
         }
-    }),
-    AppRoutingModule
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

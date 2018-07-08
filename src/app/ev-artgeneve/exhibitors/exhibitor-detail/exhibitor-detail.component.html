@@ -1,0 +1,13 @@
+<p>exhibitor-detail works!</p>
+<div *ngIf="exhibitor">
+
+  <h2>{{exhibitor.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{exhibitor.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="exhibitor.name" placeholder="name"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>
