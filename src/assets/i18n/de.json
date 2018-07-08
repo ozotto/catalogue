@@ -7,5 +7,13 @@
 		"msg": {
 			"welcome": "Willkommen bei der Veranstaltung {{name}}!"		
 		}
+	},
+	"artgeneve": {
+		"name" : "Art Genève",
+		"exhibitor" : "Aussteller",
+		"represented_artists" : "Vertretene Künstler",
+		"exhibited_artists" : "Ausgestellte Künstler",
+		"application_artworks" : "Anwendungs-Kunstwerke",
+		"gallery" : "Galerie"
 	}
 }

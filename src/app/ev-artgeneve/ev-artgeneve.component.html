@@ -1,4 +1,23 @@
-<p>
-  ev-artgeneve works!
-</p>
-<p>{{ 'event.msg.welcome' | translate:{'name':'ArtGenève'} }}</p>
+<!-- <h1>
+  {{ 'catalogue.title' | translate }}
+</h1> -->
+<h1>
+    {{ 'artgeneve.name' | translate }}
+  </h1>
+<nav>
+  <a routerLink="./exhibitors">{{ 'artgeneve.exhibitor' | translate }}</a>
+  <a routerLink="./art-represented">{{ 'artgeneve.represented_artists' | translate }}</a>
+  <a routerLink="./art-exhibited">{{ 'artgeneve.exhibited_artists' | translate }}</a> 
+  <a routerLink="./artworks">{{ 'artgeneve.application_artworks' | translate }}</a>
+  <a routerLink="./galeries" routerLinkActive="active">{{ 'artgeneve.gallery' | translate }}</a>
+</nav>
+<router-outlet></router-outlet>
+
+<!-- 
+<nav>
+  <a routerLink="./" routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">Dashboard</a> 
+  <a routerLink="./exhibitors" routerLinkActive="active">Manage Crises</a>
+  <a routerLink="./artworks" routerLinkActive="active">Manage Heroes</a>
+</nav>
+<router-outlet></router-outlet> -->
