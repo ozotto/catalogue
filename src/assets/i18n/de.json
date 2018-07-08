@@ -1,0 +1,11 @@
+{
+	"catalogue": {
+		"title": "Ausstellerkatalog",
+		"hello": "Hallo {{name}}!"
+	},
+	"event": {
+		"msg": {
+			"welcome": "Willkommen bei der Veranstaltung {{name}}!"		
+		}
+	}
+}
