@@ -9,7 +9,7 @@ h2 {
   margin-top: 0;
   padding-top: 0;
 }
-nav a {
+#subnav a {
   padding: 5px 10px;
   text-decoration: none;
   margin-top: 10px;
@@ -17,13 +17,13 @@ nav a {
   background-color: #eee;
   border-radius: 4px;
 }
-nav a:visited, a:link {
+#subnav a:visited, a:link {
   color: #607d8b;
 }
-nav a:hover {
+#subnav a:hover {
   color: #039be5;
   background-color: #cfd8dc;
 }
-nav a.active {
+#subnav a.active {
   color: #039be5;
 }

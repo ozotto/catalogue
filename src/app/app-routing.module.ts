@@ -9,23 +9,35 @@ import { SysDashboardComponent }   from './sys-dashboard/sys-dashboard.component
 
 import { CanDeactivateGuard }       from './can-deactivate-guard.service';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+import {AuthGuard} from './sys-guards/auth.guard';
+import {LoginComponent} from './login/login.component';
+import {HomeComponent} from './home/home.component';
+import {AppComponent} from './app.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: SysDashboardComponent },
-  { path: 'home', component: SysDashboardComponent },
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: SysDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: SysDashboardComponent, canActivate: [AuthGuard] },
   /*{ path: 'art', component: EvArtgeneveComponent },*/
   {
     path: 'artgeneve',
     loadChildren: './ev-artgeneve/ev-artgeneve.module#EvArtgeneveModule',
-    //canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
+  // {
+  //   path: 'artmontecarlo',
+  //   loadChildren: './ev-artmontecarlo/ev-artmontecarlo.module#EvArtmontecarloModule',
+  //   //canLoad: [AuthGuard]
+  // },
   {
     path: 'admin',
     loadChildren: './admin/admin.module#AdminModule',
-    //canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
-  
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 /*@NgModule({
@@ -50,7 +62,8 @@ const routes: Routes = [
   providers: [
     CanDeactivateGuard,
     SelectivePreloadingStrategy
-  ]
+  ],
+  bootstrap: [AppComponent]
 })
 
 export class AppRoutingModule {}

@@ -21,23 +21,23 @@ export class ExhibitorDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getExhibitor();
+    // this.getExhibitor();
   }
 
-  getExhibitor(): void {
-    console.log('here')
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.exhibitorService.getExhibitor(id)
-      .subscribe(exhibitor => this.exhibitor = exhibitor);
-  }
-
-  goBack(): void {
-    this.location.back();
-  }
-
-  save(): void {
-    this.exhibitorService.updateExhibitor(this.exhibitor)
-      .subscribe(() => this.goBack());
-  }
+  // getExhibitor(): void {
+  //   console.log('here')
+  //   const id = +this.route.snapshot.paramMap.get('id');
+  //   this.exhibitorService.getExhibitor(id)
+  //     .subscribe(exhibitor => this.exhibitor = exhibitor);
+  // }
+  //
+  // goBack(): void {
+  //   this.location.back();
+  // }
+  //
+  // save(): void {
+  //   this.exhibitorService.updateExhibitor(this.exhibitor)
+  //     .subscribe(() => this.goBack());
+  // }
 
 }

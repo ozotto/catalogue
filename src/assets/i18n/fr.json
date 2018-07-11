@@ -5,15 +5,23 @@
 	},
 	"event": {
 		"msg": {
-			"welcome": "Bienvenue à l'événement {{name}}!"		
+			"welcome": "Bienvenue à l'événement {{name}}!"
 		}
 	},
-	"artgeneve": {
-		"name" : "Art Genève",
-		"exhibitor" : "Exposant",
-		"represented_artists" : "Artistes représentés",
-		"exhibited_artists" : "Artistes exposés",
-		"application_artworks" : "Œuvres d'application",
-		"gallery" : "Galerie"
-	}
+  "artgeneve": {
+    "name" : "Art Genève",
+    "exhibitor" : "Exposant",
+    "represented_artists" : "Artistes représentés",
+    "exhibited_artists" : "Artistes exposés",
+    "application_artworks" : "Œuvres d'application",
+    "gallery" : "Galerie"
+  },
+  "artmontecarlo": {
+    "name" : "Art Montecarlo",
+    "exhibitor" : "Exposant",
+    "represented_artists" : "Artistes représentés",
+    "exhibited_artists" : "Artistes exposés",
+    "application_artworks" : "Œuvres d'application",
+    "gallery" : "Galerie"
+  }
 }

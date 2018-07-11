@@ -1,0 +1,12 @@
+<p>
+	{{ 'artmontecarlo.exhibitor' | translate }}
+</p>
+<ul class="exhibitors">
+  <li *ngFor="let exhibitor of exhibitors">
+    <a routerLink="../exhibitors/{{exhibitor.id}}">
+      <span class="badge">{{exhibitor.id}}</span> {{exhibitor.name}}
+    </a>
+    <button class="delete" title="delete exhibitor"
+      (click)="delete(exhibitor)">x</button>
+  </li>
+</ul>

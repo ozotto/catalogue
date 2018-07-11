@@ -1,27 +1,19 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ 'catalogue.title' | translate }}
-  </h1>
+
+
+
+<app-sys-navbar></app-sys-navbar>
+
+<!-- main app container -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <alert></alert>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
 </div>
-<p>{{ 'catalogue.hello' | translate:{'name':'Oscar'} }}</p>
-<button (click)="useLanguage('en')">en</button>
-<button (click)="useLanguage('de')">de</button>
-<button (click)="useLanguage('fr')">fr</button>
-<nav>
-	<a routerLink="/dashboard">Home</a>
-  <a routerLink="/artgeneve" routerLinkActive="active">Artgeneve</a>
-  <a routerLink="/admin" routerLinkActive="active">admin</a>
-<!--      Router ArtGeneve 
-  <a routerLink="/exh-artgeneve">Exhibitor</a>
-  <a routerLink="/art-represented">Represented artists</a>
-  <a routerLink="/art-exhibited">Exhibited artists</a>
-  <a routerLink="/artworks">Application Artworks</a>
-  <a routerLink="/galeries">Gallery</a> -->
-  
-  
-</nav>
-<router-outlet></router-outlet>
 
 
 

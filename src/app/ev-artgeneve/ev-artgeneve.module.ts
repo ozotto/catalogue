@@ -10,12 +10,14 @@ import { ArtistsComponent }               from './artists/artists.component';
 import { ArtworksComponent }              from './artworks/artworks.component';
 import { GaleriesComponent }              from './galeries/galeries.component';
 import { ExhibitorDetailComponent } from './exhibitors/exhibitor-detail/exhibitor-detail.component';
+import {MatTableModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     EvArtgeneveRoutingModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
   ],
   declarations: [
     EvArtgeneveComponent,
