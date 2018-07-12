@@ -27,7 +27,7 @@ import { ExhibitorService } from '../services/exhibitor.service';
 
 
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 
 /**
@@ -45,11 +45,13 @@ export class ExhibitorsComponent implements OnInit {
   exhibitors: Exhibitor[];
   constructor(private exhibitorService: ExhibitorService) { }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
     // this.getExhibitors();
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     console.log("data source");
     console.log(this.getExhibitors());
   }

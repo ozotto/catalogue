@@ -10,7 +10,14 @@ import { ArtistsComponent }               from './artists/artists.component';
 import { ArtworksComponent }              from './artworks/artworks.component';
 import { GaleriesComponent }              from './galeries/galeries.component';
 import { ExhibitorDetailComponent } from './exhibitors/exhibitor-detail/exhibitor-detail.component';
-import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule, MatSortModule, MatTableModule} from '@angular/material';
+import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatPaginator,
+  MatPaginatorModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -20,6 +27,7 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule, MatSortModule, MatTabl
     MatTableModule,
     MatSnackBarModule,
     MatSortModule,
+    MatPaginatorModule,
   ],
   declarations: [
     EvArtgeneveComponent,
