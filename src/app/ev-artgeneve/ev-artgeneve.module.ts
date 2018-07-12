@@ -1,4 +1,4 @@
-import { NgModule }       from '@angular/core';
+import {NgModule, NgZone} from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -10,7 +10,7 @@ import { ArtistsComponent }               from './artists/artists.component';
 import { ArtworksComponent }              from './artworks/artworks.component';
 import { GaleriesComponent }              from './galeries/galeries.component';
 import { ExhibitorDetailComponent } from './exhibitors/exhibitor-detail/exhibitor-detail.component';
-import {MatTableModule} from '@angular/material';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule, MatSortModule, MatTableModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -18,6 +18,8 @@ import {MatTableModule} from '@angular/material';
     EvArtgeneveRoutingModule,
     FormsModule,
     MatTableModule,
+    MatSnackBarModule,
+    MatSortModule,
   ],
   declarations: [
     EvArtgeneveComponent,
@@ -26,6 +28,9 @@ import {MatTableModule} from '@angular/material';
     ArtworksComponent,
     GaleriesComponent,
     ExhibitorDetailComponent
+  ],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
   ]
 })
 export class EvArtgeneveModule {}

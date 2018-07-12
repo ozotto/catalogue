@@ -26,8 +26,9 @@ import { ExhibitorService } from '../services/exhibitor.service';
 
 
 
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSort, MatTableDataSource} from '@angular/material';
 
-import {Component, OnInit} from '@angular/core';
 
 /**
  * @title Basic use of `<table mat-table>`
@@ -39,23 +40,28 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ExhibitorsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'org_code', 'exh_booth', 'exh_id', 'delete'];
+  dataSource = new MatTableDataSource();
 
   exhibitors: Exhibitor[];
-
   constructor(private exhibitorService: ExhibitorService) { }
 
+  @ViewChild(MatSort) sort: MatSort;
+
   ngOnInit() {
-    this.getExhibitors();
+    // this.getExhibitors();
+    this.dataSource.sort = this.sort;
+    console.log("data source");
+    console.log(this.getExhibitors());
   }
 
-  getExhibitors(): void {
+  getExhibitors(): any {
     this.exhibitorService.getExhibitors()
-        .subscribe(exhibitors => this.exhibitors = exhibitors); //console.log(exhibitors)
+        .subscribe(exhibitors => this.dataSource.data = exhibitors); //console.log(exhibitors)
   }
-  // delete(exhibitor: Exhibitor): void {
-  //   this.exhibitors = this.exhibitors.filter(h => h !== exhibitor);
-  //   this.exhibitorService.deleteExhibitor(exhibitor).subscribe();
-  // }
+  delete(exhibitor: Exhibitor): void {
+    this.exhibitors = this.exhibitors.filter(h => h !== exhibitor);
+    this.exhibitorService.deleteExhibitor(exhibitor).subscribe();
+  }
 
 }
 

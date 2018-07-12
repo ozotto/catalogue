@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private translate: TranslateService, private userService: UserService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    translate.setDefaultLang('en');
+    // translate.setDefaultLang('en');
   }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   //     this.users = users;
   //   });
   // }
-  useLanguage(language: string) {
-    this.translate.use(language);
-  }
+  // useLanguage(language: string) {
+  //   this.translate.use(language);
+  // }
 }

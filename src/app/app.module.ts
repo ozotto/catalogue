@@ -25,7 +25,8 @@ import { AlertService } from './sys-services/alert.service';
 import {JwtInterceptor} from './sys-helpers/jwt.interceptor';
 import {ErrorInterceptor} from './sys-helpers/error.interceptor';
 import { SysNavbarComponent } from './sys-navbar/sys-navbar.component';
-import {MatTableModule} from '@angular/material';
+import {MatSnackBar, MatSnackBarModule, MatTableModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //Http Clien and Memory data
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -65,7 +66,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    MatTableModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.

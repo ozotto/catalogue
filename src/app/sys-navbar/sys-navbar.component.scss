@@ -1,0 +1,11 @@
+#language-selector img {
+  width:15px;
+}
+#language-selector > div {
+  min-width: 60px;
+  padding: 5px 0px;
+}
+
+#language-selector > div .dropdown-item {
+  padding: 0px 10px;
+}

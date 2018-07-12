@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { Exhibitor } from '../exhibitors/exhibitor';
 import { MessageService } from '../../sys-services/message.service';
 import {BACKEND_URL} from '../../sys-others/constants';
+import {MatSnackBar} from '@angular/material';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,12 +18,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExhibitorService {
-
-	private exhibitorsUrl = 'api/exhibitors';
-
+  private exhibitorsUrl = 'api/exhibitors';
   constructor(
-  	private http: HttpClient,
-   	private messageService: MessageService
+    private http: HttpClient,
+    private messageService: MessageService,
+    private snackBar: MatSnackBar
   ) { }
 
 
@@ -105,7 +106,23 @@ export class ExhibitorService {
   //     catchError(this.handleError('deleteExhibitors', []))
   //   );
   // }
-  //
+
+
+  /** DELETE: delete the Exhibitor from the server */
+  deleteExhibitor (exhibitor: Exhibitor | number): Observable<Exhibitor> {
+    const id = typeof exhibitor === 'number' ? exhibitor : exhibitor.id;
+    const endpoint = '/exhibitor/exhibitors/';
+    const url = `${BACKEND_URL}${endpoint}${id}/`;
+
+    return this.http.delete<Exhibitor>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted Exhibitor id=${id}`)),
+      catchError(this.handleError<Exhibitor>('deleteExhibitor'))
+    );
+  }
+
+
+
+
   // /** PUT: update the Exhibitor on the server */
   // updateExhibitor (exhibitor: Exhibitor): Observable<any> {
   //   return this.http.put(this.exhibitorsUrl, exhibitor, httpOptions).pipe(
@@ -122,6 +139,10 @@ export class ExhibitorService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+
+      this.snackBar.open('message error', 'ok', {
+        duration: 2000,
+      });
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
