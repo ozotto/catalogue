@@ -14,9 +14,16 @@
 
 {{ 'artgeneve.name' | translate }}
 
+
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+
 <div class="example-container mat-elevation-z8">
 
 <div class="example-table-container">
+
 
 
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">

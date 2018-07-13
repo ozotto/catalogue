@@ -56,6 +56,14 @@ export class ExhibitorsComponent implements OnInit {
     console.log(this.getExhibitors());
   }
 
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   getExhibitors(): any {
     this.exhibitorService.getExhibitors()
         .subscribe(exhibitors => this.dataSource.data = exhibitors); //console.log(exhibitors)

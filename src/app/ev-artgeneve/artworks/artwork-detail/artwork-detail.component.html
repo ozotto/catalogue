@@ -1,0 +1,49 @@
+<p>artwork-detail works!</p>
+<div *ngIf="artwork">
+
+  <h2>{{artwork.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{artwork.id}}</div>
+
+
+
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Titre" [(ngModel)]="artwork.title">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="artwork.year">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="technique" [(ngModel)]="artwork.technique">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Dimensions" [(ngModel)]="artwork.dimensions">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Information additionnels" [(ngModel)]="artwork.additional_information">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Artiste" [(ngModel)]="artwork.artist">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Etat" [(ngModel)]="artwork.state">
+    </mat-form-field>
+  </div>
+
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>

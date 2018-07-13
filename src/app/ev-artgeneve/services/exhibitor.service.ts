@@ -68,17 +68,7 @@ export class ExhibitorService {
   //   );
   // }
   //
-  // /* GET Exhibitors whose name contains search term */
-  // searchExhibitors(term: string): Observable<Exhibitor[]> {
-  //   if (!term.trim()) {
-  //     // if not search term, return empty Exhibitor array.
-  //     return of([]);
-  //   }
-  //   return this.http.get<Exhibitor[]>(`${this.exhibitorsUrl}/?name=${term}`).pipe(
-  //     tap(_ => this.log(`found Exhibitors matching "${term}"`)),
-  //     catchError(this.handleError<Exhibitor[]>('searchExhibitors', []))
-  //   );
-  // }
+
   //
   // //////// Save methods //////////
   //
