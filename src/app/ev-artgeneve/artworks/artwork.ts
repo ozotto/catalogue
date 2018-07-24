@@ -5,6 +5,6 @@ export class Artwork {
   technique: string;
   dimensions: string;
   additional_information: string;
-  artist: number;
+  artist: string[];
   state: number;
 }

@@ -9,10 +9,11 @@ import { MessageService } from '../../sys-services/message.service';
 import {BACKEND_URL} from '../../sys-others/constants';
 import {MatSnackBar} from '@angular/material';
 import {Artwork} from '../artworks/artwork';
+import {ServicesHelper} from '../../sys-helpers/services.helper';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }) //TODO: remove des que tout est dans service helper
 };
 
 @Injectable({
@@ -23,36 +24,24 @@ export class ArtworkService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private serviceHelper: ServicesHelper
   ) { }
 
 
   /** GET Exhibitors from the server */
   getArtworks (): Observable<Artwork[]> {
-    return this.http.get<Artwork[]>(this.absolute_url).pipe(
-          tap(artworks => this.log(`fetched Artwork`)),
-          catchError(this.handleError('getArtwork', []))
-        );
+    return this.serviceHelper.getInstances(this.absolute_url);
   }
+
   /** GET Exhibitor by id. Will 404 if id not found */
-  getArtwork(artwork: Artwork | number): Observable<Artwork> {
-    const id = typeof artwork === 'number' ? artwork : artwork.id;
-    const url = `${this.absolute_url}${id}/`;
-    return this.http.get<Artwork>(url).pipe(
-      tap(_ => this.log(`fetched Artwork id=${id}`)),
-      catchError(this.handleError<Artwork>(`getArtwork id=${id}`))
-    );
+  getArtwork (instance: Artwork | number): Observable<Artwork> {
+    return this.serviceHelper.getInstance(this.absolute_url, instance);
   }
 
   /** DELETE: delete the Artwork from the server */
-  deleteArtwork (artwork: Artwork | number): Observable<Artwork> {
-    const id = typeof artwork === 'number' ? artwork : artwork.id;
-    const url = `${this.absolute_url}${id}/`;
-
-    return this.http.delete<Artwork>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted Artwork id=${id}`)),
-      catchError(this.handleError<Artwork>('deleteArtwork'))
-    );
+  deleteArtwork (instance: Artwork | number): Observable<Artwork> {
+    return this.serviceHelper.deleteInstance(this.absolute_url, instance);
   }
 
   // /** POST: add a new Exhibitor to the server */
@@ -63,44 +52,9 @@ export class ArtworkService {
   //   );
   // }
 
-  /** PUT: update the Exhibitor on the server */
-  updateArtwork (artwork: Artwork): Observable<any> {
-    const id = typeof artwork === 'number' ? artwork : artwork.id;
-    const url = `${this.absolute_url}${id}/`;
-
-    return this.http.put(url, artwork, httpOptions).pipe(
-      tap(_ => this.log(`updated Artwork id=${id}`)),
-      catchError(this.handleError<any>('updateArtwork'))
-    );
-  }
-
-    /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      this.snackBar.open('message error', 'ok', {
-        duration: 2000,
-      });
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for Artwork consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
-
-  /** Log a ArtworkService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add('ArtworkService: ' + message);
+  // /** PUT: update the Exhibitor on the server */
+  updateArtwork (instance: Artwork): Observable<any> {
+    return this.serviceHelper.updateInstance(this.absolute_url, instance);
   }
 
 }

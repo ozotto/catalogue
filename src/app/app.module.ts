@@ -27,6 +27,9 @@ import {ErrorInterceptor} from './sys-helpers/error.interceptor';
 import { SysNavbarComponent } from './sys-navbar/sys-navbar.component';
 import {MatSnackBar, MatSnackBarModule, MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ServicesHelper} from './sys-helpers/services.helper';
+import { SysFileuploadComponent } from './sys-fileupload/sys-fileupload.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 //Http Clien and Memory data
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -68,6 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
+    FileUploadModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
@@ -84,6 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
+    ServicesHelper,
     AuthGuard,
     AlertService,
     UserService,

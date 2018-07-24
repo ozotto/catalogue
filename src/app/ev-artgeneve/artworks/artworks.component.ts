@@ -36,7 +36,6 @@ export class ArtworksComponent implements OnInit {
   displayedColumns: string[] = ['id', 'org_code', 'exh_booth', 'exh_id', 'delete', 'update'];
   dataSource = new MatTableDataSource();
 
-  artwork: Artwork;
   artworks: Artwork[];
   constructor(private artworkService: ArtworkService) { }
 
@@ -51,7 +50,7 @@ export class ArtworksComponent implements OnInit {
     console.log(this.getArtworks());
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string) { //TODO: https://codehandbook.org/how-to-implement-auto-complete-in-angular-4/
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -63,10 +62,7 @@ export class ArtworksComponent implements OnInit {
     this.artworkService.getArtworks()
       .subscribe(artworks => this.dataSource.data = artworks); //console.log(artworks)
   }
-  getArtwork(id): any {
-    this.artworkService.getArtwork(id)
-      .subscribe(artwork => this.artwork = artwork); //console.log(artworks)
-  }
+
   deleteArtwork(artwork: Artwork): void {
     this.artworks = this.artworks.filter(h => h !== artwork);
     this.artworkService.deleteArtwork(artwork).subscribe();
