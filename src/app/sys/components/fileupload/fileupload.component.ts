@@ -31,7 +31,7 @@ export class FileuploadComponent implements OnInit {
       form.append('image', fileItem.file.rawFile);
       form.append(this.fieldToUpdate, this.rattachedInstanceId);
     };
-    this.uploader.onCompleteItem = (item: any, response: any, status: number, headers: any) => {
+    this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any) => {
       console.log('Gniaaa response');
       console.log(response);
       // const res = JSON.parse(response);

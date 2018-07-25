@@ -19,7 +19,7 @@
 
 
     </div>
-    <div class="col-md-12" style="margin-bottom: 40px">
+    <div class="col-md-12" *ngIf="uploader?.queue?.length != 0" style="margin-bottom: 40px">
 
       <h3>Liste des uploads</h3>
       <p>Nombre d'upload: {{ uploader?.queue?.length }}</p>
