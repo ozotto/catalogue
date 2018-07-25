@@ -1,4 +1,4 @@
-///<reference path="sys-services/alert.service.ts"/>
+///<reference path="sys/services/alert.service.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -12,28 +12,27 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
-import { AuthGuard } from './sys-guards/auth.guard';
+import { AuthGuard } from './sys/guards/auth.guard';
 
-import { SysDashboardComponent } from './sys-dashboard/sys-dashboard.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { AlertComponent } from './sys-directive/alert.component';
+import { HomeComponent } from './sys/components/home/home.component';
+import { LoginComponent } from './sys/components/login/login.component';
+import { AlertComponent } from './sys/directives/alert/alert.component';
 
-import {AuthenticationService} from './sys-services/authentication.service';
-import { UserService } from './sys-services/user.service';
-import { AlertService } from './sys-services/alert.service';
-import {JwtInterceptor} from './sys-helpers/jwt.interceptor';
-import {ErrorInterceptor} from './sys-helpers/error.interceptor';
-import { SysNavbarComponent } from './sys-navbar/sys-navbar.component';
+import {AuthenticationService} from './sys/services/authentication.service';
+import { UserService } from './sys/services/user.service';
+import { AlertService } from './sys/services/alert.service';
+import {JwtInterceptor} from './sys/helpers/jwt.interceptor';
+import {ErrorInterceptor} from './sys/helpers/error.interceptor';
 import {MatSnackBar, MatSnackBarModule, MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ServicesHelper} from './sys-helpers/services.helper';
-import { SysFileuploadComponent } from './sys-fileupload/sys-fileupload.component';
+import {ServicesHelper} from './sys/helpers/services.helper';
 import {FileUploadModule} from 'ng2-file-upload';
+import {DashboardComponent} from './sys/components/dashboard/dashboard.component';
+import {NavbarComponent} from './sys/components/navbar/navbar.component';
 
 //Http Clien and Memory data
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService }  from './sys-services/in-memory-data.service';
+// import { InMemoryDataService }  from './services/in-memory-data.service';
 
 
 
@@ -52,11 +51,11 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    SysDashboardComponent,
+    DashboardComponent,
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    SysNavbarComponent,
+    NavbarComponent,
     /*EvArtgeneveComponent,
     ExhibitorsComponent,
     GaleriesComponent,

@@ -4,9 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { Exhibitor } from '../exhibitors/exhibitor';
-import { MessageService } from '../../sys-services/message.service';
-import {BACKEND_URL} from '../../sys-others/constants';
+import { Exhibitor } from '../components/exhibitors/exhibitor';
+import { MessageService } from '../../sys/services/message.service';
+import {BACKEND_URL} from '../../sys/constants';
 import {MatSnackBar} from '@angular/material';
 
 

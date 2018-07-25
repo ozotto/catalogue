@@ -5,12 +5,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EvArtgeneveRoutingModule }       from './ev-artgeneve-routing.module';
 
 import { EvArtgeneveComponent }           from './ev-artgeneve.component';
-import { ExhibitorsComponent }            from './exhibitors/exhibitors.component';
-import { ArtistsComponent }               from './artists/artists.component';
-import { ArtworksComponent }              from './artworks/artworks.component';
-import { GaleriesComponent }              from './galeries/galeries.component';
-import { ExhibitorDetailComponent } from './exhibitors/exhibitor-detail/exhibitor-detail.component';
-import {ArtworkDetailComponent} from './artworks/artwork-detail/artwork-detail.component';
+import { ExhibitorsComponent }            from './components/exhibitors/exhibitors.component';
+import { ArtistsComponent }               from './components/artists/artists.component';
+import { ArtworksComponent }              from './components/artworks/artworks.component';
+import { GaleriesComponent }              from './components/galeries/galeries.component';
+import { ExhibitorDetailComponent } from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
+import {ArtworkUpdateComponent} from './components/artworks/artwork-update/artwork-update.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {
   DateAdapter,
@@ -21,7 +21,8 @@ import {
   MatSortModule,
   MatTableModule, MAT_DATE_LOCALE, NativeDateAdapter, MAT_DATE_FORMATS, MatAutocompleteModule
 } from '@angular/material';
-import {SysFileuploadComponent} from '../sys-fileupload/sys-fileupload.component';
+import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';
+import { FileuploadComponent } from '../sys/components/fileupload/fileupload.component';
 
 
 
@@ -92,8 +93,9 @@ import {SysFileuploadComponent} from '../sys-fileupload/sys-fileupload.component
     ArtworksComponent,
     GaleriesComponent,
     ExhibitorDetailComponent,
-    ArtworkDetailComponent,
-    SysFileuploadComponent,
+    ArtworkUpdateComponent,
+    ArtworkCreateComponent,
+    FileuploadComponent,
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},

@@ -2,24 +2,24 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 //Router Systeme
-import { SysDashboardComponent }   from './sys-dashboard/sys-dashboard.component';
 
 //Router Event - Artgeneve
 /*import { EvArtgeneveComponent } from './ev-artgeneve/ev-artgeneve.component';*/
 
 import { CanDeactivateGuard }       from './can-deactivate-guard.service';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
-import {AuthGuard} from './sys-guards/auth.guard';
-import {LoginComponent} from './login/login.component';
-import {HomeComponent} from './home/home.component';
+import {AuthGuard} from './sys/guards/auth.guard';
+import {LoginComponent} from './sys/components/login/login.component';
+import {HomeComponent} from './sys/components/home/home.component';
 import {AppComponent} from './app.component';
+import {DashboardComponent} from './sys/components/dashboard/dashboard.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: SysDashboardComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: SysDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
   /*{ path: 'art', component: EvArtgeneveComponent },*/
   {
     path: 'artgeneve',
