@@ -10,8 +10,8 @@ import { ArtistsComponent }  				from './components/artists/artists.component';
 import { ArtworksComponent }    			from './components/artworks/artworks.component';
 import { GaleriesComponent }    		from './components/galeries/galeries.component';
 import { ExhibitorDetailComponent } from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
-import { ArtworkUpdateComponent } from './components/artworks/artwork-update/artwork-update.component';
-import {ArtworkCreateComponent} from './components/artworks/artwork-create/artwork-create.component';
+import { ArtworkDetailComponent } from './components/artworks/artwork-detail/artwork-detail.component';
+/*import {ArtworkCreateComponent} from './components/artworks/artwork-create/artwork-create.component';*/
 
 const artgeneveRoutes: Routes = [
   {
@@ -28,8 +28,8 @@ const artgeneveRoutes: Routes = [
           { path: 'art-represented', component: ArtistsComponent },
           { path: 'art-exhibited', component: ArtistsComponent },
           { path: 'artworks', component: ArtworksComponent },
-          { path: 'artworks/add', component: ArtworkUpdateComponent },
-          { path: 'artworks/:id', component: ArtworkUpdateComponent },
+          { path: 'artworks/add', component: ArtworkDetailComponent },
+          { path: 'artworks/:id', component: ArtworkDetailComponent },
           { path: 'galeries', component: GaleriesComponent },
           { path: 'details/:id', component: ExhibitorDetailComponent },
           //{ path: '', component: EvArtgeneveComponent }

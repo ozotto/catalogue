@@ -10,7 +10,7 @@ import { ArtistsComponent }               from './components/artists/artists.com
 import { ArtworksComponent }              from './components/artworks/artworks.component';
 import { GaleriesComponent }              from './components/galeries/galeries.component';
 import { ExhibitorDetailComponent } from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
-import {ArtworkUpdateComponent} from './components/artworks/artwork-update/artwork-update.component';
+import { ArtworkDetailComponent } from './components/artworks/artwork-detail/artwork-detail.component';
 import {FileUploadModule} from 'ng2-file-upload';
 import {
   DateAdapter,
@@ -21,7 +21,7 @@ import {
   MatSortModule,
   MatTableModule, MAT_DATE_LOCALE, NativeDateAdapter, MAT_DATE_FORMATS, MatAutocompleteModule
 } from '@angular/material';
-import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';
+/*import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';*/
 import { FileuploadComponent } from '../sys/components/fileupload/fileupload.component';
 
 
@@ -93,8 +93,8 @@ import { FileuploadComponent } from '../sys/components/fileupload/fileupload.com
     ArtworksComponent,
     GaleriesComponent,
     ExhibitorDetailComponent,
-    ArtworkUpdateComponent,
-    ArtworkCreateComponent,
+    ArtworkDetailComponent,
+    // ArtworkCreateComponent,
     FileuploadComponent,
   ],
   providers: [

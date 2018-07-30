@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+/*import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -56,3 +56,4 @@ export class ArtworkCreateComponent implements OnInit {
       });
   }
 }
+*/

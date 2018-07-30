@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { ArtworkService } from '../../../services/artwork.service';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 import {map, startWith} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
@@ -16,41 +17,35 @@ import {Picture} from '../../../models/pictures';
 
 
 @Component({
-  selector: 'app-artwork-update',
-  templateUrl: '../shared/artwork-form.component.html',
-  styleUrls: ['../shared/artwork-form.component.scss']
+  selector: 'app-artwork-detail',
+  templateUrl: './artwork-detail.component.html',
+  styleUrls: ['./artwork-detail.component.scss']
 })
-export class ArtworkUpdateComponent implements OnInit {
+export class ArtworkDetailComponent implements OnInit {
 
   uploadedImages: Picture[];
 
-  @Input() artwork: any;
+  //@Input() artwork: any;
 
-  // private artwork: Artwork;
+  private artwork: Artwork;
+  private isNew: Boolean;
+
   constructor(
     private route: ActivatedRoute,
     private artworkService: ArtworkService,
     private location: Location
   ) { 
-    this.route.params.subscribe( params => {
-      console.log('helloe')
-      console.log(params)
-    } )
+    this.artwork = new Artwork();
+    this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
   }
 
   ngOnInit(): void {
-    // const pathEx = location.path
 
-    // console.log(pathEx)
-    // const isNew = this.route.url._value[1].path
-    // if (isNew == 'add') {
-    //   console.log('new')
-    //   this.artwork = new Artwork();
-    // } else {
+    if(!this.isNew) {
       const id = +this.route.snapshot.paramMap.get('id');
-      console.log('update');
       this.getArtwork(id);
-    // }
+    }
+
   }
 
   getArtwork(id): void {
