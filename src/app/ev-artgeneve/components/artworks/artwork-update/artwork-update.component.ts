@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -10,6 +10,8 @@ import {Observable} from 'rxjs';
 
 import { Artwork } from '../../../models/artwork';
 import {Artist} from '../../../models/artist';
+import {FileuploadComponent} from '../../../../sys/components/fileupload/fileupload.component';
+import {Picture} from '../../../models/pictures';
 
 
 
@@ -19,7 +21,11 @@ import {Artist} from '../../../models/artist';
   styleUrls: ['../shared/artwork-form.component.scss']
 })
 export class ArtworkUpdateComponent implements OnInit {
+
+  uploadedImages: Picture[];
+
   @Input() artwork: any;
+
   // private artwork: Artwork;
   constructor(
     private route: ActivatedRoute,
@@ -28,16 +34,18 @@ export class ArtworkUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // const pathEx = location.path
 
-    const isNew = this.route.url.value[1].path
-    if (isNew == 'add') {
-      console.log('new')
-      this.artwork = new Artwork();
-    } else {
+    // console.log(pathEx)
+    // const isNew = this.route.url._value[1].path
+    // if (isNew == 'add') {
+    //   console.log('new')
+    //   this.artwork = new Artwork();
+    // } else {
       const id = +this.route.snapshot.paramMap.get('id');
       console.log('update');
       this.getArtwork(id);
-    }
+    // }
   }
 
   getArtwork(id): void {
@@ -58,7 +66,12 @@ export class ArtworkUpdateComponent implements OnInit {
       .subscribe(() => this.goBack());
   }
 
-
+  receiveImages($event) {
+    this.uploadedImages = $event;
+    console.log('uploadedImages gniaaaa');
+    console.log($event);
+    // console.log(this.uploadedImages);
+  }
 
 
 //   testdate($event): void {
