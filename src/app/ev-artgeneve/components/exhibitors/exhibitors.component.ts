@@ -28,6 +28,7 @@ import { Exhibitor } from './exhibitor';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ExhibitorService} from '../../services/exhibitor.service';
+import * as _ from 'lodash';
 
 
 /**
@@ -66,7 +67,14 @@ export class ExhibitorsComponent implements OnInit {
 
   getExhibitors(): any {
     this.exhibitorService.getExhibitors()
-        .subscribe(exhibitors => this.dataSource.data = exhibitors); //console.log(exhibitors)
+        .subscribe(
+        exhibitors => {
+          this.dataSource.data = exhibitors
+          var tmpExh: Exhibitor = _.find(exhibitors, (exhibitor) => exhibitor.id == 1 )
+          console.log(tmpExh)
+        }
+
+    ); //console.log(exhibitors)
   }
   delete(exhibitor: Exhibitor): void {
     this.exhibitors = this.exhibitors.filter(h => h !== exhibitor);
