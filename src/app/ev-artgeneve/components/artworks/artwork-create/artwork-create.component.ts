@@ -19,7 +19,7 @@ import {Artist} from '../../../models/artist';
   styleUrls: ['../shared/artwork-form.component.scss']
 })
 export class ArtworkCreateComponent implements OnInit {
-  private artwork: Artwork;
+  public artwork: Artwork;
 
   constructor(
     private route: ActivatedRoute,

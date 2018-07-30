@@ -31,7 +31,12 @@ export class ArtworkUpdateComponent implements OnInit {
     private route: ActivatedRoute,
     private artworkService: ArtworkService,
     private location: Location
-  ) { }
+  ) { 
+    this.route.params.subscribe( params => {
+      console.log('helloe')
+      console.log(params)
+    } )
+  }
 
   ngOnInit(): void {
     // const pathEx = location.path
