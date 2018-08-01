@@ -23,6 +23,7 @@ import {
 } from '@angular/material';
 /*import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';*/
 import { FileuploadComponent } from '../sys/components/fileupload/fileupload.component';
+import { ArtistDetailComponent } from './components/artists/artist-detail/artist-detail.component';
 
 
 
@@ -96,6 +97,7 @@ import { FileuploadComponent } from '../sys/components/fileupload/fileupload.com
     ArtworkDetailComponent,
     // ArtworkCreateComponent,
     FileuploadComponent,
+    ArtistDetailComponent,
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
