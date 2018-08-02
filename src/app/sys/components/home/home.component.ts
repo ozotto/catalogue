@@ -13,8 +13,15 @@ import {TranslateService} from '@ngx-translate/core';
 
 
 export class HomeComponent implements OnInit {
+  
+  options = {
+    direction: 'ltr'
+  };
+
   currentUser: User;
   users: User[] = [];
+
+  
 
   constructor(
       private translate: TranslateService, 

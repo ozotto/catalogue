@@ -15,13 +15,17 @@ import { LoginComponent } from './sys/components/login/login.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  {
+  /*{
     path: 'full',
     redirectTo: 'full-layout',
     pathMatch: 'full',
-  },
+  },*/
   { path: 'full', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
-  { path: 'full', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
+  {
+    path: 'artgeneve',
+    loadChildren: './ev-artgeneve/ev-artgeneve.module#EvArtgeneveModule',
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
