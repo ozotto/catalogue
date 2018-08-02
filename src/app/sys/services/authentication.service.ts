@@ -3,12 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import {BACKEND_URL} from '../constants';
 import {BehaviorSubject} from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   isLoggedIn() {
     return this.loggedIn;
@@ -39,5 +43,6 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.loggedIn.next(false);
+    this.router.navigate(['/']);
   }
 }

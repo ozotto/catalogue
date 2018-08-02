@@ -23,7 +23,7 @@
     <!--</div>-->
 
 
-    <mat-form-field class="example-full-width">
+<!--     <mat-form-field class="example-full-width">
       <input matInput placeholder="Année" [(ngModel)]="artwork.year">
     </mat-form-field>
 
@@ -38,10 +38,10 @@
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Information additionnels" [(ngModel)]="artwork.additional_information">
     </mat-form-field>
+ -->
 
-
-
-    <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload>
+<!-- 
+    <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload> -->
 
 
     <!--<div>-->
@@ -62,10 +62,10 @@
 
 
 
-    <mat-form-field class="example-full-width">
+<!--     <mat-form-field class="example-full-width">
       <input matInput placeholder="Etat" [(ngModel)]="artwork.state">
     </mat-form-field>
-
+ -->
 
     <button (click)="goBack()">go back</button>
     <button (click)="save()">save</button>

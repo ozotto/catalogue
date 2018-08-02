@@ -14,7 +14,8 @@
             </span>
             <div class="navbar-right mt-1 titleApp">
                 <div class="position-relative has-icon-right">
-                    Exhibitor Catalog
+                    <!-- Exhibitor Catalog -->
+                    {{ 'catalogue.title' | translate }}
                 </div>
             </div>
         </div>
@@ -66,7 +67,7 @@
                                 <span>My Inbox</span>
                             </a>
                             <div class="dropdown-divider"></div> -->
-                            <a class="dropdown-item" href="javascript:;">
+                            <a class="dropdown-item" (click)="Logout()">
                                 <i class="ft-power mr-2"></i>
                                 <span>Logout</span>
                             </a>
