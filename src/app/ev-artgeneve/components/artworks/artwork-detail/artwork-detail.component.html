@@ -1,0 +1,73 @@
+<p>artwork-create works!</p>
+
+
+
+<div>
+
+  <h2>{{artwork.title | uppercase}} Details</h2>
+  <div><span>id: </span>{{artwork.id}}</div>
+
+
+  <div class="form-container">
+
+<!--     <mat-form-field class="example-full-width">
+      <input matInput placeholder="Titre" [(ngModel)]="artwork.title">
+    </mat-form-field> -->
+
+    <!--<div>-->
+      <!--<mat-form-field>-->
+        <!--<input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="testdate($event)" [(ngModel)]="artwork.year"> &lt;!&ndash; [(ngModel)]="artwork.year" &ndash;&gt;-->
+        <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+        <!--<mat-datepicker #picker></mat-datepicker>-->
+      <!--</mat-form-field>-->
+    <!--</div>-->
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Année" [(ngModel)]="artwork.year">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Technique" [(ngModel)]="artwork.technique">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Dimensions" [(ngModel)]="artwork.dimensions">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Information additionnels" [(ngModel)]="artwork.additional_information">
+    </mat-form-field>
+
+
+
+    <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload>
+
+
+    <!--<div>-->
+      <!--<mat-form-field class="example-full-width">-->
+        <!--<input matInput placeholder="Artiste" [(ngModel)]="artwork.artist">-->
+      <!--</mat-form-field>-->
+    <!--</div>-->
+
+
+    <!--<mat-form-field class="example-full-width">-->
+      <!--<input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">-->
+      <!--<mat-autocomplete #auto="matAutocomplete">-->
+        <!--<mat-option *ngFor="let option of filteredOptions | async" [value]="option">-->
+          <!--{{option}}-->
+        <!--</mat-option>-->
+      <!--</mat-autocomplete>-->
+    <!--</mat-form-field>-->
+
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Etat" [(ngModel)]="artwork.state">
+    </mat-form-field>
+
+
+    <button (click)="goBack()">go back</button>
+    <button (click)="save()">save</button>
+  </div>
+</div>

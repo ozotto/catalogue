@@ -1,0 +1,29 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{ 'catalogue.title' | translate }}
+  </h1>
+</div>
+<p>{{ 'catalogue.hello' | translate:{'name':'Oscar'} }}</p>
+<!-- <button (click)="useLanguage('en')">en</button>
+<button (click)="useLanguage('de')">de</button>
+<button (click)="useLanguage('fr')">fr</button> -->
+
+<div id="subnav">
+  <a routerLink="/dashboard">Home</a>
+  <a routerLink="/artgeneve" routerLinkActive="active">Artgeneve</a>
+  <!--<a routerLink="/artmontecarlo" routerLinkActive="active">Artmontecarlo</a>-->
+  <a routerLink="/admin" routerLinkActive="active">admin</a>
+  <!--      Router ArtGeneve
+    <a routerLink="/exh-artgeneve">Exhibitor</a>
+    <a routerLink="/art-represented">Represented artists</a>
+    <a routerLink="/art-exhibited">Exhibited artists</a>
+    <a routerLink="/artworks">Application Artworks</a>
+    <a routerLink="/galeries">Gallery</a> -->
+</div>
+
+
+<!-- <h1>Hi {{currentUser.firstName}}!</h1> -->
+<p>You're logged in with Angular 6!!</p>
+
+<p><a [routerLink]="['/login']">Logout</a></p>

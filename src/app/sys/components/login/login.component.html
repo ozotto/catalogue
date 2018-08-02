@@ -1,0 +1,46 @@
+<section id="login">
+    <div class="container-fluid">
+        <div class="row full-height-vh">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="card gradient-indigo-purple text-center width-400">
+                    <div class="card-img overlap">
+                      <img class="mb-1" src="assets/img/logos/palexponegatif.png" width="220">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="white">Exhibitors Catalog</h3>
+                        <div class="card-block">
+                            <h2 class="white">Login</h2>
+                            <form [formGroup]="loginForm">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" required/>
+                                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                          <div *ngIf="f.username.errors.required">Username is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" required/>
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">Password is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button (click)="onSubmit()" type="button" class="btn btn-pink btn-block btn-raised">Login</button>
+                                        <button (click)="onCancel()"type="button" class="btn btn-secondary btn-block btn-raised">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
