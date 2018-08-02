@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 import { ArtistService } from '../../services/artist.service';
 import { Artist } from '../../models/artist';
@@ -11,6 +12,8 @@ import { Artist } from '../../models/artist';
 export class ArtistsComponent implements OnInit {
 
 	artists: Artist[];
+  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['id', 'banner', 'name', 'firstName'];
 
   constructor(
   	private artistService: ArtistService
@@ -22,7 +25,10 @@ export class ArtistsComponent implements OnInit {
 
   getArtists(): any {
     this.artistService.getArtists()
-      .subscribe(artists => this.artists = artists); 
+      .subscribe(artists => {
+        this.artists = artists
+        this.dataSource.data = artists
+      }); 
   }
 
   selectedArtist: Artist;
