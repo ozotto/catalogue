@@ -1,28 +1,10 @@
-// import { Component, OnInit } from '@angular/core';
-//
-// @Component({
-//   selector: 'app-artworks',
-//   templateUrl: './artworks.component.html',
-//   styleUrls: ['./artworks.component.scss']
-// })
-// export class ArtworksComponent implements OnInit {
-//
-//   constructor() { }
-//
-//   ngOnInit() {
-//   }
-//
-// }
-
-
-
-
-
 import {Component, OnInit, ViewChild} from '@angular/core';
-/*import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';*/
+
 import {ArtworkService} from '../../services/artwork.service';
 import {Artwork} from '../../models/artwork';
 
+import { LocalDataSource } from 'ng2-smart-table';
+import * as tableData from '../data/data-app-art';
 
 /**
  * @title Basic use of `<table mat-table>`
@@ -36,8 +18,16 @@ export class ArtworksComponent implements OnInit {
   displayedColumns: string[] = ['id', 'org_code', 'exh_booth', 'exh_id', 'delete', 'update'];
 /*  dataSource = new MatTableDataSource();*/
 
+  source: LocalDataSource;
+
   artworks: Artwork[];
-  constructor(private artworkService: ArtworkService) { }
+  constructor(
+    private artworkService: ArtworkService
+  ) {
+    this.source = new LocalDataSource(tableData.data); 
+  }
+
+  settings = tableData.settings;
 
 /*  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;*/
@@ -72,3 +62,20 @@ export class ArtworksComponent implements OnInit {
   }
 
 }
+
+
+// import { Component, OnInit } from '@angular/core';
+//
+// @Component({
+//   selector: 'app-artworks',
+//   templateUrl: './artworks.component.html',
+//   styleUrls: ['./artworks.component.scss']
+// })
+// export class ArtworksComponent implements OnInit {
+//
+//   constructor() { }
+//
+//   ngOnInit() {
+//   }
+//
+// }

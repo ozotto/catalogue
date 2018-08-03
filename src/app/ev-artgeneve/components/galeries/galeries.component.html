@@ -1,3 +1,14 @@
-<p>
-  {{ 'artgeneve.gallery' | translate }}
-</p>
+<div class="row" matchHeight="card">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">{{ 'artgeneve.gallery' | translate }}</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

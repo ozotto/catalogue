@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { ArtistService } from '../../services/artist.service';
 import { Artist } from '../../models/artist';
 
+import { LocalDataSource } from 'ng2-smart-table';
+import * as tableData from '../data/data-artists-rep';
+
 @Component({
   selector: 'app-artists',
   templateUrl: './artists.component.html',
@@ -15,9 +18,15 @@ export class ArtistsComponent implements OnInit {
   /*dataSource = new MatTableDataSource();*/
   displayedColumns: string[] = ['id', 'banner', 'name', 'firstName'];
 
+  source: LocalDataSource;
+
   constructor(
-  	private artistService: ArtistService
-  	) { }
+	private artistService: ArtistService
+	) {
+    this.source = new LocalDataSource(tableData.data);
+  }
+
+  settings = tableData.settings;
 
   ngOnInit() {
   	this.getArtists()

@@ -21,16 +21,19 @@
       <div class="card-body">
         <div class="card-block">
           <!-- <h5 class="my-2">07-25-2018 [5.1]</h5> -->
-          <ul>
+          <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+          <!-- <ul>
             <li *ngFor="let exhibitor of exhibitors" >
               <span>{{exhibitor.id}}</span> {{exhibitor.org_code}} {{exhibitor.exh_booth}}
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 
 
 

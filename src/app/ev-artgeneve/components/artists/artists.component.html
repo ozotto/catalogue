@@ -1,9 +1,23 @@
-<h2>Exhibited artists</h2>
-<ul>
+<div class="row" matchHeight="card">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Exhibited artists</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-block">
+          <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <ul>
   <li *ngFor="let artist of artists" (click)="onSelectArtist(artist)">
     <span>{{artist.id}}</span> {{artist.first_name}} {{artist.last_name}}
   </li>
-</ul>
+</ul> -->
 
 <!-- <div class="example-container mat-elevation-z8">
 

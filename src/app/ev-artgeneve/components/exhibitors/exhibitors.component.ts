@@ -1,35 +1,10 @@
-// import { Component, OnInit } from '@angular/core';
-import { Exhibitor } from './exhibitor';
-//
-// @Component({
-//   selector: 'app-exhibitors',
-//   templateUrl: './exhibitors.component.html',
-//   styleUrls: ['./exhibitors.component.scss']
-// })
-// export class ExhibitorsComponent implements OnInit {
-//
-// 	exhibitors: Exhibitor[];
-//
-//   constructor(private exhibitorService: ExhibitorService) { }
-//
-//   ngOnInit() {
-//     this.getExhibitors();
-//   }
-//
-//   getExhibitors(): void {
-//     this.exhibitorService.getExhibitors()
-//         .subscribe(exhibitors => this.exhibitors = exhibitors); //console.log(exhibitors)
-//   }
-
-
-
-
-
 import {Component, OnInit, ViewChild} from '@angular/core';
-/*import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';*/
+import { Exhibitor } from './exhibitor';
 import {ExhibitorService} from '../../services/exhibitor.service';
 import * as _ from 'lodash';
 
+import { LocalDataSource } from 'ng2-smart-table';
+import * as tableData from '../data/data-exh';
 
 /**
  * @title Basic use of `<table mat-table>`
@@ -41,10 +16,17 @@ import * as _ from 'lodash';
 })
 export class ExhibitorsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'org_code', 'exh_booth', 'exh_id', 'delete'];
-/*  dataSource = new MatTableDataSource();*/
+
+  source: LocalDataSource;
 
   exhibitors: Exhibitor[];
-  constructor(private exhibitorService: ExhibitorService) { }
+  constructor(
+    private exhibitorService: ExhibitorService
+  ) {
+    this.source = new LocalDataSource(tableData.data);
+  }
+
+  settings = tableData.settings;
 
 /*  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;*/
@@ -174,3 +156,31 @@ export class ExhibitorsComponent implements OnInit {
   // }
 //
 // }
+
+
+
+//
+// @Component({
+//   selector: 'app-exhibitors',
+//   templateUrl: './exhibitors.component.html',
+//   styleUrls: ['./exhibitors.component.scss']
+// })
+// export class ExhibitorsComponent implements OnInit {
+//
+//   exhibitors: Exhibitor[];
+//
+//   constructor(private exhibitorService: ExhibitorService) { }
+//
+//   ngOnInit() {
+//     this.getExhibitors();
+//   }
+//
+//   getExhibitors(): void {
+//     this.exhibitorService.getExhibitors()
+//         .subscribe(exhibitors => this.exhibitors = exhibitors); //console.log(exhibitors)
+//   }
+
+
+
+
+
