@@ -1,20 +1,20 @@
 // Smart DataTable
 export var settings = {
   columns: {
-    id: {
+    /*id: {
       title: 'ID',
+      filter: true,
+    },*/
+    cat_banner : {
+      title: 'Banner',
+      filter: true,
+    },
+    exh_booth: {
+      title: 'Stand',
       filter: false,
     },
-    name: {
-      title: 'Full Name',
-      filter: false,
-    },
-    username: {
-      title: 'User Name',
-      filter: false,
-    },
-    email: {
-      title: 'Email',
+    exh_status: {
+      title: 'Validation',
       filter: false,
     }
   },

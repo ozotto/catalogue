@@ -5,16 +5,16 @@ export var settings = {
       title: 'ID',
       filter: false,
     },
-    name: {
-      title: 'Full Name',
+    title: {
+      title: 'Title',
       filter: false,
     },
-    username: {
-      title: 'User Name',
+    artist: {
+      title: 'Artist',
       filter: false,
     },
-    email: {
-      title: 'Email',
+    state: {
+      title: 'Validation',
       filter: false,
     }
   },
@@ -28,6 +28,15 @@ export var settings = {
     deleteButtonContent: '<i class="ft-x danger font-medium-1 mr-2"></i>'
   }
 };
+
+/* "id": 1,
+    "title": "Python",
+    "year": "1986",
+    "technique": "Papier",
+    "dimensions": "124*214",
+    "additional_information": "Plastique",
+    "artist": 1,
+    "state": 1*/
 
 export var data = [
   {

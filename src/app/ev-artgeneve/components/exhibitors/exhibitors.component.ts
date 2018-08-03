@@ -23,7 +23,8 @@ export class ExhibitorsComponent implements OnInit {
   constructor(
     private exhibitorService: ExhibitorService
   ) {
-    this.source = new LocalDataSource(tableData.data);
+    this.getExhibitors()
+    //this.source = new LocalDataSource(tableData.data);
   }
 
   settings = tableData.settings;
@@ -35,8 +36,8 @@ export class ExhibitorsComponent implements OnInit {
     // this.getExhibitors();
 /*    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;*/
-    console.log("data source");
-    console.log(this.getExhibitors());
+    //console.log("data source");
+    //console.log(this.getExhibitors());
   }
 
   applyFilter(filterValue: string) {
@@ -51,6 +52,7 @@ export class ExhibitorsComponent implements OnInit {
     this.exhibitorService.getExhibitors()
         .subscribe(
         exhibitors => {
+          this.source = new LocalDataSource(exhibitors);
           /*this.dataSource.data = exhibitors*/
           this.exhibitors = exhibitors
           var tmpExh: Exhibitor = _.find(exhibitors, (exhibitor) => exhibitor.id == 1 )

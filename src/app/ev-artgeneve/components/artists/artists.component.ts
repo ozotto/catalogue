@@ -14,8 +14,7 @@ import * as tableData from '../data/data-artists-rep';
 })
 export class ArtistsComponent implements OnInit {
 
-	artists: Artist[];
-  /*dataSource = new MatTableDataSource();*/
+	/*dataSource = new MatTableDataSource();*/
   displayedColumns: string[] = ['id', 'banner', 'name', 'firstName'];
 
   source: LocalDataSource;
@@ -23,7 +22,7 @@ export class ArtistsComponent implements OnInit {
   constructor(
 	private artistService: ArtistService
 	) {
-    this.source = new LocalDataSource(tableData.data);
+    this.getArtists()
   }
 
   settings = tableData.settings;
@@ -35,8 +34,7 @@ export class ArtistsComponent implements OnInit {
   getArtists(): any {
     this.artistService.getArtists()
       .subscribe(artists => {
-        this.artists = artists
-        /*this.dataSource.data = artists*/
+        this.source = new LocalDataSource(artists);
       }); 
   }
 

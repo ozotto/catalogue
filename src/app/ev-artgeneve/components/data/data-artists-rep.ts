@@ -5,16 +5,16 @@ export var settings = {
       title: 'ID',
       filter: false,
     },
-    name: {
-      title: 'Full Name',
+    last_name: {
+      title: 'Name',
       filter: false,
     },
-    username: {
-      title: 'User Name',
+    first_name: {
+      title: 'First Name',
       filter: false,
     },
-    email: {
-      title: 'Email',
+    state: {
+      title: 'Validation',
       filter: false,
     }
   },

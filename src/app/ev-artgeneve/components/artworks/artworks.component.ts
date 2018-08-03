@@ -15,29 +15,19 @@ import * as tableData from '../data/data-app-art';
   styleUrls: ['./artworks.component.scss']
 })
 export class ArtworksComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'org_code', 'exh_booth', 'exh_id', 'delete', 'update'];
-/*  dataSource = new MatTableDataSource();*/
 
   source: LocalDataSource;
 
-  artworks: Artwork[];
   constructor(
     private artworkService: ArtworkService
   ) {
+    this.getArtworks()
     this.source = new LocalDataSource(tableData.data); 
   }
 
   settings = tableData.settings;
 
-/*  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;*/
-
   ngOnInit() {
-    // this.getExhibitors();
-    /*this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;*/
-    console.log("data source");
-    console.log(this.getArtworks());
   }
 
   applyFilter(filterValue: string) { //TODO: https://codehandbook.org/how-to-implement-auto-complete-in-angular-4/
@@ -51,15 +41,14 @@ export class ArtworksComponent implements OnInit {
   getArtworks(): any {
     this.artworkService.getArtworks()
       .subscribe(artworks => {
-        this.artworks = artworks
-        /*this.dataSource.data = artworks*/
-      }); //console.log(artworks)
+        this.source = new LocalDataSource(artworks);
+      }); 
   }
 
-  deleteArtwork(artwork: Artwork): void {
+  /*deleteArtwork(artwork: Artwork): void {
     this.artworks = this.artworks.filter(h => h !== artwork);
     this.artworkService.deleteArtwork(artwork).subscribe();
-  }
+  }*/
 
 }
 
