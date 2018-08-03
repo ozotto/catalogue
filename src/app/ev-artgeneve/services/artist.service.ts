@@ -12,7 +12,7 @@ import { ServicesHelper } from '../../sys/helpers/services.helper';
   providedIn: 'root'
 })
 export class ArtistService {
-  private absolute_url = BACKEND_URL + '/artgeneve/exhibited-artists/';
+  private absolute_url = BACKEND_URL + '/artgeneve/artists/';
   constructor(
     private http: HttpClient,
     private serviceHelper: ServicesHelper
