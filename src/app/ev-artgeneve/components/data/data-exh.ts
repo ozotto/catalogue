@@ -1,5 +1,6 @@
 // Smart DataTable
 export var settings = {
+  selectMode: 'multi',
   columns: {
     /*id: {
       title: 'ID',
