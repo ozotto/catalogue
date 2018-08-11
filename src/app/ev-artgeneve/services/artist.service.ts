@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 import { BACKEND_URL } from '../../sys/constants';
 import { ServicesHelper } from '../../sys/helpers/services.helper';

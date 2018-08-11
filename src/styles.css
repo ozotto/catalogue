@@ -13,3 +13,5 @@
 @import url("../src/assets/css/data-table/index.css");
 @import url("../src/assets/css/data-table/icons.css");
 @import url("../src/assets/css/demo.css"); */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';

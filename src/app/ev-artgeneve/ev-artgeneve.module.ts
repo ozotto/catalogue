@@ -23,6 +23,10 @@ import {FileUploadModule} from 'ng2-file-upload';
   MatSortModule,
   MatTableModule, MAT_DATE_LOCALE, NativeDateAdapter, MAT_DATE_FORMATS, MatAutocompleteModule
 } from '@angular/material';*/
+
+import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, 
+         MatSortModule, MatCheckboxModule} from '@angular/material';
+
 /*import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';*/
 import { FileuploadComponent } from '../sys/components/fileupload/fileupload.component';
 import { ArtistDetailComponent } from './components/artists/artist-detail/artist-detail.component';
@@ -78,12 +82,19 @@ import { ArtistDetailComponent } from './components/artists/artist-detail/artist
     Ng2SmartTableModule,
     EvArtgeneveRoutingModule,
     FormsModule,
-/*    MatTableModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatPaginatorModule,
+    MatTableModule,
     MatFormFieldModule,
+    MatPaginatorModule,
     MatInputModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatCheckboxModule,
+
+/*    MatSnackBarModule,
+    MatSortModule,
+    
+    ,
+    ,
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,*/
