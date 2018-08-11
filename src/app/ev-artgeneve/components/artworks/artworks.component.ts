@@ -88,12 +88,15 @@ export class ArtworksComponent implements OnInit {
     console.log('Row clicked: ', row);
   }
 
+  deleteArtwork(artwork: Artwork): void {
+    console.log('delete')
+    /*this.artworks = this.artworks.filter(h => h !== artwork);
+    this.artworkService.deleteArtwork(artwork).subscribe();*/
+  }
+
 }
 
-  /*deleteArtwork(artwork: Artwork): void {
-    this.artworks = this.artworks.filter(h => h !== artwork);
-    this.artworkService.deleteArtwork(artwork).subscribe();
-  }*/
+  
 
 /*  
     this.dataSource.sort = this.sort;
