@@ -10,7 +10,7 @@ import { ServicesHelper } from '../../sys/helpers/services.helper';
 import {ExhibitorService} from './exhibitor.service';
 import {ArtistService} from './artist.service';
 
-import { ArtworkList } from '../models/artwork';
+/*import { Artwork } from '../models/artwork';*/
 
 @Injectable({
   providedIn: 'root'

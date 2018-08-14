@@ -15,3 +15,7 @@
 @import url("../src/assets/css/demo.css"); */
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-row:hover {
+  background-color: #dedede;
+}
