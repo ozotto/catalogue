@@ -61,15 +61,15 @@ export class ArtistsComponent implements OnInit {
 
   configureDataSource() {
     /* configure filter */
-    this.dataSource.filterPredicate = (data: Artwork, filter: string) => 
-      data.exhibitor.cat_banner.trim().toLowerCase().indexOf(filter) != -1 || data.title.trim().toLowerCase().indexOf(filter) != -1 ||
-      data.artist.first_name.trim().toLowerCase().indexOf(filter) != -1 || data.artist.last_name.trim().toLowerCase().indexOf(filter) != -1 ;
+    this.dataSource.filterPredicate = (data: Artist, filter: string) => 
+      data.exhibitor.cat_banner.trim().toLowerCase().indexOf(filter) != -1 || data.state.title.trim().toLowerCase().indexOf(filter) != -1 ||
+      data.first_name.trim().toLowerCase().indexOf(filter) != -1 || data.last_name.trim().toLowerCase().indexOf(filter) != -1 ;
     
     /* configure sort */
-    this.dataSource.sortingDataAccessor = (data: Artwork, property) => {
+    this.dataSource.sortingDataAccessor = (data: Artist, property) => {
       switch(property) {
         case 'exhibitor': return data.exhibitor.cat_banner;
-        case 'artist': return data.artist.first_name;
+        case 'artist': return data.first_name;
         case 'state': return data.state.title;
         default: return data[property];
       }

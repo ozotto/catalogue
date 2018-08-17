@@ -46,7 +46,8 @@ export class ArtworksComponent implements OnInit {
     /* configure filter */
     this.dataSource.filterPredicate = (data: Artwork, filter: string) => 
       data.exhibitor.cat_banner.trim().toLowerCase().indexOf(filter) != -1 || data.title.trim().toLowerCase().indexOf(filter) != -1 ||
-      data.artist.first_name.trim().toLowerCase().indexOf(filter) != -1 || data.artist.last_name.trim().toLowerCase().indexOf(filter) != -1 ;
+      data.artist.first_name.trim().toLowerCase().indexOf(filter) != -1 || data.artist.last_name.trim().toLowerCase().indexOf(filter) != -1 || 
+      data.state.title.trim().toLowerCase().indexOf(filter) != -1 ;
     
     /* configure sort */
     this.dataSource.sortingDataAccessor = (data: Artwork, property) => {
