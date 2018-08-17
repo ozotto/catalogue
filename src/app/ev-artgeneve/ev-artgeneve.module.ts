@@ -25,7 +25,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 } from '@angular/material';*/
 
 import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, 
-         MatSortModule, MatCheckboxModule, MatAutocompleteModule} from '@angular/material';
+         MatSortModule, MatCheckboxModule, MatAutocompleteModule, MatSelectModule} from '@angular/material';
 
 /*import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';*/
 import { FileuploadComponent } from '../sys/components/fileupload/fileupload.component';
@@ -91,6 +91,7 @@ import { GalleryDetailComponent } from './components/galeries/gallery-detail/gal
     MatSortModule,
     MatCheckboxModule,
     MatAutocompleteModule,
+    MatSelectModule,
 
 /*    MatSnackBarModule,
     MatSortModule,

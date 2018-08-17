@@ -12,9 +12,7 @@
     <div class="card-body">
 
       <div class="form-container">
-        <!-- <h2>{{artwork.title | uppercase}} Details</h2> -->
-        <!-- <div><span>id: </span>{{artwork.id}}</div> -->
-
+        
         <!-- Exhibitor -->
         <mat-form-field id="search-input">
             <input matInput placeholder="Exhibitor"
@@ -41,10 +39,6 @@
                 {{artist.first_name}} {{artist.last_name}} 
             </mat-option>
         </mat-autocomplete>
-
-        <!-- <mat-form-field class="example-full-width">
-          <input matInput placeholder="Artist" [(ngModel)]="artwork.artist">
-        </mat-form-field> -->
 
         <!-- Title -->
         <mat-form-field class="example-full-width">
@@ -75,8 +69,12 @@
         <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload>
 
         <!-- State -->
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Validation" [(ngModel)]="artwork.state">
+        <mat-form-field>
+          <mat-select placeholder="Validation" [(ngModel)]="selectedValue" >
+            <mat-option *ngFor="let state of states" [value]="state.id">
+              {{state.title}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
         <button (click)="goBack()">go back</button>

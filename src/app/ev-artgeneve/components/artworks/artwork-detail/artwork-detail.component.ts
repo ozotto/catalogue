@@ -16,6 +16,7 @@ import {ArtistService} from '../../../services/artist.service';
 import {Artwork} from '../../../models/artwork';
 import {Exhibitor} from '../../../models/exhibitor';
 import {Artist} from '../../../models/artist';
+import {State} from '../../../models/state';
 
 import {FileuploadComponent} from '../../../../sys/components/fileupload/fileupload.component';
 import {Picture} from '../../../models/pictures';
@@ -39,6 +40,13 @@ export class ArtworkDetailComponent implements OnInit {
   defaultArtists: Array<Artist>;
   artistFormControl: FormControl;
   filteredArtists: any;
+
+  selectedValue: number;
+  states: State[] = [
+    {id: 1, title: 'Publie', key: ''},
+    {id: 2, title: 'Brouillon', key: ''},
+    {id: 3, title: 'En attente de validation', key: ''}
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -74,6 +82,7 @@ export class ArtworkDetailComponent implements OnInit {
     this.artworkService.getArtwork(id)
       .subscribe(artwork => {
         this.artwork = artwork;
+        this.selectedValue = this.artwork.state.id;
       });
 
   }
@@ -108,20 +117,11 @@ export class ArtworkDetailComponent implements OnInit {
           this.filteredArtists = artistsFiltered;
         });
 
-      this.artistFormControl.setValue(this.artwork.artist.first_name + ' ' +this.artwork.artist.last_name)
-
-      /*if(this.isExhibited){
-        this.dataSource.data = _.filter(artists, art => { 
-          if(art.is_exhibited == true) return art; 
-        }) ;
-      }else{
-        this.dataSource.data = _.filter(artists, art => { 
-          if(art.is_exhibited == false) return art; 
-        }) ;
+      if(this.artwork.artist.first_name == undefined){
+        console.log('ohh')
       }
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;*/
-        
+      this.artistFormControl.setValue(this.artwork.artist.first_name + ' ' +this.artwork.artist.last_name)
+      
     }); 
   }
 
