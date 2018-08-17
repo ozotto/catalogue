@@ -30,6 +30,7 @@ import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule,
 /*import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';*/
 import { FileuploadComponent } from '../sys/components/fileupload/fileupload.component';
 import { ArtistDetailComponent } from './components/artists/artist-detail/artist-detail.component';
+import { GalleryDetailComponent } from './components/galeries/gallery-detail/gallery-detail.component';
 
 
 
@@ -113,6 +114,7 @@ import { ArtistDetailComponent } from './components/artists/artist-detail/artist
     // ArtworkCreateComponent,
     FileuploadComponent,
     ArtistDetailComponent,
+    GalleryDetailComponent,
   ],
   providers: [
     //{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
