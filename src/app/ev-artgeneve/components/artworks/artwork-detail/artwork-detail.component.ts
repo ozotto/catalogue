@@ -20,10 +20,6 @@ import {Exhibitor} from '../../../models/exhibitor';
 import {FileuploadComponent} from '../../../../sys/components/fileupload/fileupload.component';
 import {Picture} from '../../../models/pictures';
 
-export interface User {
-  name: string;
-}
-
 @Component({
   selector: 'app-artwork-detail',
   templateUrl: './artwork-detail.component.html',
@@ -33,27 +29,13 @@ export class ArtworkDetailComponent implements OnInit {
 
   uploadedImages: Picture[];
 
-  //@Input() artwork: any;
-
   private artwork: Artwork;
-  exhibitors: Exhibitor[];
   private isNew: Boolean;
 
-  myControl = new FormControl();
-  controlExh = new FormControl();
   
-  filteredOptions: Observable<User[]>;
-  options: User[] = [
-    {name: 'Mary'},
-    {name: 'Shelley'},
-    {name: 'Igor'}
-  ];
-
-  filteredExhOptions: Observable<Exhibitor[]>;
-  optionsExh: Exhibitor[];
-
-  exhibitorsForm: FormGroup;
-
+  defaultExhibitors: Array<Exhibitor>;
+  exhibitorFormControl: FormControl;
+  filteredExhibitors: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,55 +44,65 @@ export class ArtworkDetailComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder
   ) { 
+    
     this.artwork = new Artwork();
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
+
+    //New test
+    this.exhibitorFormControl = new FormControl();
   }
 
   ngOnInit(): void {
+
+    this.getExhibitors();
 
     if(!this.isNew) {
       const id = +this.route.snapshot.paramMap.get('id');
       this.getArtwork(id);
     }
-    
-    this.getExhibitors()
-
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith<string | User>(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filterData(name) : this.options.slice())
-      );
-
-    this.exhibitorsForm = this.fb.group({
-      userInput: null
-    })
-
+   
   }
 
   getArtwork(id): void {
-    /*console.log('here')*/
+    
     // const id = +this.route.snapshot.paramMap.get('id');
     this.artworkService.getArtwork(id)
       .subscribe(artwork => {
         this.artwork = artwork;
       });
+
   }
 
   getExhibitors(): any {
-    this.exhibitorService.getExhibitors()
-      .subscribe(exhibitors => {
-          this.optionsExh = exhibitors;
-          console.log(exhibitors);
-      }); 
+    this.exhibitorService.getExhibitors().subscribe(exhibitors => {
+      
+      this.defaultExhibitors = exhibitors;
+      
+      this.exhibitorFormControl.valueChanges.pipe(
+        startWith(null),
+        map(value => this.filterExhibitor(value)))
+        .subscribe(exhibitorsFiltered => {
+          this.filteredExhibitors = exhibitorsFiltered;
+        });
 
-    /*this.filteredExhOptions = this.controlExh.valueChanges
-      .pipe(
-        startWith(''),
+      this.exhibitorFormControl.setValue(this.artwork.exhibitor.cat_banner)
 
-        map(exhibitor => typeof exhibitor === 'string' ? exhibitor : exhibitor.cat_banner),
-        map(name => name ? this._filterExh(name) : this.options.slice())
-      );*/
+    }); 
+
+ 
+  }
+
+  filterExhibitor(val: string): Exhibitor[] {
+    var tmpExh = _.filter(this.defaultExhibitors, exhibitor => { 
+      return exhibitor.cat_banner.trim().toLowerCase().indexOf(val) != -1; 
+    });
+    return val ? tmpExh : this.defaultExhibitors;
+  }
+
+  searchExhibitor(exhibitor: Exhibitor){
+    console.log(exhibitor)
+    /*LoggerService.log('Moved to hero with id: ' + hero.id);
+    return this.router.navigate([AppConfig.routes.heroes + '/' + hero.id]);*/
   }
 
   goBack(): void {
@@ -118,8 +110,9 @@ export class ArtworkDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.artworkService.updateArtwork(this.artwork)
-      .subscribe(() => this.goBack());
+    console.log('test')
+    /*this.artworkService.updateArtwork(this.artwork)
+      .subscribe(() => this.goBack());*/
   }
 
   receiveImages($event) {
@@ -127,13 +120,6 @@ export class ArtworkDetailComponent implements OnInit {
     console.log('uploadedImages gniaaaa');
     console.log($event);
     // console.log(this.uploadedImages);
-  }
-
-  private _filterData(name: string): User[] {
-    const filterValue = name.toLowerCase();
-
-    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
-   
   }
 
 

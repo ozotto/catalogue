@@ -15,19 +15,19 @@
         <!-- <h2>{{artwork.title | uppercase}} Details</h2> -->
         <!-- <div><span>id: </span>{{artwork.id}}</div> -->
 
-        <mat-form-field class="">
-          <input type="text" placeholder="Demo" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option.name}}
-            </mat-option>
-          </mat-autocomplete>
+        <!-- Exhibitor -->
+        <mat-form-field id="search-input">
+            <input matInput placeholder="Exhibitor"
+                   [matAutocomplete]="exhibitorsAutocomplete" [formControl]="exhibitorFormControl">
         </mat-form-field>
 
-        <!-- Exhibitor -->
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Exhibitor" [(ngModel)]="artwork.exhibitor">
-        </mat-form-field>
+        <mat-autocomplete #exhibitorsAutocomplete="matAutocomplete">
+            <mat-option *ngFor="let exhibitor of filteredExhibitors"
+                        (onSelectionChange)="searchExhibitor(exhibitor)"
+                        [value]="exhibitor.cat_banner">
+                {{exhibitor.cat_banner}}
+            </mat-option>
+        </mat-autocomplete>
 
         <!-- Artist -->
         <mat-form-field class="example-full-width">
