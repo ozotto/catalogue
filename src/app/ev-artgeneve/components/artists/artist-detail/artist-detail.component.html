@@ -14,9 +14,42 @@
 
       <div class="form-container">
 
-				<p>
-				  artist-detail works!
-				</p>
+				<!-- Exhibitor -->
+        <mat-form-field id="search-input">
+            <input matInput placeholder="Exhibitor"
+                   [matAutocomplete]="exhibitorsAutocomplete" [formControl]="exhibitorFormControl">
+        </mat-form-field>
+
+        <mat-autocomplete #exhibitorsAutocomplete="matAutocomplete">
+            <mat-option *ngFor="let exhibitor of filteredExhibitors"
+                        (onSelectionChange)="searchExhibitor(exhibitor)"
+                        [value]="exhibitor.cat_banner">
+                {{exhibitor.cat_banner}}
+            </mat-option>
+        </mat-autocomplete>
+
+
+        <!-- Artist First_name -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" [(ngModel)]="artist.first_name">
+        </mat-form-field>
+
+        <!-- Artist Last_name -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last name" [(ngModel)]="artist.last_name">
+        </mat-form-field>
+
+        <!-- State -->
+        <mat-form-field>
+          <mat-select placeholder="Validation" [(ngModel)]="selectedValue" >
+            <mat-option *ngFor="let state of states" [value]="state.id">
+              {{state.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button (click)="goBack()">go back</button>
+        <button (click)="save()">save</button>
 				
 			</div>
 		</div>
