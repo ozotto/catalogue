@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 import {Observable} from 'rxjs';
 import {SelectionModel} from '@angular/cdk/collections';

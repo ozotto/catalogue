@@ -1,14 +1,35 @@
-<p>exhibitor-detail works!</p>
-<div *ngIf="exhibitor">
-
-  <h2>{{exhibitor.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{exhibitor.id}}</div>
-  <div>
-    <label>name:
-      <!-- <input [(ngModel)]="exhibitor.name" placeholder="name"/> -->
-      <input placeholder="name"/>
-    </label>
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'artgeneve.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'artgeneve.exhibitor' | translate }}</h6>
+    </div>
   </div>
-  <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
+</div>
+
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-body">
+
+      <div class="form-container">
+
+        <p>exhibitor-detail works!</p>
+
+        <div *ngIf="exhibitor">
+
+          <h2>{{exhibitor.name | uppercase}} Details</h2>
+          <div><span>id: </span>{{exhibitor.id}}</div>
+          <div>
+            <label>name:
+              <!-- <input [(ngModel)]="exhibitor.name" placeholder="name"/> -->
+              <input placeholder="name"/>
+            </label>
+          </div>
+          <button (click)="goBack()">go back</button>
+          <button (click)="save()">save</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </div>
