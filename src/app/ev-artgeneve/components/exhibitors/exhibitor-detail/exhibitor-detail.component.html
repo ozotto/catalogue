@@ -13,21 +13,33 @@
 
       <div class="form-container">
 
-        <p>exhibitor-detail works!</p>
+        <!-- Booth --> 
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Booth" [(ngModel)]="exhibitor.exh_booth">
+        </mat-form-field>
 
-        <div *ngIf="exhibitor">
+        <!-- Banner --> 
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Banner" [(ngModel)]="exhibitor.cat_banner">
+        </mat-form-field>
 
-          <h2>{{exhibitor.name | uppercase}} Details</h2>
-          <div><span>id: </span>{{exhibitor.id}}</div>
-          <div>
-            <label>name:
-              <!-- <input [(ngModel)]="exhibitor.name" placeholder="name"/> -->
-              <input placeholder="name"/>
-            </label>
-          </div>
-          <button (click)="goBack()">go back</button>
-          <button (click)="save()">save</button>
-        </div>
+        <!-- Email --> 
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" [(ngModel)]="exhibitor.cat_email">
+        </mat-form-field>
+
+        <!-- Phone --> 
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Phone" [(ngModel)]="exhibitor.cat_phone">
+        </mat-form-field>
+
+        <!-- Validation --> 
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Validation" [(ngModel)]="exhibitor.exh_status">
+        </mat-form-field>
+        
+        <button (click)="goBack()">go back</button>
+        <button (click)="save()">save</button>
         
       </div>
     </div>

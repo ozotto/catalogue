@@ -7,8 +7,9 @@ import { catchError, tap } from 'rxjs/operators';
 /*import { Exhibitor } from '../components/exhibitors/exhibitor';*/
 import {Exhibitor} from '../models/exhibitor';
 import { MessageService } from '../../sys/services/message.service';
+
 import {BACKEND_URL} from '../../sys/constants';
-/*import {MatSnackBar} from '@angular/material';*/
+import {ServicesHelper} from '../../sys/helpers/services.helper';
 
 
 const httpOptions = {
@@ -20,9 +21,11 @@ const httpOptions = {
 })
 export class ExhibitorService {
   private exhibitorsUrl = 'api/exhibitors';
+  private absolute_url = BACKEND_URL + '/exhibitor/exhibitors/';
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private serviceHelper: ServicesHelper
     /*private snackBar: MatSnackBar*/
   ) { }
 
@@ -46,6 +49,11 @@ export class ExhibitorService {
     // });
   }
 
+  /** GET Exhibitor by id. Will 404 if id not found */
+  getExhibitor (instance: any | number): Observable<any> { 
+    return this.serviceHelper.getInstance(this.absolute_url, instance);
+  }
+
   // /** GET Exhibitor by id. Return `undefined` when id not found */
   // getExhibitorNo404<Data>(id: number): Observable<Exhibitor> {
   //   const url = `${this.exhibitorsUrl}/?id=${id}`;
@@ -61,13 +69,13 @@ export class ExhibitorService {
   // }
   //
   // /** GET Exhibitor by id. Will 404 if id not found */
-  // getExhibitor(id: number): Observable<Exhibitor> {
-  //   const url = `${this.exhibitorsUrl}/${id}`;
-  //   return this.http.get<Exhibitor>(url).pipe(
-  //     tap(_ => this.log(`fetched Exhibitor id=${id}`)),
-  //     catchError(this.handleError<Exhibitor>(`getExhibitor id=${id}`))
-  //   );
-  // }
+  /*getExhibitor(id: number): Observable<Exhibitor> {
+    const url = `${this.exhibitorsUrl}/${id}`;
+    return this.http.get<Exhibitor>(url).pipe(
+      tap(_ => this.log(`fetched Exhibitor id=${id}`)),
+      catchError(this.handleError<Exhibitor>(`getExhibitor id=${id}`))
+    );
+  }*/
   //
 
   //

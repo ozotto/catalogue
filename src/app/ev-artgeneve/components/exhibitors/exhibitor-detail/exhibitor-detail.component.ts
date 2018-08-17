@@ -12,32 +12,41 @@ import { ExhibitorService } from '../../../services/exhibitor.service';
 })
 export class ExhibitorDetailComponent implements OnInit {
 
-	@Input() exhibitor: Exhibitor;
+  private exhibitor: Exhibitor;
+  private isNew: Boolean;
 
   constructor(
   	private route: ActivatedRoute,
     private exhibitorService: ExhibitorService,
     private location: Location
-  ) { }
+  ) { 
+    this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
 
-  ngOnInit(): void {
-    // this.getExhibitor();
+    this.exhibitor = new Exhibitor();
   }
 
-  // getExhibitor(): void {
-  //   console.log('here')
-  //   const id = +this.route.snapshot.paramMap.get('id');
-  //   this.exhibitorService.getExhibitor(id)
-  //     .subscribe(exhibitor => this.exhibitor = exhibitor);
-  // }
-  //
-  // goBack(): void {
-  //   this.location.back();
-  // }
-  //
-  // save(): void {
-  //   this.exhibitorService.updateExhibitor(this.exhibitor)
-  //     .subscribe(() => this.goBack());
-  // }
+  ngOnInit() {
+     if(!this.isNew) {
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.getExhibitor(id);
+    }
+  }
+
+  getExhibitor(id): void {
+    this.exhibitorService.getExhibitor(id).subscribe(exhibitor => {
+      this.exhibitor = exhibitor;
+      console.log(this.exhibitor)
+    });
+  }
+  
+  goBack(): void {
+    this.location.back();
+  }
+  
+  save(): void {
+    /*TODO*/
+    /*this.exhibitorService.updateExhibitor(this.exhibitor)
+      .subscribe(() => this.goBack());*/
+  }
 
 }
