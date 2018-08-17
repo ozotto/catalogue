@@ -30,9 +30,21 @@
         </mat-autocomplete>
 
         <!-- Artist -->
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Artist" [(ngModel)]="artwork.artist">
+        <mat-form-field id="search-input">
+            <input matInput placeholder="Artist"
+                   [matAutocomplete]="artistsAutocomplete" [formControl]="artistFormControl">
         </mat-form-field>
+
+        <mat-autocomplete #artistsAutocomplete="matAutocomplete">
+            <mat-option *ngFor="let artist of filteredArtists"
+                        [value]="artist.first_name">
+                {{artist.first_name}} {{artist.last_name}} 
+            </mat-option>
+        </mat-autocomplete>
+
+        <!-- <mat-form-field class="example-full-width">
+          <input matInput placeholder="Artist" [(ngModel)]="artwork.artist">
+        </mat-form-field> -->
 
         <!-- Title -->
         <mat-form-field class="example-full-width">

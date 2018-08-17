@@ -3,19 +3,19 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import {MatInputModule, MatFormFieldControl} from '@angular/material';
 
-import { ArtworkService } from '../../../services/artwork.service';
-import {ExhibitorService} from '../../../services/exhibitor.service';
-
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {FormControl, FormBuilder, FormGroup} from '@angular/forms';
 
+import {ArtworkService} from '../../../services/artwork.service';
+import {ExhibitorService} from '../../../services/exhibitor.service';
+import {ArtistService} from '../../../services/artist.service';
 
-import { Artwork } from '../../../models/artwork';
-import {Artist} from '../../../models/artist';
+import {Artwork} from '../../../models/artwork';
 import {Exhibitor} from '../../../models/exhibitor';
+import {Artist} from '../../../models/artist';
 
 import {FileuploadComponent} from '../../../../sys/components/fileupload/fileupload.component';
 import {Picture} from '../../../models/pictures';
@@ -32,34 +32,39 @@ export class ArtworkDetailComponent implements OnInit {
   private artwork: Artwork;
   private isNew: Boolean;
 
-  
   defaultExhibitors: Array<Exhibitor>;
   exhibitorFormControl: FormControl;
   filteredExhibitors: any;
+
+  defaultArtists: Array<Artist>;
+  artistFormControl: FormControl;
+  filteredArtists: any;
 
   constructor(
     private route: ActivatedRoute,
     private artworkService: ArtworkService,
     private exhibitorService: ExhibitorService,
+    private artistService: ArtistService,
     private location: Location,
     private fb: FormBuilder
   ) { 
     
-    this.artwork = new Artwork();
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
 
-    //New test
+    this.artwork = new Artwork();
     this.exhibitorFormControl = new FormControl();
+    this.artistFormControl = new FormControl();
   }
 
   ngOnInit(): void {
-
-    this.getExhibitors();
 
     if(!this.isNew) {
       const id = +this.route.snapshot.paramMap.get('id');
       this.getArtwork(id);
     }
+
+    this.getExhibitors();
+    this.getArtists();
    
   }
 
@@ -89,14 +94,50 @@ export class ArtworkDetailComponent implements OnInit {
 
     }); 
 
- 
   }
 
+  getArtists(): any {
+    this.artistService.getArtists().subscribe(artists => {
+      
+      this.defaultArtists = artists;
+      
+      this.artistFormControl.valueChanges.pipe(
+        startWith(null),
+        map(value => this.filterArtist(value)))
+        .subscribe(artistsFiltered => {
+          this.filteredArtists = artistsFiltered;
+        });
+
+      this.artistFormControl.setValue(this.artwork.artist.first_name + ' ' +this.artwork.artist.last_name)
+
+      /*if(this.isExhibited){
+        this.dataSource.data = _.filter(artists, art => { 
+          if(art.is_exhibited == true) return art; 
+        }) ;
+      }else{
+        this.dataSource.data = _.filter(artists, art => { 
+          if(art.is_exhibited == false) return art; 
+        }) ;
+      }
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;*/
+        
+    }); 
+  }
+
+
   filterExhibitor(val: string): Exhibitor[] {
-    var tmpExh = _.filter(this.defaultExhibitors, exhibitor => { 
+    var filteredExh = _.filter(this.defaultExhibitors, exhibitor => { 
       return exhibitor.cat_banner.trim().toLowerCase().indexOf(val) != -1; 
     });
-    return val ? tmpExh : this.defaultExhibitors;
+    return val ? filteredExh : this.defaultExhibitors;
+  }
+
+  filterArtist(val: string): Artist[] {
+    var filteredArt = _.filter(this.defaultArtists, artist => { 
+      return artist.first_name.trim().toLowerCase().indexOf(val) != -1 || artist.last_name.trim().toLowerCase().indexOf(val) != -1; 
+    });
+    return val ? filteredArt : this.defaultArtists;
   }
 
   searchExhibitor(exhibitor: Exhibitor){
