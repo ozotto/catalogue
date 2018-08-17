@@ -1,6 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 import {MatInputModule, MatFormFieldControl} from '@angular/material';
 
 import * as moment from 'moment';
@@ -17,6 +17,7 @@ import {Artwork} from '../../../models/artwork';
 import {Exhibitor} from '../../../models/exhibitor';
 import {Artist} from '../../../models/artist';
 import {State} from '../../../models/state';
+import {StateValues} from '../../../models/state';
 
 import {FileuploadComponent} from '../../../../sys/components/fileupload/fileupload.component';
 import {Picture} from '../../../models/pictures';
@@ -27,8 +28,6 @@ import {Picture} from '../../../models/pictures';
   styleUrls: ['./artwork-detail.component.scss']
 })
 export class ArtworkDetailComponent implements OnInit {
-
-  uploadedImages: Picture[];
 
   private artwork: Artwork;
   private isNew: Boolean;
@@ -42,11 +41,9 @@ export class ArtworkDetailComponent implements OnInit {
   filteredArtists: any;
 
   selectedValue: number;
-  states: State[] = [
-    {id: 1, title: 'Publie', key: ''},
-    {id: 2, title: 'Brouillon', key: ''},
-    {id: 3, title: 'En attente de validation', key: ''}
-  ];
+  states: State[] = StateValues;
+
+  uploadedImages: Picture[];
 
   constructor(
     private route: ActivatedRoute,
