@@ -1,69 +1,81 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { Exhibitor } from '../../models/exhibitor';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+
+import {Observable} from 'rxjs';
+import {SelectionModel} from '@angular/cdk/collections';
+
+import {Exhibitor} from '../../models/exhibitor';
 import {ExhibitorService} from '../../services/exhibitor.service';
+
 import * as _ from 'lodash';
 
-import { LocalDataSource } from 'ng2-smart-table';
-import * as tableData from '../data/data-exh';
-
-/**
- * @title Basic use of `<table mat-table>`
- */
 @Component({
   selector: 'app-exhibitors',
+  providers: [ExhibitorService],
   templateUrl: './exhibitors.component.html',
   styleUrls: ['./exhibitors.component.scss']
 })
 export class ExhibitorsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'org_code', 'exh_booth', 'exh_id', 'delete'];
+  displayedColumns: string[] = ['select', 'actions', 'id', 'stand', 'state'];
+  
+  dataSource = new MatTableDataSource();
+  selection = new SelectionModel(true, []);
+ 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  source: LocalDataSource;
-
-  exhibitors: Exhibitor[];
-  constructor(
-    private exhibitorService: ExhibitorService
-  ) {
-    this.getExhibitors()
-    //this.source = new LocalDataSource(tableData.data);
+  
+  constructor( private exhibitorService: ExhibitorService) {
+    
   }
 
-  settings = tableData.settings;
-
-/*  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;*/
-
   ngOnInit() {
-    // this.getExhibitors();
-/*    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;*/
-    //console.log("data source");
-    //console.log(this.getExhibitors());
+    this.configureDataSource()
+    this.getExhibitors()
+  }
+
+  getExhibitors() {
+    this.exhibitorService.getExhibitors().subscribe((exhibitors) => {
+      this.dataSource.data = exhibitors
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+
+  configureDataSource() {
+    /* TODO - configure filter */
+    
+    /* TODO - configure sort */
+    
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   applyFilter(filterValue: string) {
-/*    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
-    }*/
+    }
   }
-
-  getExhibitors(): any {
-    this.exhibitorService.getExhibitors()
-        .subscribe(
-        exhibitors => {
-          this.source = new LocalDataSource(exhibitors);
-          /*this.dataSource.data = exhibitors*/
-          this.exhibitors = exhibitors
-          var tmpExh: Exhibitor = _.find(exhibitors, (exhibitor) => exhibitor.id == 1 )
-          console.log(tmpExh)
-        }
-
-    ); //console.log(exhibitors)
-  }
-  delete(exhibitor: Exhibitor): void {
+  
+  deleteExhibitor(exhibitor: Exhibitor) {
+    console.log('delete')
+    /*
+    TODO ---
     this.exhibitors = this.exhibitors.filter(h => h !== exhibitor);
-    this.exhibitorService.deleteExhibitor(exhibitor).subscribe();
+    this.exhibitorService.deleteExhibitor(exhibitor).subscribe();*/
   }
 
 }

@@ -7,11 +7,7 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {ArtworkService} from '../../services/artwork.service';
 import {Artwork} from '../../models/artwork';
 
-/*import { LocalDataSource } from 'ng2-smart-table';
-import * as tableData from '../data/data-app-art';*/
-
 import * as _ from 'lodash';
-
 
 @Component({
   selector: 'app-artworks',
@@ -28,12 +24,11 @@ export class ArtworksComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor( private artworkService: ArtworkService) {
+  constructor( private artworkService: ArtworkService ) {
 
   }
 
   ngOnInit() {
-    
     this.configureDataSource()
     this.getArtworks()
   }
@@ -86,11 +81,14 @@ export class ArtworksComponent implements OnInit {
 
   onRowClicked(row) {
     console.log('Row clicked: ', row);
+    /*TODO ---*/
   }
 
-  deleteArtwork(artwork: Artwork): void {
+  deleteArtwork(artwork: Artwork) {
     console.log('delete')
-    /*this.artworks = this.artworks.filter(h => h !== artwork);
+    /*
+    TODO ---
+    this.artworks = this.artworks.filter(h => h !== artwork);
     this.artworkService.deleteArtwork(artwork).subscribe();*/
   }
 
