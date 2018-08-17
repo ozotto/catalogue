@@ -1,14 +1,90 @@
-<p>artwork-create works!</p>
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'artgeneve.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'artgeneve.application_artworks' | translate }}</h6>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-body">
+
+      <div class="form-container">
+        <!-- <h2>{{artwork.title | uppercase}} Details</h2> -->
+        <!-- <div><span>id: </span>{{artwork.id}}</div> -->
+
+        <mat-form-field class="">
+          <input type="text" placeholder="Demo" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <!-- Exhibitor -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Exhibitor" [(ngModel)]="artwork.exhibitor">
+        </mat-form-field>
+
+        <!-- Artist -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Artist" [(ngModel)]="artwork.artist">
+        </mat-form-field>
+
+        <!-- Title -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Title" [(ngModel)]="artwork.title">
+        </mat-form-field>
+
+        <!-- Year -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Year" [(ngModel)]="artwork.year">
+        </mat-form-field>
+
+        <!-- Technique -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Technique" [(ngModel)]="artwork.technique">
+        </mat-form-field>
+
+        <!-- Dimensions -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Dimensions" [(ngModel)]="artwork.dimensions">
+        </mat-form-field>
+
+        <!-- Additional information -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Additional information" [(ngModel)]="artwork.additional_information">
+        </mat-form-field>
+
+        <!-- Picture -->
+        <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload>
+
+        <!-- State -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Validation" [(ngModel)]="artwork.state">
+        </mat-form-field>
+
+        <button (click)="goBack()">go back</button>
+        <button (click)="save()">save</button>
+      
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 
-<div>
+<!-- <div>
 
-  <h2>{{artwork.title | uppercase}} Details</h2>
+  
   <div><span>id: </span>{{artwork.id}}</div>
 
 
-  <div class="form-container">
+  <div class="form-container"> -->
 
 <!--     <mat-form-field class="example-full-width">
       <input matInput placeholder="Titre" [(ngModel)]="artwork.title">
@@ -38,11 +114,11 @@
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Information additionnels" [(ngModel)]="artwork.additional_information">
     </mat-form-field>
+
+
+
+    <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload>
  -->
-
-<!-- 
-    <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload> -->
-
 
     <!--<div>-->
       <!--<mat-form-field class="example-full-width">-->
@@ -61,13 +137,13 @@
     <!--</mat-form-field>-->
 
 
-
-<!--     <mat-form-field class="example-full-width">
+<!-- 
+    <mat-form-field class="example-full-width">
       <input matInput placeholder="Etat" [(ngModel)]="artwork.state">
     </mat-form-field>
- -->
+
 
     <button (click)="goBack()">go back</button>
     <button (click)="save()">save</button>
   </div>
-</div>
+</div> -->

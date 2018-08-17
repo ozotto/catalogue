@@ -34,7 +34,7 @@ export class Artwork {
     exh_contact_id: string;
     exh_contact_first_name: string;
     exh_contact_last_name: string;
-    cat_info_complete: boolean,
+    cat_info_complete: boolean;
     cat_banner: string;
     cat_description: string;
     cat_address1: string;

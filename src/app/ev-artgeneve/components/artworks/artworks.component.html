@@ -1,16 +1,15 @@
- <div class="row" matchHeight="card">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">{{ 'artgeneve.application_artworks' | translate }}</h4>
-      </div>
-      <div class="card-body">
-        <div class="card-block"> 
-          <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field>
-          <br/><button routerLink="./add" mat-button color="primary">Ajouter!</button>
-        </div>
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'artgeneve.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'artgeneve.application_artworks' | translate }}</h6>
+    </div>
+    <div class="card-body">
+      <div class="card-block"> 
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <br/><button routerLink="./add" mat-button color="primary">Ajouter!</button>
       </div>
     </div>
   </div>

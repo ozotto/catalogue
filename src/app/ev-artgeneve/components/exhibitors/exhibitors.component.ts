@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { Exhibitor } from './exhibitor';
+import { Exhibitor } from '../../models/exhibitor';
 import {ExhibitorService} from '../../services/exhibitor.service';
 import * as _ from 'lodash';
 
