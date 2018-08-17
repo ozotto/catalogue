@@ -11,7 +11,7 @@ import { ServicesHelper } from '../../sys/helpers/services.helper';
 @Injectable({
   providedIn: 'root'
 })
-export class ArtworkService {
+export class PicturesService {
   private absolute_url = BACKEND_URL + '/artgeneve/pictures/';
   constructor(
     private http: HttpClient,
