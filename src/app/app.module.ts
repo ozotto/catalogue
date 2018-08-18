@@ -11,8 +11,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
-import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
-import { FullLayoutComponent } from "./layouts/full/full-layout.component";
+import { FullLayoutComponent } from "./sys/components/layouts/full/full-layout.component"
 
 import { AuthService } from './sys/auth/auth.service';
 import { AuthGuard } from './sys/auth/auth-guard.service';
@@ -32,37 +31,36 @@ export function createTranslateLoader(http: HttpClient) {
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        FullLayoutComponent,
-        ContentLayoutComponent,
-        AlertComponent,
-        HomeComponent,
-        LoginComponent
-    ],
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        SharedModule,
-        NgbModule.forRoot(),
-        HttpClientModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [HttpClient]
-            }
-        })
-    ],
-    providers: [
-        AuthService,
-        AuthGuard,
-        UserService,
-        AuthenticationService,
-        AlertService
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    FullLayoutComponent,
+    AlertComponent,
+    HomeComponent,
+    LoginComponent
+  ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    SharedModule,
+    NgbModule.forRoot(),
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
+  ],
+  providers: [
+    AuthService,
+    AuthGuard,
+    UserService,
+    AuthenticationService,
+    AlertService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
