@@ -39,6 +39,16 @@
           <input matInput placeholder="Last name" [(ngModel)]="artist.last_name">
         </mat-form-field>
 
+        <!-- Artist solo show -->
+        <div *ngIf="isExhibited" class="full-width">
+          <mat-checkbox [(ngModel)]="artist.is_solo_show">Solo show</mat-checkbox>
+        </div>
+        
+        <!-- Artist exhibited -->
+        <div class="full-width">
+          <mat-checkbox class="full-width" [(ngModel)]="artist.is_exhibited">Artist exhibited</mat-checkbox>
+        </div>
+
         <!-- State -->
         <mat-form-field>
           <mat-select placeholder="Validation" [(ngModel)]="selectedValue" >

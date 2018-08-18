@@ -54,6 +54,22 @@ export class ExhibitorService {
     return this.serviceHelper.getInstance(this.absolute_url, instance);
   }
 
+  /** PUT: update the Exhibitor on the server */
+  updateExhibitor2 (instance: any): Observable<any> { 
+    return this.serviceHelper.updateInstance(this.absolute_url, instance);
+  }
+
+  /** PUT: update the Exhibitor on the server */
+  updateExhibitor (exhibitor: Exhibitor): Observable<any> {
+    console.log('update')
+    console.log(exhibitor)
+    const url = this.absolute_url + exhibitor.id;
+    return this.http.put(url, exhibitor, httpOptions).pipe(
+      tap(_ => this.log(`updated Exhibitor id=${exhibitor.id}`)),
+      catchError(this.handleError<any>('updateExhibitor'))
+    );
+  }
+
   // /** GET Exhibitor by id. Return `undefined` when id not found */
   // getExhibitorNo404<Data>(id: number): Observable<Exhibitor> {
   //   const url = `${this.exhibitorsUrl}/?id=${id}`;
@@ -122,13 +138,7 @@ export class ExhibitorService {
 
 
 
-  // /** PUT: update the Exhibitor on the server */
-  // updateExhibitor (exhibitor: Exhibitor): Observable<any> {
-  //   return this.http.put(this.exhibitorsUrl, exhibitor, httpOptions).pipe(
-  //     tap(_ => this.log(`updated Exhibitor id=${exhibitor.id}`)),
-  //     catchError(this.handleError<any>('updateExhibitor'))
-  //   );
-  // }
+  
 
     /**
    * Handle Http operation that failed.

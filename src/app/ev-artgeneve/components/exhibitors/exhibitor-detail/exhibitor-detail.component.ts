@@ -46,9 +46,11 @@ export class ExhibitorDetailComponent implements OnInit {
   }
   
   save(): void {
-    /*TODO*/
-    /*this.exhibitorService.updateExhibitor(this.exhibitor)
-      .subscribe(() => this.goBack());*/
+    if(!this.isNew) {
+      this.exhibitorService.updateExhibitor(this.exhibitor).subscribe(
+        () => this.goBack()
+      );
+    }
   }
 
 }

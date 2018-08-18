@@ -37,6 +37,8 @@ export class ArtistDetailComponent implements OnInit {
   selectedValue: number;
   states: State[] = StateValues;
 
+  checked = false;
+
   constructor(
     private route: ActivatedRoute,
     private router : Router,
@@ -101,7 +103,11 @@ export class ArtistDetailComponent implements OnInit {
   }
 
   save(): void {
-    console.log('test')
+    if(!this.isNew) {
+      this.artistService.updateArtist(this.artist).subscribe(
+        () => this.goBack()
+      );
+    }
   }
 
 }
