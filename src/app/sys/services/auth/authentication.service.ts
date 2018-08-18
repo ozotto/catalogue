@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import {BACKEND_URL} from '../constants';
+import {BACKEND_URL} from '../../constants';
 import {BehaviorSubject} from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(false);
+  token: string;
 
   constructor(
     private http: HttpClient,
@@ -39,10 +40,28 @@ export class AuthenticationService {
       }));
   }
 
+  signupUser(email: string, password: string) {
+    //your code for signing up the new user
+  }
+
+  signinUser(email: string, password: string) {
+    //your code for checking credentials and getting tokens for for signing in user
+  }
+
   logout() {
     // remove user from local storage to log user out
+    this.token = null;
     localStorage.removeItem('currentUser');
     this.loggedIn.next(false);
     this.router.navigate(['/']);
+  }
+
+  getToken() {    
+    return this.token;
+  }
+
+  isAuthenticated() {
+    // here you can check if user is authenticated or not through his token 
+    return true;
   }
 }

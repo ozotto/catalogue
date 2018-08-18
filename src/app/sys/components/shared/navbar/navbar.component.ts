@@ -1,5 +1,5 @@
 import { Component, AfterViewChecked } from '@angular/core';
-import {AuthenticationService} from '../../sys/services/authentication.service';
+import {AuthenticationService} from '../../../services/auth/authentication.service';
 import {BehaviorSubject} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
 import { Full_ROUTES } from "./sys/routes/full-layout.routes";
-import { AuthGuard } from './sys/auth/auth-guard.service';
+import { AuthGuard } from './sys/services/auth/auth-guard.service';
 
 import { FullLayoutComponent } from "./sys/components/layouts/full/full-layout.component"
 import { HomeComponent } from './sys/components/home/home.component';
