@@ -22,7 +22,6 @@
 
         <mat-autocomplete #exhibitorsAutocomplete="matAutocomplete">
             <mat-option *ngFor="let exhibitor of filteredExhibitors"
-                        (onSelectionChange)="searchExhibitor(exhibitor)"
                         [value]="exhibitor.cat_banner">
                 {{exhibitor.cat_banner}}
             </mat-option>

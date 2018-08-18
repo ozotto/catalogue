@@ -96,6 +96,12 @@ export class ArtistsComponent implements OnInit {
     }
   }
   
+  deleteArtist(artist: Artist) {
+    
+    this.dataSource.data = this.dataSource.data.filter(h => h !== artist)    
+    this.artistService.deleteArtist(artist).subscribe();
+  }
+  
   /*selectedArtist: Artist;
 	onSelectArtist(artist: Artist): void {
 	  this.selectedArtist = artist;

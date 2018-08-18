@@ -56,7 +56,6 @@ export class ArtistDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     if(!this.isNew) {
       const id = +this.route.snapshot.paramMap.get('id');
       this.getArtist(id);
@@ -85,7 +84,9 @@ export class ArtistDetailComponent implements OnInit {
           this.filteredExhibitors = exhibitorsFiltered;
         });
 
-      this.exhibitorFormControl.setValue(this.artist.exhibitor.cat_banner)
+      if(!this.isNew){
+        this.exhibitorFormControl.setValue(this.artist.exhibitor.cat_banner)  
+      }
 
     }); 
 
@@ -105,6 +106,11 @@ export class ArtistDetailComponent implements OnInit {
   save(): void {
     if(!this.isNew) {
       this.artistService.updateArtist(this.artist).subscribe(
+        () => this.goBack()
+      );
+    }else{
+      console.log(this.artist)
+      this.artistService.addArtist(this.artist).subscribe(
         () => this.goBack()
       );
     }
