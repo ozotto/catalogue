@@ -1,44 +1,64 @@
 import {NgModule, NgZone} from '@angular/core';
-import { CommonModule }   from '@angular/common';
+import {CommonModule}   from '@angular/common';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { Ng2SmartTableModule } from 'ng2-smart-table';
-
-import { EvArtgeneveRoutingModule }       from './ev-artgeneve-routing.module';
-
-import { EvArtgeneveComponent }           from './ev-artgeneve.component';
-import { ExhibitorsComponent }            from './components/exhibitors/exhibitors.component';
-import { ArtistsComponent }               from './components/artists/artists.component';
-import { ArtworksComponent }              from './components/artworks/artworks.component';
-import { GaleriesComponent }              from './components/galeries/galeries.component';
-import { ExhibitorDetailComponent } from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
-import { ArtworkDetailComponent } from './components/artworks/artwork-detail/artwork-detail.component';
 import {FileUploadModule} from 'ng2-file-upload';
-/*import {
-  DateAdapter,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule,
-  MatPaginator,
-  MatPaginatorModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule, MAT_DATE_LOCALE, NativeDateAdapter, MAT_DATE_FORMATS, MatAutocompleteModule
-} from '@angular/material';*/
+import {FileuploadComponent} from '../sys/components/fileupload/fileupload.component';
 
-import { MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, 
-         MatSortModule, MatCheckboxModule, MatAutocompleteModule, MatSelectModule} from '@angular/material';
+import {MaterialSharedModule} from '../sys/modules/material-shared.module';
 
-/*import { ArtworkCreateComponent } from './components/artworks/artwork-create/artwork-create.component';*/
-import { FileuploadComponent } from '../sys/components/fileupload/fileupload.component';
-import { ArtistDetailComponent } from './components/artists/artist-detail/artist-detail.component';
-import { GalleryDetailComponent } from './components/galeries/gallery-detail/gallery-detail.component';
+import {EvArtgeneveRoutingModule} from './ev-artgeneve-routing.module';
+
+import {EvArtgeneveComponent} from './ev-artgeneve.component';
+import {ExhibitorsComponent} from './components/exhibitors/exhibitors.component';
+import {ArtistsComponent} from './components/artists/artists.component';
+import {ArtworksComponent} from './components/artworks/artworks.component';
+import {GaleriesComponent} from './components/galeries/galeries.component';
+import {ExhibitorDetailComponent} from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
+import {ArtworkDetailComponent} from './components/artworks/artwork-detail/artwork-detail.component';
+import {ArtistDetailComponent} from './components/artists/artist-detail/artist-detail.component';
+import {GalleryDetailComponent} from './components/galeries/gallery-detail/gallery-detail.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    EvArtgeneveRoutingModule,
+    FormsModule,
+    MaterialSharedModule,
+    ReactiveFormsModule,
+    FileUploadModule,
+  ],
+  declarations: [
+    EvArtgeneveComponent,
+    ExhibitorsComponent,
+    ArtistsComponent,
+    ArtworksComponent,
+    GaleriesComponent,
+    ExhibitorDetailComponent,
+    ArtworkDetailComponent,
+    FileuploadComponent,
+    ArtistDetailComponent,
+    GalleryDetailComponent,
+  ],
+  providers: [
+  ]
+})
+export class EvArtgeneveModule {}
 
 
+//providers: [
+    //{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
+    
+    // {
+    //   provide: DateAdapter, useClass: CustomDateAdapter
+    // },
+    // {
+    //   provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS
+    // },
+    //{provide: MAT_DATE_LOCALE, useValue: 'fr-CH'},
+  //]
 
-
-
-
-//
-//
 // // extend NativeDateAdapter's format method to specify the date format.
 // export class CustomDateAdapter extends NativeDateAdapter {
 //   format(date: Date, displayFormat: Object): string {
@@ -68,65 +88,3 @@ import { GalleryDetailComponent } from './components/galeries/gallery-detail/gal
 //   }
 // };
 
-
-
-
-
-
-
-
-
-
-@NgModule({
-  imports: [
-    CommonModule,
-    Ng2SmartTableModule,
-    EvArtgeneveRoutingModule,
-    FormsModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatPaginatorModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatSortModule,
-    MatCheckboxModule,
-    MatAutocompleteModule,
-    MatSelectModule,
-
-/*    MatSnackBarModule,
-    MatSortModule,
-    
-    ,
-    ,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatAutocompleteModule,*/
-    ReactiveFormsModule,
-    FileUploadModule,
-  ],
-  declarations: [
-    EvArtgeneveComponent,
-    ExhibitorsComponent,
-    ArtistsComponent,
-    ArtworksComponent,
-    GaleriesComponent,
-    ExhibitorDetailComponent,
-    ArtworkDetailComponent,
-    // ArtworkCreateComponent,
-    FileuploadComponent,
-    ArtistDetailComponent,
-    GalleryDetailComponent,
-  ],
-  providers: [
-    //{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
-    
-    // {
-    //   provide: DateAdapter, useClass: CustomDateAdapter
-    // },
-    // {
-    //   provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS
-    // },
-    //{provide: MAT_DATE_LOCALE, useValue: 'fr-CH'},
-  ]
-})
-export class EvArtgeneveModule {}
