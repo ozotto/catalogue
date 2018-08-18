@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
-import { Full_ROUTES } from "./shared/routes/full-layout.routes";
+import { Full_ROUTES } from "./sys/routes/full-layout.routes";
 import { AuthGuard } from './sys/auth/auth-guard.service';
-
-//import { FullLayoutComponent } from "./layouts/full/full-layout.component";
-//import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
-
-
 
 import { FullLayoutComponent } from "./sys/components/layouts/full/full-layout.component"
 import { HomeComponent } from './sys/components/home/home.component';
 import { LoginComponent } from './sys/components/login/login.component';
-
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },

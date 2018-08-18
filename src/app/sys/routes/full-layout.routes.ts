@@ -1,7 +1,10 @@
 import { Routes, RouterModule } from '@angular/router';
 
-//Route for content layout with sidebar, navbar and footer
 export const Full_ROUTES: Routes = [
+  {
+    path: 'artgeneve',
+    loadChildren: './ev-artgeneve/ev-artgeneve.module#EvArtgeneveModule'
+  },
   /*{
     path: 'changelog',
     loadChildren: './changelog/changelog.module#ChangeLogModule'
@@ -10,8 +13,4 @@ export const Full_ROUTES: Routes = [
     path: 'full-layout',
     loadChildren: './pages/full-layout-page/full-pages.module#FullPagesModule'
   },*/
-  {
-    path: 'artgeneve',
-    loadChildren: './ev-artgeneve/ev-artgeneve.module#EvArtgeneveModule'
-  },
 ];
