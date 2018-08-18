@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
             { path: '/artgeneve/galeries', title: 'Galeries', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
-    {
+    /*{
         path: '/changelog', title: 'ChangeLog', icon: 'ft-file', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
-    },
+    },*/
 ];
