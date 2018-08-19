@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TranslateModule, TranslateService, TranslatePipe, TranslateLoader } from '@ngx-translate/core';
 
-import { EvArtgeneveComponent } from './ev-artgeneve.component';
-import { ExhibitorsComponent } from './components/exhibitors/exhibitors.component';
-import { ExhibitorDetailComponent } from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
-import { ArtistsComponent } from './components/artists/artists.component';
-import { ArtistDetailComponent } from './components/artists/artist-detail/artist-detail.component';
-import { ArtworksComponent } from './components/artworks/artworks.component';
-import { ArtworkDetailComponent } from './components/artworks/artwork-detail/artwork-detail.component';
-import { GaleriesComponent } from './components/galeries/galeries.component';
-import { GalleryDetailComponent } from './components/galeries/gallery-detail/gallery-detail.component';
+import { EvArtgeneveComponent } from '../ev-artgeneve.component';
+import { ExhibitorsComponent } from '../components/exhibitors/exhibitors.component';
+import { ExhibitorDetailComponent } from '../components/exhibitors/exhibitor-detail/exhibitor-detail.component';
+import { ArtistsComponent } from '../components/artists/artists.component';
+import { ArtistDetailComponent } from '../components/artists/artist-detail/artist-detail.component';
+import { ArtworksComponent } from '../components/artworks/artworks.component';
+import { ArtworkDetailComponent } from '../components/artworks/artwork-detail/artwork-detail.component';
+import { GaleriesComponent } from '../components/galeries/galeries.component';
+import { GalleryDetailComponent } from '../components/galeries/gallery-detail/gallery-detail.component';
 
 
 const artgeneveRoutes: Routes = [

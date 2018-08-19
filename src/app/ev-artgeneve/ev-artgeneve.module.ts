@@ -8,7 +8,7 @@ import {FileuploadComponent} from '../sys/components/fileupload/fileupload.compo
 
 import {MaterialSharedModule} from '../sys/modules/material-shared.module';
 
-import {EvArtgeneveRoutingModule} from './ev-artgeneve-routing.module';
+import {EvArtgeneveRoutingModule} from './routes/ev-artgeneve-routing.module';
 
 import {EvArtgeneveComponent} from './ev-artgeneve.component';
 import {ExhibitorsComponent} from './components/exhibitors/exhibitors.component';
