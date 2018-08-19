@@ -24,6 +24,18 @@ export class NavbarComponent implements AfterViewChecked{
       translate.setDefaultLang('en');
     }
 
+    ngOnInit() {
+      this.isLogged();
+      this.currentLanguage = 'en';
+    }
+
+    isLogged() {
+      if (localStorage.getItem('currentUser')) {
+        this.isLoggedIn$.next(true);
+      } else {
+        this.isLoggedIn$ = this.authService.isLoggedIn();
+      }
+    }
 
     ngAfterViewChecked() {
 
@@ -42,7 +54,7 @@ export class NavbarComponent implements AfterViewChecked{
 
     }
 
-    ToggleClass() {
+    toggleAddClass() {
         if (this.toggleClass === 'ft-maximize') {
             this.toggleClass = 'ft-minimize';
         }
@@ -51,12 +63,12 @@ export class NavbarComponent implements AfterViewChecked{
     }
 
 
-    ChangeLanguage(language: string) {
+    changeLanguage(language: string) {
       this.translate.use(language);
       this.currentLanguage = language;
     }
 
-    Logout() {
+    logout() {
       this.authService.logout();
     }
 
