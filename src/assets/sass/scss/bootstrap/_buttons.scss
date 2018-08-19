@@ -30,6 +30,8 @@ button:hover{
   cursor: pointer;
 }
 
+button:focus { outline: 0; }
+
 .btn-group>.btn.active{
   z-index: 0;
 }

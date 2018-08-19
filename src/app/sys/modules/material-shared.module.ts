@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { 
+  MatButtonModule,
   MatTableModule, 
   MatFormFieldModule, 
   MatPaginatorModule, 
@@ -13,6 +14,7 @@ import {
 
 @NgModule({
   imports:[
+    MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
@@ -24,6 +26,7 @@ import {
     MatSelectModule,
   ],
   exports:[
+    MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
     MatPaginatorModule,
