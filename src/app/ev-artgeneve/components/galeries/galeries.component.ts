@@ -17,7 +17,7 @@ import * as _ from 'lodash';
 })
 export class GaleriesComponent implements OnInit {
 
-	displayedColumns: string[] = ['select', 'actions', 'id', 'image', 'artwork'];
+	displayedColumns: string[] = ['select', 'actions', 'id', 'exhibitor', 'title', 'image', 'artwork', 'state'];
   dataSource = new MatTableDataSource();
   selection = new SelectionModel(true, []);
  

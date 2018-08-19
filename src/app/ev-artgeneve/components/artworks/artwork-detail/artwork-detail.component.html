@@ -15,7 +15,7 @@
         
         <!-- Exhibitor -->
         <mat-form-field id="search-input">
-            <input matInput placeholder="Exhibitor"
+            <input matInput placeholder="Exhibitor *"
                    [matAutocomplete]="exhibitorsAutocomplete" [formControl]="exhibitorFormControl">
         </mat-form-field>
 
@@ -29,7 +29,7 @@
 
         <!-- Artist -->
         <mat-form-field id="search-input">
-            <input matInput placeholder="Artist"
+            <input matInput placeholder="Artist *"
                    [matAutocomplete]="artistsAutocomplete" [formControl]="artistFormControl">
         </mat-form-field>
 
@@ -42,27 +42,32 @@
 
         <!-- Title -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Title" [(ngModel)]="artwork.title">
+          <input matInput placeholder="Title *" [(ngModel)]="artwork.title">
         </mat-form-field>
 
         <!-- Year -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Year" [(ngModel)]="artwork.year">
+          <input matInput placeholder="Year *" [(ngModel)]="artwork.year">
         </mat-form-field>
 
         <!-- Technique -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Technique" [(ngModel)]="artwork.technique">
+          <input matInput placeholder="Technique *" [(ngModel)]="artwork.technique">
         </mat-form-field>
 
         <!-- Dimensions -->
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Dimensions" [(ngModel)]="artwork.dimensions">
+          <input matInput placeholder="Dimensions *" [(ngModel)]="artwork.dimensions">
         </mat-form-field>
 
         <!-- Additional information -->
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Additional information" [(ngModel)]="artwork.additional_information">
+        </mat-form-field>
+
+        <!-- Motivation -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Motivation">
         </mat-form-field>
 
         <!-- Picture -->
