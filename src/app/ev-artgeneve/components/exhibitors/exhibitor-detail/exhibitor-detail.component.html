@@ -102,11 +102,20 @@
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Validation" [(ngModel)]="exhibitor.exh_status">
         </mat-form-field>
-        
-        <button (click)="goBack()">go back</button>
-        <button (click)="save()">save</button>
-        
+                
       </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <button (click)="goBack()" mat-raised-button color="primary">go back</button>
+          </div>
+          <div class="col">
+            <button (click)="save()" mat-raised-button color="primary">save</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
