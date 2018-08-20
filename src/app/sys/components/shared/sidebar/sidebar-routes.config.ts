@@ -15,6 +15,15 @@ export const ROUTES: RouteInfo[] = [
             { path: '/artgeneve/galeries', title: 'Galeries', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
+    {
+        path: '/sdl', title: 'SalonDuLivre', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+        submenu: [
+            { path: '/sdl/exhibitors', title: 'Exhibitors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/sdl/authors', title: 'Authors and Speakers', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/sdl/animations', title: 'Animations', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+      
+        ]
+    },
     /*{
         path: '/changelog', title: 'ChangeLog', icon: 'ft-file', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
     },*/

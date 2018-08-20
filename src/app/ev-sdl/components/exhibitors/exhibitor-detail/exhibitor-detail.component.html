@@ -1,0 +1,121 @@
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'artgeneve.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'artgeneve.exhibitor' | translate }}</h6>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-body">
+
+      <div class="form-container">
+
+        <!-- Company Name --> 
+        <mat-form-field >
+          <input matInput placeholder="Company Name *" [(ngModel)]="exhibitor.exh_account_name">
+        </mat-form-field>
+
+        <!-- Banner --> 
+        <mat-form-field >
+          <input matInput placeholder="Banner" [(ngModel)]="exhibitor.cat_banner">
+        </mat-form-field>
+
+        <!-- Booth --> 
+        <mat-form-field >
+          <input matInput placeholder="Stand number *" [(ngModel)]="exhibitor.exh_booth">
+        </mat-form-field>
+
+        <!-- Postal address --> 
+        <mat-form-field >
+          <input matInput placeholder="Postal address" [(ngModel)]="exhibitor.cat_address1">
+        </mat-form-field>        
+
+        <!-- Post code --> 
+        <mat-form-field >
+          <input matInput placeholder="Post code" [(ngModel)]="exhibitor.cat_postal_code">
+        </mat-form-field>
+
+        <!-- City --> 
+        <mat-form-field >
+          <input matInput placeholder="City" [(ngModel)]="exhibitor.cat_city">
+        </mat-form-field>
+
+        <!-- Country --> 
+        <mat-form-field >
+          <input matInput placeholder="Country" [(ngModel)]="exhibitor.cat_country">
+        </mat-form-field>
+
+        <!-- Phone number --> 
+        <mat-form-field >
+          <input matInput placeholder="Phone number" [(ngModel)]="exhibitor.cat_phone">
+        </mat-form-field>
+
+        <!-- Email --> 
+        <mat-form-field >
+          <input matInput placeholder="Email" [(ngModel)]="exhibitor.cat_email">
+        </mat-form-field>
+
+        <!-- Phone number --> 
+        <mat-form-field >
+          <input matInput placeholder="Phone number" [(ngModel)]="exhibitor.cat_phone">
+        </mat-form-field>
+
+        <!-- Stand contact number --> 
+        <mat-form-field >
+          <input matInput placeholder="Stand contact number">
+        </mat-form-field>
+
+        <!-- email --> 
+        <mat-form-field >
+          <input matInput placeholder="email" [(ngModel)]="exhibitor.cat_email">
+        </mat-form-field>
+
+        <!-- Website --> 
+        <mat-form-field >
+          <input matInput placeholder="Website" [(ngModel)]="exhibitor.cat_website">
+        </mat-form-field>
+
+        <!-- Director(s) --> 
+        <mat-form-field >
+          <input matInput placeholder="Director(s)">
+        </mat-form-field>
+
+        <!-- Gallery presentation --> 
+        <mat-form-field >
+          <input matInput placeholder="Gallery presentation *">
+        </mat-form-field>
+
+        <!-- Exhibition concept --> 
+        <mat-form-field >
+          <input matInput placeholder="Exhibition concept *">
+        </mat-form-field>
+
+        <!-- Gallery activities --> 
+        <mat-form-field >
+          <input matInput placeholder="Gallery activities *">
+        </mat-form-field>
+
+        <!-- Validation --> 
+        <mat-form-field >
+          <input matInput placeholder="Validation" [(ngModel)]="exhibitor.exh_status">
+        </mat-form-field>
+                
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <button (click)="goBack()" mat-raised-button color="primary">go back</button>
+          </div>
+          <div class="col">
+            <button (click)="save()" mat-raised-button color="primary">save</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
