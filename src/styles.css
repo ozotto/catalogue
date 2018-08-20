@@ -20,6 +20,14 @@
   background-color: #dedede;
 }
 
+/* Form --*/
+table {
+  width: 100%;
+}
+
 .form-container {
     padding: 1.5rem;
+}
+.form-container > *, .full-width {
+  width: 100%;
 }
