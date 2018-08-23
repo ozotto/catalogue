@@ -27,14 +27,14 @@ export class ArtistDetailComponent implements OnInit {
   public isExhibited: Boolean;
 
   public artist: Artist;
-  public artistUpdate: any;
+  // public artistUpdate: any;
   private isNew: Boolean;
 
   defaultExhibitors: Array<Exhibitor>;
   exhibitorFormControl: FormControl;
   filteredExhibitors: any;
 
-  selectedValue: number;
+  selectedExhibitor: number;
   states: State[] = StateValues;
 
   checked = false;
@@ -67,7 +67,7 @@ export class ArtistDetailComponent implements OnInit {
   getArtist(id): void {
     this.artistService.getArtist(id).subscribe(artist => {
       this.artist = artist;
-      this.selectedValue = this.artist.state.id;
+      // this.selectedValue = this.artist.state.id;
     });
   }
 
@@ -104,37 +104,44 @@ export class ArtistDetailComponent implements OnInit {
 
   save(): void {
 
+    let artist_altered : any = this.artist;
 
-    if (!this.isNew) {
-      this.artistService.updateArtist(this.artist).subscribe(
+    artist_altered.exhibitor = this.selectedExhibitor;
+    artist_altered.is_solo_show = false;  //soloshow is only used in "exhibited artist"
+    artist_altered.is_solo_show = 1; //1 = published
+    this.isExhibited ? artist_altered.is_exhibited = true : artist_altered.is_exhibited = false;
+
+    if (this.isNew) {
+      this.artistService.addArtist(artist_altered).subscribe(
         () => this.goBack()
       );
     } else {
-
-      console.log(this.artist);
-      // const artistUpdate = this.artist;
-      // artistUpdate.exhibitor = this.exhibitorFormControl.value;
-      // artistUpdate.state = 1;
-      this.artistUpdate.is_solo_show = false;
-      this.isExhibited ? this.artistUpdate.is_exhibited = true : this.artistUpdate.is_exhibited = false;
-      // artistUpdate.exhibitor = this.exhibitor.id;
-      console.log(this.exhibitorFormControl)
-
-
-      this.artistService.addArtist(this.artistUpdate).subscribe(
+      this.artistService.updateArtist(artist_altered).subscribe(
         () => this.goBack()
       );
     }
   }
 
   setExhibitor(event: any) {
-    this.artistUpdate = this.artist;
-    this.artistUpdate.exhibitor = event.option.value.id;
-    console.log("manhein");
-    console.log(event.option.value.id);
+    // console.log("artist");
+    // console.log(this.artist);
+    // this.artistUpdate = this.artist;
+    // this.artistUpdate.exhibitor = event.option.value.id;
+    this.selectedExhibitor = event.option.value.id;
+    // console.log("artistupdate");
+    // console.log(this.artistUpdate);
+    // console.log("manhein");
+    // console.log(event.option.value.id);
   }
 
   displayExhibitor(project): string {
-    return project.cat_banner;
+    // console.log("manhein");
+    // console.log(project);
+    // if (project) {
+    //   return project.cat_banner;
+    // } else {
+    //   return project;
+    // }
+    return project ? project.cat_banner : project;
   }
 }
