@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FileUploader} from 'ng2-file-upload';
-import {BACKEND_URL} from '../../constants';
-import {Picture} from '../../../ev-artgeneve/models/pictures';
+import {BACKEND_URL} from '../../../constants';
+import {Picture} from '../../../../ev-artgeneve/models/pictures';
 
 const URL = BACKEND_URL + '/artgeneve/pictures/';
 

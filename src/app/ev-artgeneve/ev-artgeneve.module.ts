@@ -3,9 +3,6 @@ import {CommonModule}   from '@angular/common';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {FileUploadModule} from 'ng2-file-upload';
-import {FileuploadComponent} from '../sys/components/fileupload/fileupload.component';
-
 import {MaterialSharedModule} from '../sys/modules/material-shared.module';
 
 import {EvArtgeneveRoutingModule} from './routes/ev-artgeneve-routing.module';
@@ -19,6 +16,8 @@ import {ExhibitorDetailComponent} from './components/exhibitors/exhibitor-detail
 import {ArtworkDetailComponent} from './components/artworks/artwork-detail/artwork-detail.component';
 import {ArtistDetailComponent} from './components/artists/artist-detail/artist-detail.component';
 import {GalleryDetailComponent} from './components/galeries/gallery-detail/gallery-detail.component';
+import {FileuploadComponent} from '../sys/components/shared/fileupload/fileupload.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -37,9 +36,9 @@ import {GalleryDetailComponent} from './components/galeries/gallery-detail/galle
     GaleriesComponent,
     ExhibitorDetailComponent,
     ArtworkDetailComponent,
-    FileuploadComponent,
     ArtistDetailComponent,
     GalleryDetailComponent,
+    FileuploadComponent,
   ],
   providers: [
   ]
@@ -49,7 +48,7 @@ export class EvArtgeneveModule {}
 
 //providers: [
     //{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
-    
+
     // {
     //   provide: DateAdapter, useClass: CustomDateAdapter
     // },

@@ -19,7 +19,7 @@ import {Artist} from '../../../models/artist';
 import {State} from '../../../models/state';
 import {StateValues} from '../../../models/state';
 
-import {FileuploadComponent} from '../../../../sys/components/fileupload/fileupload.component';
+import {FileuploadComponent} from '../../../../sys/components/shared/fileupload/fileupload.component';
 import {Picture} from '../../../models/pictures';
 
 @Component({
@@ -52,8 +52,8 @@ export class ArtworkDetailComponent implements OnInit {
     private artistService: ArtistService,
     private location: Location,
     private fb: FormBuilder
-  ) { 
-    
+  ) {
+
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
 
     this.artwork = new Artwork();
@@ -70,11 +70,11 @@ export class ArtworkDetailComponent implements OnInit {
 
     this.getExhibitors();
     this.getArtists();
-   
+
   }
 
   getArtwork(id): void {
-    
+
     // const id = +this.route.snapshot.paramMap.get('id');
     this.artworkService.getArtwork(id)
       .subscribe(artwork => {
@@ -86,9 +86,9 @@ export class ArtworkDetailComponent implements OnInit {
 
   getExhibitors(): any {
     this.exhibitorService.getExhibitors().subscribe(exhibitors => {
-      
+
       this.defaultExhibitors = exhibitors;
-      
+
       this.exhibitorFormControl.valueChanges.pipe(
         startWith(null),
         map(value => this.filterExhibitor(value)))
@@ -98,15 +98,15 @@ export class ArtworkDetailComponent implements OnInit {
 
       this.exhibitorFormControl.setValue(this.artwork.exhibitor.cat_banner)
 
-    }); 
+    });
 
   }
 
   getArtists(): any {
     this.artistService.getArtists().subscribe(artists => {
-      
+
       this.defaultArtists = artists;
-      
+
       this.artistFormControl.valueChanges.pipe(
         startWith(null),
         map(value => this.filterArtist(value)))
@@ -118,21 +118,21 @@ export class ArtworkDetailComponent implements OnInit {
         console.log('ohh')
       }
       this.artistFormControl.setValue(this.artwork.artist.first_name + ' ' +this.artwork.artist.last_name)
-      
-    }); 
+
+    });
   }
 
 
   filterExhibitor(val: string): Exhibitor[] {
-    var filteredExh = _.filter(this.defaultExhibitors, exhibitor => { 
-      return exhibitor.cat_banner.trim().toLowerCase().indexOf(val) != -1; 
+    var filteredExh = _.filter(this.defaultExhibitors, exhibitor => {
+      return exhibitor.cat_banner.trim().toLowerCase().indexOf(val) != -1;
     });
     return val ? filteredExh : this.defaultExhibitors;
   }
 
   filterArtist(val: string): Artist[] {
-    var filteredArt = _.filter(this.defaultArtists, artist => { 
-      return artist.first_name.trim().toLowerCase().indexOf(val) != -1 || artist.last_name.trim().toLowerCase().indexOf(val) != -1; 
+    var filteredArt = _.filter(this.defaultArtists, artist => {
+      return artist.first_name.trim().toLowerCase().indexOf(val) != -1 || artist.last_name.trim().toLowerCase().indexOf(val) != -1;
     });
     return val ? filteredArt : this.defaultArtists;
   }
@@ -189,8 +189,8 @@ export class ArtworkDetailComponent implements OnInit {
     });
 */
 
-//https://www.experts-exchange.com/questions/29058919/Angular-Materials-AutoComplete-with-Remote-Data.html 
-//https://stackblitz.com/angular/pelkxkenpml?file=app%2Fautocomplete-display-example.ts   
+//https://www.experts-exchange.com/questions/29058919/Angular-Materials-AutoComplete-with-Remote-Data.html
+//https://stackblitz.com/angular/pelkxkenpml?file=app%2Fautocomplete-display-example.ts
 /*    this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith<string | User>(''),

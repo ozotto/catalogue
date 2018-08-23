@@ -17,12 +17,12 @@
 				<!-- Exhibitor -->
         <mat-form-field id="search-input">
             <input matInput placeholder="Exhibitor"
-                   [matAutocomplete]="exhibitorsAutocomplete" [formControl]="exhibitorFormControl">
+                   [(ngModel)]="artist.exhibitor" [matAutocomplete]="exhibitorsAutocomplete" [formControl]="exhibitorFormControl">
         </mat-form-field>
 
-        <mat-autocomplete #exhibitorsAutocomplete="matAutocomplete">
+        <mat-autocomplete #exhibitorsAutocomplete="matAutocomplete" [displayWith]="displayExhibitor" (optionSelected)="setExhibitor($event)">
             <mat-option *ngFor="let exhibitor of filteredExhibitors"
-                        [value]="exhibitor.cat_banner">
+                        [value]="exhibitor">
                 {{exhibitor.cat_banner}}
             </mat-option>
         </mat-autocomplete>
@@ -42,7 +42,7 @@
         <div *ngIf="isExhibited" class="full-width">
           <mat-checkbox [(ngModel)]="artist.is_solo_show">Solo show</mat-checkbox>
         </div>
-        
+
         <!-- Artist exhibited -->
         <div class="full-width">
           <mat-checkbox class="full-width" [(ngModel)]="artist.is_exhibited">Artist exhibited</mat-checkbox>
@@ -59,7 +59,7 @@
 
         <button (click)="goBack()">go back</button>
         <button (click)="save()">save</button>
-				
+
 			</div>
 		</div>
 	</div>

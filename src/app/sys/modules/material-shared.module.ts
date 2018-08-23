@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { 
+import {
   MatButtonModule,
-  MatTableModule, 
-  MatFormFieldModule, 
-  MatPaginatorModule, 
-  MatInputModule, 
-  MatProgressSpinnerModule, 
-  MatSortModule, 
-  MatCheckboxModule, 
-  MatAutocompleteModule, 
+  MatTableModule,
+  MatFormFieldModule,
+  MatPaginatorModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatCheckboxModule,
+  MatAutocompleteModule,
   MatSelectModule
 } from '@angular/material';
 

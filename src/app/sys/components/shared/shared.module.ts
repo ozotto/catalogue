@@ -12,6 +12,8 @@ import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.direct
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {FileuploadComponent} from './fileupload/fileupload.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
@@ -24,9 +26,10 @@ export function createTranslateLoader(http: HttpClient) {
         NavbarComponent,
         SidebarComponent,
         ToggleFullscreenDirective,
-        NgbModule
+        NgbModule,
+        // FileUploadModule,
     ],
-    imports:[
+    imports: [
         RouterModule,
         CommonModule,
         NgbModule,
@@ -37,13 +40,15 @@ export function createTranslateLoader(http: HttpClient) {
                 useFactory: (createTranslateLoader),
                 deps: [HttpClient]
             }
-        })
+        }),
+        FileUploadModule,
     ],
     declarations: [
         FooterComponent,
         NavbarComponent,
         SidebarComponent,
-        ToggleFullscreenDirective
-        ]
+        ToggleFullscreenDirective,
+        // FileuploadComponent
+      ]
 })
 export class SharedModule { }

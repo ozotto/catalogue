@@ -22,7 +22,7 @@ export class ArtistsComponent implements OnInit {
   displayedColumns: string[] = ['select', 'actions', 'id', 'exhibitor', 'artist', 'state'];
   dataSource = new MatTableDataSource();
   selection = new SelectionModel(true, []);
- 
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -30,11 +30,11 @@ export class ArtistsComponent implements OnInit {
   private isExhibited: Boolean;
 
   constructor(
-    private router : Router,
+    private router: Router,
     private artistService: ArtistService,
-	) {
-    this.path = this.router.url.split("/");
-    this.isExhibited = (this.path[2] == 'art-exhibited') ? true : false;
+  ) {
+    this.path = this.router.url.split('/');
+    this.isExhibited = (this.path[2] === 'art-exhibited') ? true : false;
   }
 
   ngOnInit() {
@@ -44,30 +44,29 @@ export class ArtistsComponent implements OnInit {
 
   getArtists(): any {
     this.artistService.getArtists().subscribe(artists => {
-      if(this.isExhibited){
-        this.dataSource.data = _.filter(artists, art => { 
-          if(art.is_exhibited == true) return art; 
+      if (this.isExhibited) {
+        this.dataSource.data = _.filter(artists, art => {
+          if (art.is_exhibited === true) { return art };
         }) ;
-      }else{
-        this.dataSource.data = _.filter(artists, art => { 
-          if(art.is_exhibited == false) return art; 
+      } else {
+        this.dataSource.data = _.filter(artists, art => {
+          if (art.is_exhibited === false) { return art };
         }) ;
       }
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-        
-    }); 
+    });
   }
 
   configureDataSource() {
     /* configure filter */
-    this.dataSource.filterPredicate = (data: Artist, filter: string) => 
-      data.exhibitor.cat_banner.trim().toLowerCase().indexOf(filter) != -1 || data.state.title.trim().toLowerCase().indexOf(filter) != -1 ||
-      data.first_name.trim().toLowerCase().indexOf(filter) != -1 || data.last_name.trim().toLowerCase().indexOf(filter) != -1 ;
-    
+    this.dataSource.filterPredicate = (data: Artist, filter: string) =>
+      data.exhibitor.cat_banner.trim().toLowerCase().indexOf(filter) !== -1 || data.state.title.trim().toLowerCase().indexOf(filter) != -1 ||
+      data.first_name.trim().toLowerCase().indexOf(filter) !== -1 || data.last_name.trim().toLowerCase().indexOf(filter) != -1 ;
+
     /* configure sort */
     this.dataSource.sortingDataAccessor = (data: Artist, property) => {
-      switch(property) {
+      switch (property) {
         case 'exhibitor': return data.exhibitor.cat_banner;
         case 'artist': return data.first_name;
         case 'state': return data.state.title;
@@ -88,20 +87,20 @@ export class ArtistsComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  applyFilter(filterValue: string) { 
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
-  
+
   deleteArtist(artist: Artist) {
-    
-    this.dataSource.data = this.dataSource.data.filter(h => h !== artist)    
+
+    this.dataSource.data = this.dataSource.data.filter(h => h !== artist)
     this.artistService.deleteArtist(artist).subscribe();
   }
-  
+
   /*selectedArtist: Artist;
 	onSelectArtist(artist: Artist): void {
 	  this.selectedArtist = artist;

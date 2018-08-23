@@ -20,8 +20,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExhibitorService {
-  private exhibitorsUrl = 'api/exhibitors';
-  private absolute_url = BACKEND_URL + '/exhibitor/exhibitors/';
+  private endpoint = BACKEND_URL + '/artgeneve/exhibitors/';
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
@@ -39,7 +38,7 @@ export class ExhibitorService {
     //   );
 
 
-    return this.http.get<Exhibitor[]>(BACKEND_URL + '/exhibitor/exhibitors/').pipe(
+    return this.http.get<Exhibitor[]>(this.endpoint).pipe(
           tap(exhibitors => this.log(`fetched Exhibitors`)),
           catchError(this.handleError('getExhibitors', []))
         );
@@ -50,20 +49,20 @@ export class ExhibitorService {
   }
 
   /** GET Exhibitor by id. Will 404 if id not found */
-  getExhibitor (instance: any | number): Observable<any> { 
-    return this.serviceHelper.getInstance(this.absolute_url, instance);
+  getExhibitor (instance: any | number): Observable<any> {
+    return this.serviceHelper.getInstance(this.endpoint, instance);
   }
 
   /** PUT: update the Exhibitor on the server */
-  updateExhibitor2 (instance: any): Observable<any> { 
-    return this.serviceHelper.updateInstance(this.absolute_url, instance);
+  updateExhibitor2 (instance: any): Observable<any> {
+    return this.serviceHelper.updateInstance(this.endpoint, instance);
   }
 
   /** PUT: update the Exhibitor on the server */
   updateExhibitor (exhibitor: Exhibitor): Observable<any> {
     console.log('update')
     console.log(exhibitor)
-    const url = this.absolute_url + exhibitor.id;
+    const url = this.endpoint + exhibitor.id;
     return this.http.put(url, exhibitor, httpOptions).pipe(
       tap(_ => this.log(`updated Exhibitor id=${exhibitor.id}`)),
       catchError(this.handleError<any>('updateExhibitor'))
@@ -138,7 +137,7 @@ export class ExhibitorService {
 
 
 
-  
+
 
     /**
    * Handle Http operation that failed.

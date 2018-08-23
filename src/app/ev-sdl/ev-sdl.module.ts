@@ -3,9 +3,6 @@ import {CommonModule}   from '@angular/common';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import {FileUploadModule} from 'ng2-file-upload';
-import {FileuploadComponent} from '../sys/components/fileupload/fileupload.component';
-
 import {MaterialSharedModule} from '../sys/modules/material-shared.module';
 
 import {EvSdlRoutingModule} from './routes/ev-sdl-routing.module';
@@ -17,6 +14,8 @@ import {AnimationsComponent} from './components/animations/animations.component'
 import {ExhibitorDetailComponent} from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
 import {AuthorDetailComponent} from './components/authors/author-detail/author-detail.component';
 import {AnimationDetailComponent} from './components/animations/animation-detail/animation-detail.component';
+import {FileUploadModule} from 'ng2-file-upload';
+import {FileuploadComponent} from '../sys/components/shared/fileupload/fileupload.component';
 
 @NgModule({
   imports: [
@@ -34,8 +33,8 @@ import {AnimationDetailComponent} from './components/animations/animation-detail
     AnimationsComponent,
     ExhibitorDetailComponent,
     AuthorDetailComponent,
-    FileuploadComponent,
     AnimationDetailComponent,
+    FileuploadComponent,
   ],
   providers: [
   ]

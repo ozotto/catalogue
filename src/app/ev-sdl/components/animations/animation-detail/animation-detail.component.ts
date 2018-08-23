@@ -19,7 +19,7 @@ import {Author} from '../../../models/author';
 import {State} from '../../../models/state';
 import {StateValues} from '../../../models/state';
 
-import {FileuploadComponent} from '../../../../sys/components/fileupload/fileupload.component';
+import {FileuploadComponent} from '../../../../sys/components/shared/fileupload/fileupload.component';
 
 
 @Component({
@@ -50,8 +50,8 @@ export class AnimationDetailComponent implements OnInit {
     private authorService: AuthorService,
     private location: Location,
     private fb: FormBuilder
-  ) { 
-    
+  ) {
+
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
 
     this.animation = new Animation();
@@ -68,11 +68,11 @@ export class AnimationDetailComponent implements OnInit {
 
     this.getExhibitors();
     this.getAuthors();
-   
+
   }
 
   getAnimation(id): void {
-    
+
     // const id = +this.route.snapshot.paramMap.get('id');
     this.animationService.getArtwork(id)
       .subscribe(animation => {
@@ -84,9 +84,9 @@ export class AnimationDetailComponent implements OnInit {
 
   getExhibitors(): any {
     this.exhibitorService.getExhibitors().subscribe(exhibitors => {
-      
+
       this.defaultExhibitors = exhibitors;
-      
+
       this.exhibitorFormControl.valueChanges.pipe(
         startWith(null),
         map(value => this.filterExhibitor(value)))
@@ -96,15 +96,15 @@ export class AnimationDetailComponent implements OnInit {
 
       this.exhibitorFormControl.setValue(this.animation.exhibitor.cat_banner)
 
-    }); 
+    });
 
   }
 
   getAuthors(): any {
     this.authorService.getArtists().subscribe(authors => {
-      
+
       this.defaultAuthors = authors;
-      
+
       this.authorFormControl.valueChanges.pipe(
         startWith(null),
         map(value => this.filterArtist(value)))
@@ -116,21 +116,21 @@ export class AnimationDetailComponent implements OnInit {
         console.log('ohh')
       }
       this.authorFormControl.setValue(this.animation.artist.first_name + ' ' +this.animation.artist.last_name)
-      
-    }); 
+
+    });
   }
 
 
   filterExhibitor(val: string): Exhibitor[] {
-    var filteredExh = _.filter(this.defaultExhibitors, exhibitor => { 
-      return exhibitor.cat_banner.trim().toLowerCase().indexOf(val) != -1; 
+    var filteredExh = _.filter(this.defaultExhibitors, exhibitor => {
+      return exhibitor.cat_banner.trim().toLowerCase().indexOf(val) != -1;
     });
     return val ? filteredExh : this.defaultExhibitors;
   }
 
   filterArtist(val: string): Author[] {
-    var filteredArt = _.filter(this.defaultAuthors, artist => { 
-      return artist.first_name.trim().toLowerCase().indexOf(val) != -1 || artist.last_name.trim().toLowerCase().indexOf(val) != -1; 
+    var filteredArt = _.filter(this.defaultAuthors, artist => {
+      return artist.first_name.trim().toLowerCase().indexOf(val) != -1 || artist.last_name.trim().toLowerCase().indexOf(val) != -1;
     });
     return val ? filteredArt : this.defaultAuthors;
   }
