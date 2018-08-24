@@ -50,7 +50,7 @@
 
         <!-- State -->
         <mat-form-field>
-          <mat-select placeholder="Validation" [(ngModel)]="selectedValue" >
+          <mat-select placeholder="Validation" [(ngModel)]="selectedState" >
             <mat-option *ngFor="let state of states" [value]="state.id">
               {{state.title}}
             </mat-option>

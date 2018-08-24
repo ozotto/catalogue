@@ -35,6 +35,7 @@ export class ArtistDetailComponent implements OnInit {
   filteredExhibitors: any;
 
   selectedExhibitor: number;
+  selectedState: number;
   states: State[] = StateValues;
 
   checked = false;
@@ -67,7 +68,7 @@ export class ArtistDetailComponent implements OnInit {
   getArtist(id): void {
     this.artistService.getArtist(id).subscribe(artist => {
       this.artist = artist;
-      // this.selectedValue = this.artist.state.id;
+      this.selectedState = this.artist.state.id;
     });
   }
 
@@ -83,12 +84,20 @@ export class ArtistDetailComponent implements OnInit {
           this.filteredExhibitors = exhibitorsFiltered;
         });
 
-      if(!this.isNew){
+      if (!this.isNew) {
         this.exhibitorFormControl.setValue(this.artist.exhibitor.cat_banner)
       }
 
     });
 
+  }
+
+  setExhibitor(event: any) {
+    this.selectedExhibitor = event.option.value.id;
+  }
+
+  displayExhibitor(exhibitor): string {
+    return exhibitor ? exhibitor.cat_banner : exhibitor;
   }
 
   filterExhibitor(val: string): Exhibitor[] {
@@ -106,9 +115,12 @@ export class ArtistDetailComponent implements OnInit {
 
     let artist_altered : any = this.artist;
 
+    console.log("artist_altered");
+    console.log(artist_altered);
+
     artist_altered.exhibitor = this.selectedExhibitor;
     artist_altered.is_solo_show = false;  //soloshow is only used in "exhibited artist"
-    artist_altered.is_solo_show = 1; //1 = published
+    artist_altered.state = 1;      //1 = published
     this.isExhibited ? artist_altered.is_exhibited = true : artist_altered.is_exhibited = false;
 
     if (this.isNew) {
@@ -120,28 +132,5 @@ export class ArtistDetailComponent implements OnInit {
         () => this.goBack()
       );
     }
-  }
-
-  setExhibitor(event: any) {
-    // console.log("artist");
-    // console.log(this.artist);
-    // this.artistUpdate = this.artist;
-    // this.artistUpdate.exhibitor = event.option.value.id;
-    this.selectedExhibitor = event.option.value.id;
-    // console.log("artistupdate");
-    // console.log(this.artistUpdate);
-    // console.log("manhein");
-    // console.log(event.option.value.id);
-  }
-
-  displayExhibitor(project): string {
-    // console.log("manhein");
-    // console.log(project);
-    // if (project) {
-    //   return project.cat_banner;
-    // } else {
-    //   return project;
-    // }
-    return project ? project.cat_banner : project;
   }
 }
