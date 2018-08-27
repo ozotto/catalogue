@@ -16,17 +16,17 @@ import * as _ from 'lodash';
   styleUrls: ['./exhibitors.component.scss']
 })
 export class ExhibitorsComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'actions', 'id', 'stand', 'state'];
-  
+  displayedColumns: string[] = ['select', 'actions', 'id', 'stand', 'banner', 'state'];
+
   dataSource = new MatTableDataSource();
   selection = new SelectionModel(true, []);
- 
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  
+
   constructor( private exhibitorService: ExhibitorService) {
-    
+
   }
 
   ngOnInit() {
@@ -39,15 +39,17 @@ export class ExhibitorsComponent implements OnInit {
       this.dataSource.data = exhibitors
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      console.log("exhibitors");
+      console.log(exhibitors);
     });
   }
 
 
   configureDataSource() {
     /* TODO - configure filter */
-    
+
     /* TODO - configure sort */
-    
+
   }
 
   isAllSelected() {
@@ -69,7 +71,7 @@ export class ExhibitorsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  
+
   deleteExhibitor(exhibitor: Exhibitor) {
     console.log('delete')
     /*

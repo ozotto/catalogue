@@ -21,14 +21,14 @@ export class ExhibitorDetailComponent implements OnInit {
   	private route: ActivatedRoute,
     private exhibitorService: ExhibitorService,
     private location: Location
-  ) { 
+  ) {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
 
     this.exhibitor = new Exhibitor();
   }
 
   ngOnInit() {
-     if(!this.isNew) {
+     if (!this.isNew) {
       const id = +this.route.snapshot.paramMap.get('id');
       this.getExhibitor(id);
     }
@@ -44,9 +44,9 @@ export class ExhibitorDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-  
+
   save(): void {
-    if(!this.isNew) {
+    if (!this.isNew) {
       this.exhibitorService.updateExhibitor(this.exhibitor).subscribe(
         () => this.goBack()
       );

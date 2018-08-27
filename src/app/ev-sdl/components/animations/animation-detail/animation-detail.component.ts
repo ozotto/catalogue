@@ -19,7 +19,7 @@ import {Author} from '../../../models/author';
 import {State} from '../../../models/state';
 import {StateValues} from '../../../models/state';
 
-import {FileuploadComponent} from '../../../../sys/components/shared/fileupload/fileupload.component';
+//import {FileuploadComponent} from '../../../../sys/components/shared/fileupload/fileupload.component';
 
 
 @Component({

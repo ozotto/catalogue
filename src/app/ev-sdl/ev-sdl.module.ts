@@ -14,8 +14,8 @@ import {AnimationsComponent} from './components/animations/animations.component'
 import {ExhibitorDetailComponent} from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
 import {AuthorDetailComponent} from './components/authors/author-detail/author-detail.component';
 import {AnimationDetailComponent} from './components/animations/animation-detail/animation-detail.component';
-import {FileUploadModule} from 'ng2-file-upload';
-import {FileuploadComponent} from '../sys/components/shared/fileupload/fileupload.component';
+//import {FileUploadModule} from 'ng2-file-upload';
+//import {FileuploadComponent} from '../sys/components/shared/fileupload/fileupload.component';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import {FileuploadComponent} from '../sys/components/shared/fileupload/fileuploa
     FormsModule,
     MaterialSharedModule,
     ReactiveFormsModule,
-    FileUploadModule,
+    //FileUploadModule,
   ],
   declarations: [
     EvSdlComponent,
@@ -34,7 +34,7 @@ import {FileuploadComponent} from '../sys/components/shared/fileupload/fileuploa
     ExhibitorDetailComponent,
     AuthorDetailComponent,
     AnimationDetailComponent,
-    FileuploadComponent,
+    //FileuploadComponent,
   ],
   providers: [
   ]

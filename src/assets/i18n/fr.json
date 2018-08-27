@@ -73,7 +73,7 @@
     "Regular": "Regular",
     "Extended": "Extendido",
     "Smart Tables": "Smart Tables",
-  
+
   "Data Tables": "Tablas de datos",
     "Basic": "BASIC",
     "Editing": "Edición",
@@ -135,6 +135,14 @@
   },
   "artmontecarlo": {
     "name" : "Art Montecarlo",
+    "exhibitor" : "Exposant",
+    "represented_artists" : "Artistes représentés",
+    "exhibited_artists" : "Artistes exposés",
+    "application_artworks" : "Œuvres d'application",
+    "gallery" : "Galerie"
+  },
+  "sdl": {
+    "name" : "Salon du Livre",
     "exhibitor" : "Exposant",
     "represented_artists" : "Artistes représentés",
     "exhibited_artists" : "Artistes exposés",

@@ -2,9 +2,9 @@
     "Dashboard": "Instrumententafel",
       "Dashboard1": "Dashboard1",
       "Dashboard2": "Dashboard2",
-  
+
     "Color Palette": "Farbpalette",
-  
+
     "Inbox": "Posteingang",
     "Chat": "Chat",
     "Task Board": "Taskboard",
@@ -15,12 +15,12 @@
       "Syntax Highlighter": "Syntax Textmarker",
       "Helper Classes": "Helferklassen",
       "Text Utilities": "Text-Dienstprogramme",
-  
+
     "Icons": "Icons",
       "Feather Icon": "Feder-Symbol",
       "Font Awesome Icon": "Schriftart-Symbol",
       "Simple Line Icon": "Einfaches Liniensymbol",
-  
+
     "Components": "Komponenten",
       "Bootstrap": "Bootstrap",
         "List": "Liste",
@@ -52,7 +52,7 @@
         "Editor": "Herausgeber",
         "Drag and Drop": "Drag & Drop",
         "Tour": "Tour",
-  
+
     "Forms": "Formen",
       "Elements": "Elemente",
         "Inputs": "Eingänge",
@@ -68,12 +68,12 @@
       "Validation": "Validierung",
       "Wizard": "Magier",
       "NGX Wizard": "NGX-Assistent",
-  
+
       "Tables": "Tabellen",
       "Regular": "Regulär",
       "Extended": "Verlängert",
       "Smart Tables": "Intelligente Tabellen",
-    
+
     "Data Tables": "Datentabellen",
       "Basic": "Basic",
       "Editing": "Bearbeitung",
@@ -83,22 +83,22 @@
       "Pinning": "Pinning",
       "Selection": "Auswahl",
       "Sorting": "Sortierung",
-  
+
     "Cards": "Karten",
       "Basic Cards": "Grundkarten",
       "Advanced Cards": "Erweiterte Karten",
-  
+
     "Maps": "Karten",
       "Google Map": "Google Karte",
       "Full Screen Map": "Vollbildkarte",
-  
+
     "Charts": "Diagramme",
       "ChartJs": "ChartJs",
       "Chartist": "Chartist",
       "NGX Chart": "NGX-Diagramm",
-  
+
     "calendar": "Kalender",
-  
+
     "Pages": "Seiten",
       "Forgot Password": "Passwort vergessen",
       "Horizontal Timeline": "Horizontale Zeitachse",
@@ -112,7 +112,7 @@
       "Coming Soon": "Demnächst",
       "Maintenance": "Instandhaltung",
       "Gallery": "Galerie",
-  
+
     "Documentation": "Dokumentation",
     "Support": "Unterstützung",
 
@@ -140,6 +140,14 @@
     "exhibited_artists" : "Ausgestellte Künstler",
     "application_artworks" : "Anwendungs-Kunstwerke",
     "gallery" : "Galerie"
+  },
+  "sdl": {
+    "name" : "Salon du Livre",
+    "exhibitor" : "Exposant",
+    "represented_artists" : "Artistes représentés",
+    "exhibited_artists" : "Artistes exposés",
+    "application_artworks" : "Œuvres d'application",
+    "gallery" : "Galerie"
   }
-  
+
   }

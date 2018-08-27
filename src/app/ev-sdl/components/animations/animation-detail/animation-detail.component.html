@@ -12,7 +12,7 @@
     <div class="card-body">
 
       <div class="form-container">
-        
+
         <!-- Exhibitor -->
         <mat-form-field id="search-input">
             <input matInput placeholder="Exhibitor *"
@@ -36,7 +36,7 @@
         <mat-autocomplete #artistsAutocomplete="matAutocomplete">
             <mat-option *ngFor="let artist of filteredArtists"
                         [value]="artist.first_name">
-                {{artist.first_name}} {{artist.last_name}} 
+                {{artist.first_name}} {{artist.last_name}}
             </mat-option>
         </mat-autocomplete>
 
@@ -71,7 +71,7 @@
         </mat-form-field>
 
         <!-- Picture -->
-        <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload>
+        <!-- <app-fileupload [fileUploadLimit]="2" [rattachedInstanceId]="artwork.id" [fieldToUpdate]="artwork"></app-fileupload> -->
 
         <!-- State -->
         <mat-form-field>
@@ -84,7 +84,7 @@
 
         <button (click)="goBack()">go back</button>
         <button (click)="save()">save</button>
-      
+
       </div>
 
     </div>
@@ -95,7 +95,7 @@
 
 <!-- <div>
 
-  
+
   <div><span>id: </span>{{artwork.id}}</div>
 
 
@@ -152,7 +152,7 @@
     <!--</mat-form-field>-->
 
 
-<!-- 
+<!--
     <mat-form-field >
       <input matInput placeholder="Etat" [(ngModel)]="artwork.state">
     </mat-form-field>

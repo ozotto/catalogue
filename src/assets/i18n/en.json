@@ -30,7 +30,7 @@
       "Badges": "Badges",
       "Dropdowns": "Dropdowns",
       "Input Groups": "Input Groups",
-      "Media Objects": "Media Objects",  
+      "Media Objects": "Media Objects",
       "Pagination": "Pagination",
       "Progress Bars": "Progress Bars",
       "Modals": "Modals",
@@ -73,7 +73,7 @@
     "Regular": "Regular",
     "Extended": "Extended",
     "Smart Tables": "Smart Tables",
-  
+
   "Data Tables": "Data Tables",
     "Basic": "Basic",
     "Editing": "Editing",
@@ -140,6 +140,14 @@
     "exhibited_artists" : "Exhibited Artists",
     "application_artworks" : "Application Artworks",
     "gallery" : "Gallery"
+  },
+  "sdl": {
+    "name" : "Salon du Livre",
+    "exhibitor" : "Exposant",
+    "represented_artists" : "Artistes représentés",
+    "exhibited_artists" : "Artistes exposés",
+    "application_artworks" : "Œuvres d'application",
+    "gallery" : "Galerie"
   }
 
 }
