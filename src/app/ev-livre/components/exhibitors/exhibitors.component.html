@@ -1,0 +1,86 @@
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'sdl.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'sdl.exhibitor' | translate }}</h6>
+    </div>
+    <div class="card-body">
+      <div class="card-block">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <br/>
+        <button routerLink="./add" mat-raised-button color="primary">Ajouter!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+       <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let element">
+          <a routerLink="./{{element.id}}"> <i class="ft-edit-2 info font-medium-1 mr-2"></i> </a>
+          <i class="ft-x danger font-medium-1 mr-2" (click)="deleteArtwork(element)"></i>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Exh Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.exhibitor.exh_id}} </td>
+      </ng-container>
+
+      <!-- Banner Column -->
+      <ng-container matColumnDef="stand">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Stand number</th>
+        <td mat-cell *matCellDef="let element"> {{element.exhibitor.exh_booth}} </td>
+      </ng-container>
+
+      <!-- Banner Column -->
+      <ng-container matColumnDef="banner">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> banner</th>
+        <td mat-cell *matCellDef="let element"> {{element.exhibitor.cat_banner}} </td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Validation </th>
+        <td mat-cell *matCellDef="let element">
+          <i *ngIf="element.exhibitor.state.id == 1" class="ft-check-circle success font-medium-1 mr-2"></i>
+          <i *ngIf="element.exhibitor.state.id == 3" class="ft-circle info font-medium-1 mr-2"></i>
+          <i *ngIf="element.exhibitor.state.id == 2" class="ft-alert-circle warning font-medium-1 mr-2"></i>
+          {{element.exhibitor.state.id}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+      <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>  -->
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+    <!-- <mat-paginator [length]="resultsLength" [pageSize]="30" [pageSizeOptions]="[15, 30, 50, 100]"></mat-paginator> -->
+
+</div>

@@ -21,8 +21,7 @@ import { HomeComponent } from './sys/components/home/home.component';
 import { LoginComponent } from './sys/components/login/login.component';
 import { AlertComponent } from './sys/directives/alert/alert.component';
 
-import * as $ from 'jquery';
-import {SharedModule} from './sys/components/shared/shared.module';
+import { SharedModule } from './sys/components/shared/shared.module';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');

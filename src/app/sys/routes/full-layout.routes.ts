@@ -2,13 +2,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 export const Full_ROUTES: Routes = [
   {
-    path: 'artgeneve',
-    loadChildren: './ev-artgeneve/ev-artgeneve.module#EvArtgeneveModule'
+    path: 'livre',
+    loadChildren: './ev-livre/ev-livre.module#EvLivreModule'
   },
-  {
-    path: 'sdl',
-    loadChildren: './ev-sdl/ev-sdl.module#EvSdlModule'
-  },
+  // {
+  //   path: 'artgeneve',
+  //   loadChildren: './ev-artgeneve/ev-artgeneve.module#EvArtgeneveModule'
+  // },
   /*{
     path: 'changelog',
     loadChildren: './changelog/changelog.module#ChangeLogModule'
