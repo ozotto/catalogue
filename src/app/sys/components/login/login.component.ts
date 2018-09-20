@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import {AuthenticationService} from '../../services/authentication.service';
 import {AlertService} from '../../services/alert.service';
-import {AuthenticationService} from '../../services/auth/authentication.service';
 
 
 @Component({templateUrl: 'login.component.html'})
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    console.log('gniaa');
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
@@ -49,17 +50,13 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log('mannheim');
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.alertService.error(error);
+          console.log(error);
+          // this.alertService.error(error);
           this.loading = false;
         });
   }
-
-
-  onCancel() {
-     this.loginForm.reset();
-  }
-
 }

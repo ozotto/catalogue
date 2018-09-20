@@ -10,6 +10,9 @@ import {EvLivreRoutingModule} from './routes/ev-livre-routing.module';
 import {EvLivreComponent} from './ev-livre.component';
 import {ExhibitorsComponent} from './components/exhibitors/exhibitors.component';
 import {ExhibitorDetailComponent} from './components/exhibitors/exhibitor-detail/exhibitor-detail.component';
+import {CheckPermissionDirective} from '../sys/directives/check-permission.directive';
+import {AuthorsComponent} from './components/authors/authors.component';
+import {AuthorDetailComponent} from './components/authors/author-detail/author-detail.component';
 
 @NgModule({
   imports: [
@@ -23,6 +26,9 @@ import {ExhibitorDetailComponent} from './components/exhibitors/exhibitor-detail
     EvLivreComponent,
     ExhibitorsComponent,
     ExhibitorDetailComponent,
+    AuthorsComponent,
+    AuthorDetailComponent,
+    CheckPermissionDirective,
   ],
   providers: [
   ]

@@ -18,10 +18,9 @@ export const ROUTES: RouteInfo[] = [
     {
         path: '/livre', title: 'SalonDuLivre', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
         submenu: [
-            { path: '/livre/exhibitors', title: 'Exhibitors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/livre/authors', title: 'Authors and Speakers', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-            { path: '/livre/animations', title: 'Animations', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-
+          { path: '/livre/exhibitors', title: 'Exhibitors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/livre/authors', title: 'Authors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+          { path: '/livre/animations', title: 'Animations', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
     /*{

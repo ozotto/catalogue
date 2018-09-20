@@ -1,30 +1,30 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {User} from '../models/user';
 import {BACKEND_URL} from '../constants';
+import {User} from '../models/user';
 
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  getAll() {
-    return this.http.get<User[]>(`${BACKEND_URL}/users`);
-  }
+    getAll() {
+        return this.http.get<User[]>(BACKEND_URL + 'profile/users/');
+    }
 
-  getById(id: number) {
-    return this.http.get(`${BACKEND_URL}/users/` + id);
-  }
+    getById(id: number) {
+        return this.http.get(BACKEND_URL + 'profile/users/' + id);
+    }
 
-  register(user: User) {
-    return this.http.post(`${BACKEND_URL}/users/register`, user);
-  }
+    create(user: User) {
+        return this.http.post(BACKEND_URL + 'rest-auth/registration/', user);
+    }
 
-  update(user: User) {
-    return this.http.put(`${BACKEND_URL}/users/` + user.pk, user);
-  }
+    update(user: User) {
+        return this.http.put(BACKEND_URL + 'profile/users/' + user.pk, user);
+    }
 
-  delete(id: number) {
-    return this.http.delete(`${BACKEND_URL}/users/` + id);
-  }
+    delete(id: number) {
+        return this.http.delete(BACKEND_URL + 'profile/users/' + id);
+    }
 }

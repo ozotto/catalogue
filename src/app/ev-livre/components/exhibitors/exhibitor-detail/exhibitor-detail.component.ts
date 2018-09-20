@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 
 import { Exhibitor } from '../../../models/exhibitor';
 import { ExhibitorService } from '../../../services/exhibitor.service';
+import {PermissionsHelper} from '../../../../sys/helpers/permissions.helper';
 
 @Component({
   selector: 'app-exhibitor-detail',
@@ -14,20 +15,26 @@ import { ExhibitorService } from '../../../services/exhibitor.service';
 })
 export class ExhibitorDetailComponent implements OnInit {
 
-  private exhibitor: Exhibitor;
+  public exhibitor: Exhibitor;
+  public newExhibitor;
+  public selectedValue: Array<number>;
+
+  public isSuperUser: Boolean;
   private isNew: Boolean;
 
   constructor(
-  	private route: ActivatedRoute,
+    private route: ActivatedRoute,
     private exhibitorService: ExhibitorService,
-    private location: Location
+    private location: Location,
+    private permissionhelper: PermissionsHelper
   ) {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
-
-    this.exhibitor = new Exhibitor();
   }
 
   ngOnInit() {
+    const isSuperUser = this.permissionhelper.showIfSuperUser();
+    this.selectedValue = new Array<number>();
+    this.exhibitor = new Exhibitor();
      if (!this.isNew) {
       const id = +this.route.snapshot.paramMap.get('id');
       this.getExhibitor(id);
@@ -35,19 +42,35 @@ export class ExhibitorDetailComponent implements OnInit {
   }
 
   getExhibitor(id): void {
-    this.exhibitorService.getExhibitor(id).subscribe(exhibitor => {
+    this.exhibitorService.getExhibitor(id).subscribe((exhibitor) => {
       this.exhibitor = exhibitor;
-      console.log(this.exhibitor)
+      console.log(this.exhibitor);
+      this.exhibitor.exhibitor.cat_product_and_services.forEach((value, index) => {
+        this.selectedValue.push(value.id);
+      });
     });
   }
-  
+
+  // testEvent() {
+  //   // console.log('clic');
+  //   // console.log(this.selectedValue);
+  // }
+
   goBack(): void {
     this.location.back();
   }
 
   save(): void {
     if (!this.isNew) {
-      this.exhibitorService.updateExhibitor(this.exhibitor).subscribe(
+      // console.log('this.exhibitor');
+      // console.log(this.exhibitor);
+
+      this.newExhibitor.state = this.exhibitor.exhibitor.state.id
+      this.newExhibitor.exhibitor = this.exhibitor.exhibitor.id;
+      // console.log('hello')
+      // console.log(this.newExhibitor)
+
+      this.exhibitorService.updateExhibitor(this.newExhibitor).subscribe(
         () => this.goBack()
       );
     }

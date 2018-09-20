@@ -12,6 +12,7 @@ import { ToggleFullscreenDirective } from "./directives/toggle-fullscreen.direct
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {CheckPermissionDirective} from '../../directives/check-permission.directive';
 // import {FileuploadComponent} from './fileupload/fileupload.component';
 // import {FileUploadModule} from 'ng2-file-upload';
 
@@ -48,6 +49,7 @@ export function createTranslateLoader(http: HttpClient) {
         NavbarComponent,
         SidebarComponent,
         ToggleFullscreenDirective,
+        //CheckPermissionDirective,
         // FileuploadComponent
       ]
 })

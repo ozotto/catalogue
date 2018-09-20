@@ -1,0 +1,54 @@
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'sdl.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'sdl.author' | translate }}</h6>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="form-container" *ngIf="author">
+
+
+        <!-- Author ID -->
+        <mat-form-field *ngIf="isSuperUser">
+          <input matInput disabled placeholder="Author id" [(ngModel)]="author.id">
+        </mat-form-field>
+
+        <!-- Author first_name -->
+        <mat-form-field>
+          <input matInput disabled placeholder="Firstname *" [(ngModel)]="author.first_name">
+        </mat-form-field>
+
+        <!-- Author last_name -->
+        <mat-form-field>
+          <input matInput disabled placeholder="Lastname *" [(ngModel)]="author.last_name">
+        </mat-form-field>
+
+        <!-- Image -->
+        <h3>Photo</h3>
+        <div>
+          <img src="{{BACKEND_URL}}{{author.image}}" style="max-width:300px!important" alt="">
+        </div>
+        <br>
+
+        <!-- Author is_validated -->
+        <mat-form-field *ngIf="isSuperUser">
+          <input matInput disabled placeholder="Is validated" [(ngModel)]="author.is_validated">
+        </mat-form-field>
+
+
+
+        <div>
+          <a (click)="goBack()" mat-stroked-button color="basic">go back</a>
+          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">Effectuer une demande de changement</a> <!-- (click)="save()" -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

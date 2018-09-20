@@ -48,9 +48,14 @@ export class Exhibitor {
     };
     state: {
       id: number;
-        title: string;
-        key: string;
+      title: string;
+      key: string;
     };
-    // cat_product_and_services: string[]
+    cat_product_and_services: [{
+      id: number;
+      cat_pscode: string;
+      cat_psname: string;
+      edition_id: number;
+    }]
   }
 }

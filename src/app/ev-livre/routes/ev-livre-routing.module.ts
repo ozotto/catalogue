@@ -6,6 +6,8 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { EvLivreComponent } from '../ev-livre.component';
 import { ExhibitorsComponent } from '../components/exhibitors/exhibitors.component';
 import { ExhibitorDetailComponent } from '../components/exhibitors/exhibitor-detail/exhibitor-detail.component';
+import { AuthorsComponent } from '../components/authors/authors.component';
+import {AuthorDetailComponent} from '../components/authors/author-detail/author-detail.component';
 
 
 const livreRoutes: Routes = [
@@ -20,9 +22,9 @@ const livreRoutes: Routes = [
         children: [
           { path: 'exhibitors', component: ExhibitorsComponent },
           { path: 'exhibitors/:id', component: ExhibitorDetailComponent },
-          // { path: 'authors', component: AuthorsComponent },
-          // { path: 'authors/add', component: AuthorDetailComponent },
-          // { path: 'authors/:id', component: AuthorDetailComponent },
+          { path: 'authors', component: AuthorsComponent },
+          { path: 'authors/add', component: AuthorDetailComponent },
+          { path: 'authors/:id', component: AuthorDetailComponent },
         ]
       }
     ]
