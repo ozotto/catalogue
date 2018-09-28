@@ -17,7 +17,7 @@ import {PermissionsHelper} from '../../../sys/helpers/permissions.helper';
   styleUrls: ['./exhibitors.component.scss']
 })
 export class ExhibitorsComponent implements OnInit {
-  displayedColumns: string[]; //= ['select', 'actions', 'id', 'stand', 'banner', 'state'];
+  displayedColumns: string[];
 
   dataSource = new MatTableDataSource();
   selection = new SelectionModel(true, []);
@@ -32,7 +32,6 @@ export class ExhibitorsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.displayedColumns = ['select', 'actions', 'id', 'stand', 'banner']
     const isSuperUser = this.permissionshelper.showIfSuperUser();
     if (isSuperUser) {
       this.displayedColumns = ['select', 'actions', 'id', 'stand', 'banner', 'state'];

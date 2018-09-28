@@ -1,0 +1,63 @@
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'sdl.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'sdl.autograph' | translate }}</h6>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="form-container" *ngIf="autograph">
+
+
+        <!-- Autograph ID -->
+        <mat-form-field *ngIf="isSuperUser">
+          <input matInput disabled placeholder="Autograph id" [(ngModel)]="autograph.id">
+        </mat-form-field>
+
+        <!-- Autograph first_name -->
+        <mat-form-field>
+          <input matInput disabled placeholder="{{'commons.title' | translate}} *" [(ngModel)]="autograph.title">
+        </mat-form-field>
+
+        <!-- Autograph last_name -->
+        <mat-form-field>
+          <input matInput disabled placeholder="{{'sdl.lastname' | translate}} *" [(ngModel)]="autograph.last_name">
+        </mat-form-field>
+
+        <!-- Author -->
+        <mat-form-field>
+          <mat-select placeholder="{{'commons.author' | translate}} *" [(ngModel)]="selectedAuthor">
+            <mat-option *ngFor="let author of authors" [value]="author.id">
+              {{author.first_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Pick one" aria-label="Number" matInput [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let author of filteredAuthors | async" [value]="author.id">
+              {{author.first_name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+
+        <div>
+          <a (click)="goBack()" mat-stroked-button color="basic">{{'commons.go_back'| translate}}</a>
+          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">{{'commons.save' | translate}}</a> <!-- (click)="save()" -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

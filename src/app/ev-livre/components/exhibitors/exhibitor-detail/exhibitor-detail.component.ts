@@ -34,6 +34,7 @@ export class ExhibitorDetailComponent implements OnInit {
   ngOnInit() {
     const isSuperUser = this.permissionhelper.showIfSuperUser();
     this.selectedValue = new Array<number>();
+
     this.exhibitor = new Exhibitor();
      if (!this.isNew) {
       const id = +this.route.snapshot.paramMap.get('id');
@@ -47,14 +48,21 @@ export class ExhibitorDetailComponent implements OnInit {
       console.log(this.exhibitor);
       this.exhibitor.exhibitor.cat_product_and_services.forEach((value, index) => {
         this.selectedValue.push(value.id);
+        console.log('this.selectedValue');
+
       });
     });
+    console.log('kevin: ');
+    console.log(this.selectedValue);
   }
 
-  // testEvent() {
-  //   // console.log('clic');
-  //   // console.log(this.selectedValue);
-  // }
+   // testEvent() {
+   //    console.log('clic');
+   //    console.log(this.exhibitor.exhibitor.cat_product_and_services);
+   //    console.log(this.selectedValue);
+   // }
+
+
 
   goBack(): void {
     this.location.back();

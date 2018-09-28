@@ -6,17 +6,18 @@ import {SelectionModel} from '@angular/cdk/collections';
 
 
 import * as _ from 'lodash';
-import {AuthorService} from '../../services/author.service';
-import {Author} from '../../models/author';
+import {AutographService} from '../../services/autograph.service';
+import {Autograph} from '../../models/autograph';
 import {PermissionsHelper} from '../../../sys/helpers/permissions.helper';
+import {AuthorService} from '../../services/author.service';
 
 @Component({
-  selector: 'app-authors',
-  providers: [AuthorService],
-  templateUrl: './authors.component.html',
-  styleUrls: ['./authors.component.scss']
+  selector: 'app-autographs',
+  providers: [AutographService],
+  templateUrl: './autographs.component.html',
+  styleUrls: ['./autographs.component.scss']
 })
-export class AuthorsComponent implements OnInit {
+export class AutographsComponent implements OnInit {
   displayedColumns: string[];
 
   dataSource = new MatTableDataSource();
@@ -27,30 +28,30 @@ export class AuthorsComponent implements OnInit {
 
   public isSuperUser: Boolean;
 
-  constructor( private authorservice: AuthorService, private permissionshelper: PermissionsHelper) {
+
+  constructor( private autographservice: AutographService, private permissionshelper: PermissionsHelper) {
 
   }
 
   ngOnInit() {
     const isSuperUser = this.permissionshelper.showIfSuperUser();
     if (isSuperUser) {
-      this.displayedColumns = ['select', 'actions', 'id', 'first_name', 'last_name', 'is_validated'];
+      this.displayedColumns = ['select', 'actions', 'id', 'title', 'author', 'exhibitor', 'booth'];
     } else {
-      this.displayedColumns = ['select', 'actions', 'first_name', 'last_name'];
+      this.displayedColumns = ['select', 'actions', 'title', 'author', 'exhibitor', 'booth'];
     }
-    this.getAuthors()
+    this.getAutographs();
   }
 
-  getAuthors() {
-    this.authorservice.getAuthors().subscribe((authors) => {
-      this.dataSource.data = authors
+  getAutographs() {
+    this.autographservice.getAutographs().subscribe((autographs) => {
+      this.dataSource.data = autographs
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log("authors");
-      console.log(authors);
+      console.log("autographs");
+      console.log(autographs);
     });
   }
-
 
 
   isAllSelected() {
@@ -73,10 +74,10 @@ export class AuthorsComponent implements OnInit {
     }
   }
 
-  deleteAuthor(author: Author) {
+  deleteAutograph(autograph: Autograph) {
     /* TODO: Afficher message confirmation */
-    // this.authors = this.authors.filter(h => h !== author);
-    this.authorservice.deleteAuthor(author).subscribe();
+    // this.autographs = this.autographs.filter(h => h !== autograph);
+    this.autographservice.deleteAutograph(autograph).subscribe();
   }
 
 }

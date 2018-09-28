@@ -38,13 +38,13 @@ export class Exhibitor {
     };
     exh_status: {
       id: number;
-        code: number;
-        title: string;
+      code: number;
+      title: string;
     };
     cat_country: {
       id: number;
-        cat_country_name: string;
-        cat_country_code: string;
+      cat_country_name: string;
+      cat_country_code: string;
     };
     state: {
       id: number;

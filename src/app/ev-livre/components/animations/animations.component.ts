@@ -6,17 +6,18 @@ import {SelectionModel} from '@angular/cdk/collections';
 
 
 import * as _ from 'lodash';
-import {AuthorService} from '../../services/author.service';
-import {Author} from '../../models/author';
+import {AnimationService} from '../../services/animation.service';
 import {PermissionsHelper} from '../../../sys/helpers/permissions.helper';
+import {TypeService} from '../../services/type.service';
+import {Animation} from '../../models/animation';
 
 @Component({
-  selector: 'app-authors',
-  providers: [AuthorService],
-  templateUrl: './authors.component.html',
-  styleUrls: ['./authors.component.scss']
+  selector: 'app-animations',
+  providers: [AnimationService],
+  templateUrl: './animations.component.html',
+  styleUrls: ['./animations.component.scss']
 })
-export class AuthorsComponent implements OnInit {
+export class AnimationsComponent implements OnInit {
   displayedColumns: string[];
 
   dataSource = new MatTableDataSource();
@@ -27,31 +28,29 @@ export class AuthorsComponent implements OnInit {
 
   public isSuperUser: Boolean;
 
-  constructor( private authorservice: AuthorService, private permissionshelper: PermissionsHelper) {
+  constructor( private animationservice: AnimationService, private permissionshelper: PermissionsHelper) {
 
   }
 
   ngOnInit() {
     const isSuperUser = this.permissionshelper.showIfSuperUser();
     if (isSuperUser) {
-      this.displayedColumns = ['select', 'actions', 'id', 'first_name', 'last_name', 'is_validated'];
+      this.displayedColumns = ['select', 'actions', 'id', 'title', 'location', 'exhibitor'];
     } else {
-      this.displayedColumns = ['select', 'actions', 'first_name', 'last_name'];
+      this.displayedColumns = ['select', 'actions', 'title', 'location', 'exhibitor'];
     }
-    this.getAuthors()
+    this.getAnimations();
   }
 
-  getAuthors() {
-    this.authorservice.getAuthors().subscribe((authors) => {
-      this.dataSource.data = authors
+  getAnimations() {
+    this.animationservice.getAnimations().subscribe((animations) => {
+      this.dataSource.data = animations
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log("authors");
-      console.log(authors);
+      console.log('animations');
+      console.log(animations);
     });
   }
-
-
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -73,10 +72,10 @@ export class AuthorsComponent implements OnInit {
     }
   }
 
-  deleteAuthor(author: Author) {
+  deleteAnimation(animation: Animation) {
     /* TODO: Afficher message confirmation */
-    // this.authors = this.authors.filter(h => h !== author);
-    this.authorservice.deleteAuthor(author).subscribe();
+    // this.animations = this.animations.filter(h => h !== animation);
+    this.animationservice.deleteAnimation(animation).subscribe();
   }
 
 }

@@ -1,0 +1,126 @@
+<div class="mat-elevation-z8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">{{ 'sdl.name' | translate }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ 'sdl.animation' | translate }}</h6>
+    </div>
+  </div>
+</div>
+
+<div class="mat-elevation-z8">
+
+  <div class="card">
+    <div class="card-body">
+      <div class="form-container" *ngIf="animation">
+
+
+        <!-- Animation ID -->
+        <mat-form-field *ngIf="isSuperUser">
+          <input matInput disabled placeholder="Animation id" [(ngModel)]="animation.id">
+        </mat-form-field>
+
+        <!-- Animation title -->
+        <mat-form-field>
+          <input matInput disabled placeholder="{{'commons.title' | translate}} *" [(ngModel)]="animation.title">
+        </mat-form-field>
+
+        <!--Types -->
+        <mat-form-field>
+          <mat-select placeholder="{{'sdl.type' | translate}} *" [(ngModel)]="selectedType">
+            <mat-option *ngFor="let type of types" [value]="type.id">
+              {{type.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <!--Public -->
+        <mat-form-field>
+          <mat-select placeholder="{{'sdl.public'| translate}}" multiple [(ngModel)]="selectedPublic"> <!-- [formControl]="cat_psname" multiple selected="5" -->
+            <mat-option *ngFor="let public of publics" [value]="public.id">{{public.title}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!--Locations -->
+        <mat-form-field>
+          <mat-select placeholder="{{'commons.location' | translate}} *" [(ngModel)]="selectedLocation">
+            <mat-option *ngFor="let location of locations" [value]="location.id">
+              {{location.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Description -->
+        <!--<mat-form-field>-->
+          <!--<textarea matInput placeholder="{{'commons.description' | translate}} *">{{animation.description}}</textarea>-->
+        <!--</mat-form-field>-->
+
+
+        <!-- Exhibitor -->
+        <mat-form-field>
+          <mat-select placeholder="{{'commons.exhibitor' | translate}} *" [(ngModel)]="selectedExhibitor">
+            <mat-option *ngFor="let exhibitor of exhibitors" [value]="exhibitor.id">
+              {{exhibitor.exhibitor.exh_account_name}} [{{exhibitor.exhibitor.cat_banner}}]
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Author -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="{{'commons.authors' | translate}}" aria-label="Authors" [matAutocomplete]="auto" [formControl]="authorControl">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectAuthor($event)" md-search-text="authorControl.searchText">
+            <mat-option *ngFor="let author of filteredAuthors | async" [value]="author.id" >
+              <!--<img class="example-option-img" aria-hidden [src]="BACKEND_URL+author.thumbnail" height="50">-->
+              <small>{{author.first_name}}</small><span> {{author.last_name}}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <div>
+          <div class="author" *ngFor="let displayedAuthor of displayedAuthors">
+            <img class="example-option-img" [src]="BACKEND_URL+displayedAuthor.thumbnail" height="50" *ngIf="displayedAuthor.thumbnail">
+            {{displayedAuthor.first_name}} {{displayedAuthor.last_name}} <span (click)="deleteAuthor(displayedAuthor)">[Supprimer]</span>
+          </div>
+        </div>
+
+        <!--<mat-form-field class="example-full-width">-->
+          <!--<input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">-->
+          <!--<mat-autocomplete #auto="matAutocomplete">-->
+            <!--<mat-option *ngFor="let state of filteredStates | async" [value]="state.name">-->
+              <!--<img class="example-option-img" aria-hidden [src]="state.flag" height="25">-->
+              <!--<span>{{state.name}}</span> |-->
+              <!--<small>Population: {{state.population}}</small>-->
+            <!--</mat-option>-->
+          <!--</mat-autocomplete>-->
+        <!--</mat-form-field>-->
+
+        <!-- Animation date -->
+        <div>
+          <div class="datetime" *ngFor="let shedule of shedules">
+            {{shedule.date_fr}}
+            {{shedule.date_end}}
+          </div>
+        </div>
+
+
+        <mat-form-field>
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" (dateChange)="selectDate($event)" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Animation time -->
+        <mat-form-field>
+          <input matInput type="time" min="9:00" max="17:00" placeholder="{{'commons.time' | translate}} *">
+        </mat-form-field>
+
+        <div>
+          <a (click)="goBack()" mat-stroked-button color="basic">{{'commons.go_back'| translate}}</a>
+          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">{{'commons.save' | translate}}</a> <!-- (click)="save()" -->
+        </div>
+        <!--<div><span (click)="">[add date]</span></div>-->
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,10 @@ import {ExhibitorDetailComponent} from './components/exhibitors/exhibitor-detail
 import {CheckPermissionDirective} from '../sys/directives/check-permission.directive';
 import {AuthorsComponent} from './components/authors/authors.component';
 import {AuthorDetailComponent} from './components/authors/author-detail/author-detail.component';
+import {AnimationsComponent} from './components/animations/animations.component';
+import {AnimationDetailComponent} from './components/animations/animation-detail/animation-detail.component';
+import {AutographsComponent} from './components/autographs/autographs.component';
+import {AutographDetailComponent} from './components/autographs/autograph-detail/autograph-detail.component';
 
 @NgModule({
   imports: [
@@ -28,6 +32,10 @@ import {AuthorDetailComponent} from './components/authors/author-detail/author-d
     ExhibitorDetailComponent,
     AuthorsComponent,
     AuthorDetailComponent,
+    AnimationsComponent,
+    AnimationDetailComponent,
+    AutographsComponent,
+    AutographDetailComponent,
     CheckPermissionDirective,
   ],
   providers: [

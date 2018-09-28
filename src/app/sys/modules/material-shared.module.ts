@@ -9,11 +9,13 @@ import {
   MatSortModule,
   MatCheckboxModule,
   MatAutocompleteModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from '@angular/material';
 
 @NgModule({
-  imports:[
+  imports: [
     MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
@@ -24,8 +26,10 @@ import {
     MatCheckboxModule,
     MatAutocompleteModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  exports:[
+  exports: [
     MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
@@ -36,6 +40,8 @@ import {
     MatCheckboxModule,
     MatAutocompleteModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class MaterialSharedModule { }

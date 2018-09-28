@@ -6,5 +6,6 @@ export class Author {
   job: string;
   copyright: string;
   image: string;
+  thumbnail: string;
   is_validated: boolean;
 }

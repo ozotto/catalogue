@@ -28,7 +28,7 @@ export class ServicesHelper {
     private errorsHelper: ErrorsHelper,
   ) { }
 
-  /** GET Exhibitors from the server */
+  /** GET Instances from the server */
   getInstances (absolute_url): Observable<any[]> {
     return this.http.get<any[]>(absolute_url).pipe(
       tap(instances => this.errorsHelper.log(`fetched Instance`)),
@@ -36,7 +36,7 @@ export class ServicesHelper {
     );
   }
 
-  /** GET Exhibitors from the server */
+  /** GET Instances from the server */
   getInstance (absolute_url, instance: any | number): Observable<any> {
     const id = typeof instance === 'number' ? instance : instance.id;
     const url = `${absolute_url}${id}/`;

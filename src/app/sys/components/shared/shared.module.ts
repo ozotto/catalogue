@@ -49,7 +49,7 @@ export function createTranslateLoader(http: HttpClient) {
         NavbarComponent,
         SidebarComponent,
         ToggleFullscreenDirective,
-        //CheckPermissionDirective,
+        // CheckPermissionDirective,
         // FileuploadComponent
       ]
 })

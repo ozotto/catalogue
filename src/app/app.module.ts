@@ -27,6 +27,8 @@ import {ErrorInterceptor} from './sys/helpers/error.interceptor';
 import {AlertComponent} from './sys/directives/alert/alert.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {PermissionService} from './sys/services/permission.service';
+import {MatPaginatorIntl} from '@angular/material';
+import {getDutchPaginatorIntl} from './sys/components/shared/other/dutch-paginator-intl';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -66,6 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
     PermissionService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl() }
   ],
   bootstrap: [AppComponent]
 })

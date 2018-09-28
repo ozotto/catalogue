@@ -15,118 +15,108 @@
 
 
         <div>
-          <a (click)="goBack()" mat-stroked-button color="basic">go back</a><br><br><br>
+          <a (click)="goBack()" mat-stroked-button color="basic">{{'commons.go_back'| translate}}</a><br><br><br>
         </div>
 
         <!-- Exhibitor ID (USI) -->
         <mat-form-field *ngIf="isSuperUser">
-          <input matInput disabled placeholder="Exhibitor ID (USI)" [(ngModel)]="exhibitor.exhibitor.exh_id">
+          <input matInput disabled placeholder="{{'commons.exhibitor_id'| translate}}" [(ngModel)]="exhibitor.exhibitor.exh_id">
         </mat-form-field>
 
         <!-- Company Name -->
         <mat-form-field>
-          <input matInput disabled placeholder="Company Name" [(ngModel)]="exhibitor.exhibitor.exh_account_name">
+          <input matInput disabled placeholder="{{'commons.company_name'| translate}}" [(ngModel)]="exhibitor.exhibitor.exh_account_name">
         </mat-form-field>
 
         <!-- Banner -->
         <mat-form-field>
-          <input matInput disabled placeholder="Banner" [(ngModel)]="exhibitor.exhibitor.cat_banner">
+          <input matInput disabled placeholder="{{'commons.banner'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_banner">
         </mat-form-field>
 
         <!-- Booth -->
         <mat-form-field>
-          <input matInput disabled placeholder="Booth" [(ngModel)]="exhibitor.exhibitor.exh_booth">
+          <input matInput disabled placeholder="{{'commons.booth'| translate}}" [(ngModel)]="exhibitor.exhibitor.exh_booth">
         </mat-form-field>
 
         <!-- Exhibitor Mail Contact -->
         <mat-form-field>
-          <input matInput disabled placeholder="Mail of main contact" [(ngModel)]="exhibitor.exhibitor.exh_contact_mail">
+          <input matInput disabled placeholder="{{'commons.main_contact_email'| translate}}" [(ngModel)]="exhibitor.exhibitor.exh_contact_mail">
         </mat-form-field>
 
         <!-- Exhibitor First Name Main Contact -->
         <mat-form-field>
-          <input matInput disabled placeholder="Firstname of main contact" [(ngModel)]="exhibitor.exhibitor.exh_contact_first_name">
+          <input matInput disabled placeholder="{{'commons.main_contact_firstname'| translate}}" [(ngModel)]="exhibitor.exhibitor.exh_contact_first_name">
         </mat-form-field>
 
         <!-- Exhibitor First Name Main Contact -->
         <mat-form-field>
-          <input matInput disabled placeholder="Lastname of main contact" [(ngModel)]="exhibitor.exhibitor.exh_contact_last_name">
+          <input matInput disabled placeholder="{{'commons.main_contact_lastname'| translate}}" [(ngModel)]="exhibitor.exhibitor.exh_contact_last_name">
         </mat-form-field>
 
         <!-- Address line 1 -->
         <mat-form-field>
-          <input matInput disabled placeholder="Address line 1" [(ngModel)]="exhibitor.exhibitor.cat_address1">
+          <input matInput disabled placeholder="{{'commons.address_first_line'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_address1">
         </mat-form-field>
 
         <!-- Address line 2 -->
         <mat-form-field>
-          <input matInput disabled placeholder="Address line 2" [(ngModel)]="exhibitor.exhibitor.cat_address2">
+          <input matInput disabled placeholder="{{'commons.address_second_line'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_address2">
         </mat-form-field>
 
         <!-- Address line 3 -->
         <mat-form-field>
-          <input matInput disabled placeholder="Address line 3" [(ngModel)]="exhibitor.exhibitor.cat_address3">
+          <input matInput disabled placeholder="{{'commons.address_third_line'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_address3">
         </mat-form-field>
 
         <!-- Post code -->
         <mat-form-field>
-          <input matInput disabled placeholder="Post code" [(ngModel)]="exhibitor.exhibitor.cat_postal_code">
+          <input matInput disabled placeholder="{{'commons.postal_code'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_postal_code">
         </mat-form-field>
 
         <!-- City -->
         <mat-form-field>
-          <input matInput disabled placeholder="City" [(ngModel)]="exhibitor.exhibitor.cat_city">
+          <input matInput disabled placeholder="{{'commons.city'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_city">
         </mat-form-field>
 
         <!-- State -->
         <mat-form-field>
-          <input matInput disabled placeholder="State" [(ngModel)]="exhibitor.exhibitor.cat_state">
+          <input matInput disabled placeholder="{{'commons.state'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_state">
         </mat-form-field>
 
         <!-- Country -->
         <mat-form-field>
-          <input matInput disabled placeholder="Country" [(ngModel)]="exhibitor.exhibitor.cat_country.cat_country_name">
+          <input matInput disabled placeholder="{{'commons.country'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_country.cat_country_name">
         </mat-form-field>
 
         <!-- Phone number -->
         <mat-form-field>
-          <input matInput disabled placeholder="Phone number" [(ngModel)]="exhibitor.exhibitor.cat_phone">
-        </mat-form-field>
-
-        <!-- Email -->
-        <mat-form-field>
-          <input matInput disabled placeholder="Email" [(ngModel)]="exhibitor.exhibitor.cat_email">
-        </mat-form-field>
-
-        <!-- Phone number -->
-        <mat-form-field>
-          <input matInput disabled placeholder="Phone number" [(ngModel)]="exhibitor.exhibitor.cat_phone">
+          <input matInput disabled placeholder="{{'commons.phone_number'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_phone">
         </mat-form-field>
 
         <!-- Fax number -->
         <mat-form-field>
-          <input matInput disabled placeholder="Fax number" [(ngModel)]="exhibitor.exhibitor.cat_fax">
+          <input matInput disabled placeholder="{{'commons.fax'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_fax">
         </mat-form-field>
 
         <!-- email -->
         <mat-form-field>
-          <input matInput disabled placeholder="Email" [(ngModel)]="exhibitor.exhibitor.cat_email">
+          <input matInput disabled placeholder="{{'commons.email'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_email">
         </mat-form-field>
 
         <!-- Website -->
         <mat-form-field>
-          <input matInput disabled placeholder="Website" [(ngModel)]="exhibitor.exhibitor.cat_website">
+          <input matInput disabled placeholder="{{'commons.website'| translate}}" [(ngModel)]="exhibitor.exhibitor.cat_website">
         </mat-form-field>
 
         <!--P&S -->
         <mat-form-field>
-          <mat-select placeholder="Product and Services" multiple disabled [(ngModel)]="selectedValue"> <!-- [formControl]="cat_psname" multiple selected="5" -->
+          <mat-select placeholder="{{'commons.product_and_services'| translate}}" multiple [(ngModel)]="selectedValue"> <!-- [formControl]="cat_psname" multiple selected="5" -->
             <mat-option *ngFor="let ps of exhibitor.exhibitor.cat_product_and_services" [value]="ps.id">{{ps.cat_psname}}</mat-option>
           </mat-select>
         </mat-form-field>
 
         <!--Logo & Logo HD-->
-        <h3>Logo</h3>
+        <h3>{{'commons.logo'| translate}}</h3>
         <div>
           <img src="{{exhibitor.exhibitor.cat_logo}}" style="max-width:300px!important" alt="">
         </div>
@@ -139,13 +129,13 @@
 
         <!-- Validation -> •	Statut, Visible par superUser uniquement -->
         <mat-form-field *ngIf="isSuperUser">
-          <input matInput disabled placeholder="Validation" [(ngModel)]="exhibitor.exhibitor.exh_status.title">
+          <input matInput disabled placeholder="{{'commons.validation'| translate}}" [(ngModel)]="exhibitor.exhibitor.exh_status.title">
         </mat-form-field>
 
 
         <div>
-          <a (click)="goBack()" mat-stroked-button color="basic">go back</a>
-          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">Effectuer une demande de changement</a> <!-- (click)="save()" -->
+          <a (click)="goBack()" mat-stroked-button color="basic">{{'commons.go_back'| translate}}</a>
+          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">{{'commons.save'| translate}}</a> <!-- (click)="save()" -->
         </div>
 
       </div>

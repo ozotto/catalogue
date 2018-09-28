@@ -21,16 +21,16 @@
 
         <!-- Author first_name -->
         <mat-form-field>
-          <input matInput disabled placeholder="Firstname *" [(ngModel)]="author.first_name">
+          <input matInput disabled placeholder="{{'sdl.firstname' | translate}} *" [(ngModel)]="author.first_name">
         </mat-form-field>
 
         <!-- Author last_name -->
         <mat-form-field>
-          <input matInput disabled placeholder="Lastname *" [(ngModel)]="author.last_name">
+          <input matInput disabled placeholder="{{'sdl.lastname' | translate}} *" [(ngModel)]="author.last_name">
         </mat-form-field>
 
         <!-- Image -->
-        <h3>Photo</h3>
+        <h3>{{'commons.picture' | translate}}</h3>
         <div>
           <img src="{{BACKEND_URL}}{{author.image}}" style="max-width:300px!important" alt="">
         </div>
@@ -44,8 +44,8 @@
 
 
         <div>
-          <a (click)="goBack()" mat-stroked-button color="basic">go back</a>
-          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">Effectuer une demande de changement</a> <!-- (click)="save()" -->
+          <a (click)="goBack()" mat-stroked-button color="basic">{{'commons.go_back'| translate}}</a>
+          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">{{'commons.save' | translate}}</a> <!-- (click)="save()" -->
         </div>
 
       </div>
