@@ -23,6 +23,11 @@ export class AuthorService {
 
 
   /** GET Authors from the server */
+  searchAuthors (): Observable<any[]> {
+    return this.serviceHelper.getInstances(BACKEND_URL + '/livre/search-authors/');
+  }
+
+  /** GET Authors from the server */
   getAuthors (): Observable<any[]> {
     return this.serviceHelper.getInstances(this.endpoint);
   }

@@ -3,6 +3,7 @@ import {Public} from './public';
 import {Location} from './location';
 import {Type} from './type';
 import {Exhibitor} from './exhibitor';
+import Any = jasmine.Any;
 
 export class Animation {
   id: number;
@@ -10,7 +11,7 @@ export class Animation {
   description: string;
   type: Type;
   location: Location;
-  exhibitor: Exhibitor;
-  public: Public[];
-  author: Author[]
+  exhibitor: Any;
+  public: Any[];
+  author: Any[];
 }

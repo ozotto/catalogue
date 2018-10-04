@@ -21,7 +21,7 @@
 
         <!-- Animation title -->
         <mat-form-field>
-          <input matInput disabled placeholder="{{'commons.title' | translate}} *" [(ngModel)]="animation.title">
+          <input matInput placeholder="{{'commons.title' | translate}} *" [(ngModel)]="animation.title">
         </mat-form-field>
 
         <!--Types -->
@@ -50,10 +50,10 @@
           </mat-select>
         </mat-form-field>
 
-        <!-- Description -->
-        <!--<mat-form-field>-->
-          <!--<textarea matInput placeholder="{{'commons.description' | translate}} *">{{animation.description}}</textarea>-->
-        <!--</mat-form-field>-->
+        <!--Description -->
+        <mat-form-field>
+          <textarea matInput placeholder="{{'commons.description' | translate}} *" [(ngModel)]="animation.description">{{animation.description}}</textarea>
+        </mat-form-field>
 
 
         <!-- Exhibitor -->
@@ -94,30 +94,43 @@
           <!--</mat-autocomplete>-->
         <!--</mat-form-field>-->
 
-        <!-- Animation date -->
         <div>
-          <div class="datetime" *ngFor="let shedule of shedules">
-            {{shedule.date_fr}}
-            {{shedule.date_end}}
+          <!-- Animation date -->
+          <mat-form-field style="margin-right:20px;">
+            <input id="input-calendar" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" [(ngModel)]="selectedDate" (keyup.enter)="addSchedule()" placeholder="Choose a date"> <!-- (dateChange)="selectDate($event)"  -->
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <!-- Animation time -->
+          <mat-form-field style="margin-right:20px;">
+            <input matInput [(ngModel)]="selectedHourStart" (keyup.enter)="addSchedule()" type="time" min="9:00" max="17:00" placeholder="{{'commons.time' | translate}} *">
+          </mat-form-field>
+
+
+          <!-- Animation time -->
+          <mat-form-field style="margin-right:20px;">
+            <input matInput [(ngModel)]="selectedHourEnd" (keyup.enter)="addSchedule()" type="time" min="9:00" max="17:00" placeholder="{{'commons.time' | translate}} *">
+          </mat-form-field>
+
+          <!-- Animation add date -->
+          <button mat-stroked-button color="primary" (click)="addSchedule()">{{'commons.add' | translate}}</button>
+        </div>
+
+        <!-- Animation dates selected -->
+        <div>
+          <div class="datetime" *ngFor="let displayedSchedule of displayedSchedules">
+            {{displayedSchedule.date | date:'MMM d, y' }}
+            {{displayedSchedule.hour_start }}
+            {{displayedSchedule.hour_end }} <span (click)="deleteSchedule(displayedSchedule)">[Supprimer]</span>
           </div>
         </div>
 
-
-        <mat-form-field>
-          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" (dateChange)="selectDate($event)" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-        <!-- Animation time -->
-        <mat-form-field>
-          <input matInput type="time" min="9:00" max="17:00" placeholder="{{'commons.time' | translate}} *">
-        </mat-form-field>
-
         <div>
           <a (click)="goBack()" mat-stroked-button color="basic">{{'commons.go_back'| translate}}</a>
-          <a mat-raised-button color="primary" href="mailto:kevin.estalella@palexpo.ch">{{'commons.save' | translate}}</a> <!-- (click)="save()" -->
+          <a mat-raised-button color="primary" (click)="save()">{{'commons.save' | translate}}</a> <!-- (click)="save()" -->
         </div>
+
         <!--<div><span (click)="">[add date]</span></div>-->
 
       </div>
