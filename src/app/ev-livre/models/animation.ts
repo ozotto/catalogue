@@ -1,8 +1,7 @@
-import {Author} from './author';
-import {Public} from './public';
+///<reference path="../../../../node_modules/@types/jasmine/index.d.ts"/>
+
 import {Location} from './location';
 import {Type} from './type';
-import {Exhibitor} from './exhibitor';
 import Any = jasmine.Any;
 
 export class Animation {

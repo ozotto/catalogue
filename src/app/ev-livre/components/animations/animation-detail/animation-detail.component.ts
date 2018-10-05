@@ -56,6 +56,8 @@ export class AnimationDetailComponent implements OnInit {
   public isSuperUser: Boolean;
   private isNew: Boolean;
 
+  public is_new_author_block_visible;
+
   public types;
   public publics;
   public locations;
@@ -109,6 +111,7 @@ public displayedAuthors;
       this.getAnimation(id);
     }
 
+    this.is_new_author_block_visible = false;
 
     this.selectedPublic = new Array<number>();
     this.selectedAuthors = new Array<number>();
@@ -282,6 +285,14 @@ public displayedAuthors;
       // animation => { animation_id = animation.id; console.log('animation_id'); console.log(animation_id); }
       response => console.log('after deleteSchedule'),
     );
+  }
+
+  public display_new_author_block(event) {
+    this.is_new_author_block_visible = true;
+    console.log('event');
+    console.log(event);
+    event.preventDefault();
+    console.log(this.is_new_author_block_visible);
   }
 
   private setFilterAuthor() {

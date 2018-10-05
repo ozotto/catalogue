@@ -73,8 +73,27 @@
               <!--<img class="example-option-img" aria-hidden [src]="BACKEND_URL+author.thumbnail" height="50">-->
               <small>{{author.first_name}}</small><span> {{author.last_name}}</span>
             </mat-option>
+            <mat-option *ngIf="(filteredAuthors | async)?.length == 0">
+              <!--<img class="example-option-img" aria-hidden [src]="BACKEND_URL+author.thumbnail" height="50">-->
+              <span (click)="display_new_author_block(event)">Ajouter un auteur</span>
+            </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+
+
+        <div class="add-author" *ngIf="display-author">
+          <!-- Author first_name -->
+          <mat-form-field>
+            <input matInput disabled placeholder="{{'sdl.firstname' | translate}} *" [(ngModel)]="author.first_name">
+          </mat-form-field>
+
+          <!-- Author last_name -->
+          <mat-form-field>
+            <input matInput disabled placeholder="{{'sdl.lastname' | translate}} *" [(ngModel)]="author.last_name">
+          </mat-form-field>
+        </div>
+
+
 
         <div>
           <div class="author" *ngFor="let displayedAuthor of displayedAuthors">
