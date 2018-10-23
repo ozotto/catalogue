@@ -25,7 +25,7 @@ export class PermissionsHelper {
   ) { }
 
   public showIfSuperUser () {
-    this.permissionservice.getByToken().subscribe((currentUser) => {
+    this.permissionservice.getUserInfoByToken().subscribe((currentUser) => {
       console.log(currentUser);
       let groups: any[] = [];
 
@@ -47,6 +47,35 @@ export class PermissionsHelper {
         console.log("false");
         return false;
       }
+
+    });
+  }
+
+
+  public showIfAutorized () {
+    this.permissionservice.getExhibitorByUser().subscribe((currentUser) => {
+      console.log(currentUser);
+
+      // let event: any[] = [];
+      //
+      // event = currentUser.user.event;
+      // console.log('event');
+      // console.log(event);
+      //
+      // const isModerator = event.some(e => e.name === 'moderator');
+      // const isAdmin = event.some(e => e.name === 'administrator');
+      //
+      // const hasAccess = isModerator || isAdmin;
+
+      // if (hasAccess) {
+      //   console.log("helper");
+      //   console.log("true");
+      //   return true;
+      // } else {
+      //   console.log("helper");
+      //   console.log("false");
+      //   return false;
+      // }
 
     });
   }

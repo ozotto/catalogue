@@ -23,8 +23,12 @@ export class ScheduleService {
 
 
   /** GET Schedules from the server */
-  getSchedules (): Observable<any[]> {
-    return this.serviceHelper.getInstances(this.endpoint);
+  getSchedules (id_filter: number = null): Observable<any[]> {
+    if (id_filter) {
+      return this.serviceHelper.getInstances(this.endpoint + '?animation_id=' + id_filter);
+    } else {
+      return this.serviceHelper.getInstances(this.endpoint);
+    }
   }
 
   /** GET Schedule by id. Will 404 if id not found */

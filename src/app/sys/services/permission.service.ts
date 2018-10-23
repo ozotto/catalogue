@@ -14,7 +14,7 @@ export class PermissionService {
     constructor(private http: HttpClient,
                 private errorsHelper: ErrorsHelper) { }
 
-  getByToken(): Observable<any> {
+  getUserInfoByToken(): Observable<any> {
 
     const url = BACKEND_URL + '/api-token-verify/';
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -23,9 +23,18 @@ export class PermissionService {
         // console.log('instance');
         // console.log(instance);
       }),
-      catchError(this.errorsHelper.handleError<any>('addInstance'))
+      catchError(this.errorsHelper.handleError<any>('getUserInfoByToken'))
     );
   }
 
+
+
+  getExhibitorByUser(): Observable<any> {
+    const url = BACKEND_URL + '/exhibitor/exhibitors/';
+    return this.http.get<any>(url, httpOptions).pipe(
+      tap(instance => { }),
+      catchError(this.errorsHelper.handleError<any>('getExhibitorByUser'))
+    );
+  }
 
 }

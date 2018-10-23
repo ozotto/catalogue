@@ -10,7 +10,7 @@ export class CheckPermissionDirective {
     Element.nativeElement.style.display = 'none';
     let groups: any[] = [];
 
-    permissionservice.getByToken().subscribe((currentUser) => {
+    permissionservice.getUserInfoByToken().subscribe((currentUser) => {
       console.log(currentUser);
 
       groups = currentUser.user.groups;

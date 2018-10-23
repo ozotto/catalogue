@@ -4,6 +4,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../../../models/user';
+import {PermissionsHelper} from '../../../helpers/permissions.helper';
 
 @Component({
     selector: 'app-navbar',
@@ -21,7 +22,8 @@ export class NavbarComponent implements AfterViewChecked{
 
     constructor(
       private translate: TranslateService,
-      private authService: AuthenticationService
+      private authService: AuthenticationService,
+      private permissionshelper: PermissionsHelper
       ) {
       translate.setDefaultLang('en');
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -29,6 +31,7 @@ export class NavbarComponent implements AfterViewChecked{
 
     OnInit() {
       this.currentLanguage = 'en';
+      const isSuperUser = this.permissionshelper.showIfAutorized();
     }
 
 

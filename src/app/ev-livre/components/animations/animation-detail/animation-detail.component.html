@@ -58,7 +58,7 @@
 
         <!-- Exhibitor -->
         <mat-form-field>
-          <mat-select placeholder="{{'commons.exhibitor' | translate}} *" [(ngModel)]="selectedExhibitor">
+          <mat-select placeholder="{{'commons.exhibitor' | translate}} *" [(ngModel)]="selectedExhibitor" [(ngModel)]="selectedExhibitor">
             <mat-option *ngFor="let exhibitor of exhibitors" [value]="exhibitor.id">
               {{exhibitor.exhibitor.exh_account_name}} [{{exhibitor.exhibitor.cat_banner}}]
             </mat-option>
@@ -66,31 +66,56 @@
         </mat-form-field>
 
         <!-- Author -->
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{'commons.authors' | translate}}" aria-label="Authors" [matAutocomplete]="auto" [formControl]="authorControl">
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectAuthor($event)" md-search-text="authorControl.searchText">
+        <mat-form-field class="example-full-width" *ngIf="!isNewAuthorBlockVisible">
+          <input id="input-authors" matInput placeholder="{{'sdl.authors' | translate}}" aria-label="Authors" [matAutocomplete]="auto" [formControl]="authorControl">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setAuthor($event)" md-search-text="authorControl.searchText">
             <mat-option *ngFor="let author of filteredAuthors | async" [value]="author.id" >
               <!--<img class="example-option-img" aria-hidden [src]="BACKEND_URL+author.thumbnail" height="50">-->
               <small>{{author.first_name}}</small><span> {{author.last_name}}</span>
             </mat-option>
             <mat-option *ngIf="(filteredAuthors | async)?.length == 0">
               <!--<img class="example-option-img" aria-hidden [src]="BACKEND_URL+author.thumbnail" height="50">-->
-              <span (click)="display_new_author_block(event)">Ajouter un auteur</span>
+              <span>Ajouter un auteur</span>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
 
 
-        <div class="add-author" *ngIf="display-author">
+        <div class="form-container add-author" *ngIf="isNewAuthorBlockVisible">
+          <h5>{{'sdl.new_author' | translate}}</h5>
+
           <!-- Author first_name -->
           <mat-form-field>
-            <input matInput disabled placeholder="{{'sdl.firstname' | translate}} *" [(ngModel)]="author.first_name">
+            <input matInput placeholder="{{'commons.firstname' | translate}} *" [(ngModel)]="newAuthor.first_name">
           </mat-form-field>
 
           <!-- Author last_name -->
           <mat-form-field>
-            <input matInput disabled placeholder="{{'sdl.lastname' | translate}} *" [(ngModel)]="author.last_name">
+            <input matInput placeholder="{{'commons.lastname' | translate}} *" [(ngModel)]="newAuthor.last_name">
           </mat-form-field>
+
+          <!-- Author job -->
+          <mat-form-field>
+            <input matInput placeholder="{{'commons.job' | translate}} *" [(ngModel)]="newAuthor.job">
+          </mat-form-field>
+
+          <!-- Author copyright -->
+          <mat-form-field>
+            <input matInput placeholder="copyright" [(ngModel)]="newAuthor.copyright">
+          </mat-form-field>
+
+          <!--&lt;!&ndash; Author image &ndash;&gt;-->
+          <!--<mat-form-field>-->
+            <!--<input matInput placeholder="{{'commons.image' | translate}} *" [(ngModel)]="newAuthor.image">-->
+          <!--</mat-form-field>-->
+
+          <!-- Picture -->
+          <app-fileupload [fileUploadLimit]="1" [rattachedInstanceId]="newAuthor.id" [fieldToUpdate]="image" (authorIdReturned)="getAuthorIdFromFileUpload($event)"></app-fileupload>
+
+          <div class="button-row">
+            <button mat-raised-button color="primary" (click)="addAuthor()">{{'commons.register' | translate}}</button> <button mat-raised-button color="warn" (click)="hide_new_author_block()">{{'commons.cancel' | translate}}</button>
+          </div>
+
         </div>
 
 
@@ -98,7 +123,7 @@
         <div>
           <div class="author" *ngFor="let displayedAuthor of displayedAuthors">
             <img class="example-option-img" [src]="BACKEND_URL+displayedAuthor.thumbnail" height="50" *ngIf="displayedAuthor.thumbnail">
-            {{displayedAuthor.first_name}} {{displayedAuthor.last_name}} <span (click)="deleteAuthor(displayedAuthor)">[Supprimer]</span>
+            {{displayedAuthor.first_name}} {{displayedAuthor.last_name}} <span (click)="alterAuthor(displayedAuthor)">[Modifier]</span> <span (click)="deleteAuthor(displayedAuthor)">[Supprimer]</span>
           </div>
         </div>
 
@@ -147,6 +172,7 @@
 
         <div>
           <a (click)="goBack()" mat-stroked-button color="basic">{{'commons.go_back'| translate}}</a>
+          <a mat-raised-button color="primary" (click)="save_and_add_new()">{{'commons.save_and_add_new' | translate}}</a>
           <a mat-raised-button color="primary" (click)="save()">{{'commons.save' | translate}}</a> <!-- (click)="save()" -->
         </div>
 

@@ -1,8 +1,8 @@
-///<reference path="../../../../node_modules/@types/jasmine/index.d.ts"/>
-
+import {Author} from './author';
+import {Public} from './public';
 import {Location} from './location';
 import {Type} from './type';
-import Any = jasmine.Any;
+import {Exhibitor} from './exhibitor';
 
 export class Animation {
   id: number;
@@ -10,7 +10,19 @@ export class Animation {
   description: string;
   type: Type;
   location: Location;
-  exhibitor: Any;
-  public: Any[];
-  author: Any[];
+  exhibitor: Exhibitor;
+  public: Public[];
+  author: Author[]
+}
+
+
+export class NewAnimation {
+  id: number;
+  title: string;
+  description: string;
+  type: Type;
+  location: Location;
+  exhibitor: number;
+  public: number[];
+  author: number[]
 }

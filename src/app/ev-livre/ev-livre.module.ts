@@ -1,3 +1,4 @@
+
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
@@ -17,6 +18,8 @@ import {AnimationsComponent} from './components/animations/animations.component'
 import {AnimationDetailComponent} from './components/animations/animation-detail/animation-detail.component';
 import {AutographsComponent} from './components/autographs/autographs.component';
 import {AutographDetailComponent} from './components/autographs/autograph-detail/autograph-detail.component';
+import {FileUploadModule} from 'ng2-file-upload';
+import {FileuploadComponent} from '../sys/components/shared/fileupload/fileupload.component';
 
 @NgModule({
   imports: [
@@ -25,6 +28,7 @@ import {AutographDetailComponent} from './components/autographs/autograph-detail
     FormsModule,
     MaterialSharedModule,
     ReactiveFormsModule,
+    FileUploadModule,
   ],
   declarations: [
     EvLivreComponent,
@@ -37,6 +41,7 @@ import {AutographDetailComponent} from './components/autographs/autograph-detail
     AutographsComponent,
     AutographDetailComponent,
     CheckPermissionDirective,
+    FileuploadComponent,
   ],
   providers: [
   ]

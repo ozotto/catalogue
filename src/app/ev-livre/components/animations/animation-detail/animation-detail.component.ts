@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import * as _ from 'lodash';
 
 import {BACKEND_URL} from '../../../../sys/constants';
 import {PermissionsHelper} from '../../../../sys/helpers/permissions.helper';
-import {Animation} from '../../../models/animation';
+import {Animation, NewAnimation} from '../../../models/animation';
 import {AnimationService} from '../../../services/animation.service';
 import {TypeService} from '../../../services/type.service';
 import {Type} from '../../../models/type';
@@ -50,13 +50,14 @@ export class AnimationDetailComponent implements OnInit {
   filteredAuthors: Observable<Author[]>;
 
   public animation: Animation;
-  public newAnimation: Animation; // A definir un modèle
+  public newAnimation: NewAnimation ; // A definir un modèle
   public BACKEND_URL: String;
 
   public isSuperUser: Boolean;
   private isNew: Boolean;
 
-  public is_new_author_block_visible;
+  public isNewAuthorBlockVisible;
+  public isNewAuthor;
 
   public types;
   public publics;
@@ -72,6 +73,7 @@ export class AnimationDetailComponent implements OnInit {
   public selectedPublic: Array<number>;
   // public selectedDates;
   public newSchedules;
+  public newAuthor;
 
   public selectedDate;
   public selectedHourStart;
@@ -87,6 +89,7 @@ public displayedAuthors;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private animationservice: AnimationService,
     private publicservice: PublicService,
     private typeservice: TypeService,
@@ -103,21 +106,22 @@ public displayedAuthors;
   }
 
   ngOnInit() {
+    const animation_id = +this.route.snapshot.paramMap.get('id');
     this.BACKEND_URL = BACKEND_URL;
     const isSuperUser = this.permissionshelper.showIfSuperUser();
     this.animation = new Animation();
      if (!this.isNew) {
-      const id = +this.route.snapshot.paramMap.get('id');
-      this.getAnimation(id);
+      this.getAnimation(animation_id);
     }
 
-    this.is_new_author_block_visible = false;
+    this.isNewAuthorBlockVisible = false;
 
     this.selectedPublic = new Array<number>();
     this.selectedAuthors = new Array<number>();
     this.selectedDate = new Array<number>();
 
     this.newSchedules = new Array<string>();
+    this.newAuthor = new Author();
 
     this.displayedAuthors = new Array<Author>();
     this.displayedSchedules = new Array<Schedule>();
@@ -128,7 +132,7 @@ public displayedAuthors;
     this.getLocations();
     this.getExhibitors();
     this.getAuthors();
-    this.getSchedules();
+    this.getSchedules(animation_id);
   }
 
   getAnimation(id): void {
@@ -147,9 +151,9 @@ public displayedAuthors;
         this.selectedAuthors.push(value.id);
         this.getAndDisplayAuthor(value.id)
       });
+      // animation_id
 
     });
-
 
   }
 
@@ -191,18 +195,17 @@ public displayedAuthors;
     });
   }
 
-  getSchedules() {
-    this.scheduleservice.getSchedules().subscribe((shedules) => {
+  getSchedules(animation_id) {
+
+    // this.scheduleservice.getSchedules(1).subscribe((animation) => {
+    //   // animation_id
+    // })
+    //
+    this.scheduleservice.getSchedules(animation_id).subscribe((shedules) => {
       shedules.forEach((value, index) => {
         const current = new DisplayedDate();
         current.id = value.id;
         current.date = value.date_start;
-
-        const test = moment('12-25-1995', 'HH:mm').toString();
-
-        const test2 = moment(value.date_start).format('HH:mm');
-
-        const test3 = moment(value.date_end).format('HH:mm');
 
         current.hour_start = moment(value.date_start).format('HH:mm');
         current.hour_end = moment(value.date_end).format('HH:mm');
@@ -211,17 +214,66 @@ public displayedAuthors;
     });
   }
 
-  selectAuthor(event) {
-    this.selectedAuthors.push(event.option.value);
+  setAuthor(event) {
 
-    this.getAndDisplayAuthor(event.option.value);
-
-    this.authorControl.setValue('');
-    this.setFilterAuthor();
+    if (event.option.value) {
+      this.selectedAuthors.push(event.option.value);
+      this.getAndDisplayAuthor(event.option.value);
+      this.authorControl.setValue('');
+      this.setFilterAuthor();
+    } else {
+      // this.display_new_author_block();
+      // this.newAuthor = new Author();
+      this.isNewAuthorBlockVisible = true;
+      this.isNewAuthor = true;
+      // this.authorservice.addAuthor(this.newAuthor).subscribe((author) => {
+      //   this.newAuthor.id = author.id;
+      // });
+    }
   }
-  // selectDate(event) {
-  //   this.selectedDate = event.value;
-  // }
+
+  addAuthor() {
+    // if author had an id update else add
+    if (this.newAuthor.id) {
+      this.authorservice.updateAuthor(this.newAuthor).subscribe((author) => {
+        // this.displayedAuthors.push(author);
+
+        // setTimeout(function() {
+        //   document.getElementById('input-authors').focus();
+        // }, 0);
+
+        this.selectedAuthors.push(author.id);
+        this.isNewAuthorBlockVisible = false;
+
+        if (this.isNewAuthor) {
+          this.getAndDisplayAuthor(author.id);
+        }
+
+        console.log('addAuthor AVEC image');
+        console.log(author);
+      });
+    } else {
+      this.authorservice.addAuthor(this.newAuthor).subscribe((author) => {
+
+        // setTimeout(function() {
+        //   document.getElementById('input-authors').focus();
+        // }, 0);
+
+        this.selectedAuthors.push(author.id);
+        this.isNewAuthorBlockVisible = false;
+
+        if (this.isNewAuthor) {
+          this.getAndDisplayAuthor(author.id);
+        }
+
+        console.log('addAuthor SANS image');
+        console.log(author);
+      });
+    }
+
+  }
+
+
   addSchedule() {
 
     if (this.selectedDate && this.selectedHourStart) {
@@ -259,15 +311,38 @@ public displayedAuthors;
       this.selectedHourStart = null;
       this.selectedHourEnd = null;
 
-      document.getElementById("input-calendar").focus();
+      document.getElementById('input-calendar').focus();
     } else {
       console.log('MANGNIA');
     }
 
   }
+
+  hide_new_author_block() {
+    this.isNewAuthorBlockVisible = false;
+    // The timeout is needed to make sure that the autocomplete component is rendered at the time of calling focus.
+    // Source: https://stackoverflow.com/questions/37826507/how-set-focus-in-angular-md-autocomplete
+    setTimeout(function() {
+      document.getElementById('input-authors').focus();
+    }, 0);
+  }
+
   deleteAuthor(author) {
     this.selectedAuthors.splice(this.selectedAuthors.indexOf(author.id), 1 );
     this.displayedAuthors.splice(this.displayedAuthors.indexOf(author), 1 );
+  }
+
+  alterAuthor(author) {
+    console.log('alter author');
+    console.log(author);
+
+    this.isNewAuthorBlockVisible = true;
+
+    this.newAuthor = author;
+    // remove image & thumbnail -> sended via ng2-file-upload component
+    delete this.newAuthor.image;
+
+    this.isNewAuthor = false;
   }
 
   deleteSchedule(schedule) {
@@ -287,13 +362,9 @@ public displayedAuthors;
     );
   }
 
-  public display_new_author_block(event) {
-    this.is_new_author_block_visible = true;
-    console.log('event');
-    console.log(event);
-    event.preventDefault();
-    console.log(this.is_new_author_block_visible);
-  }
+  // public display_new_author_block() {
+  //   this.isNewAuthorBlockVisible = true;
+  // }
 
   private setFilterAuthor() {
     this.filteredAuthors = this.authorControl.valueChanges
@@ -304,20 +375,34 @@ public displayedAuthors;
   }
 
   private _filterAuthors(value: string): Author[] {
-    const filterValue = value;
+    const filterValue = value.toLowerCase();
+    return this.authors.filter(function (author) {
+      if (author.last_name) { return author.last_name.toLowerCase().indexOf(filterValue) === 0}
+    });
+  }
 
-    return this.authors.filter(author => author.last_name.toLowerCase().indexOf(filterValue) === 0);
+  getAuthorIdFromFileUpload(author_id) {
+    console.log('getAuthorIdFromFileUpload a ete appele');
+    console.log(author_id);
+    this.newAuthor.id = author_id;
   }
 
   goBack(): void {
     this.location.back();
   }
 
+
+  save_and_add_new(): void {
+    this.save();
+    // this.location.go('/livre/animations/add');
+    this.router.navigate(['/livre/animations/add']);
+  }
+
   save(): void {
     let animation_id;
 
     if (!this.isNew) {
-      this.newAnimation = new Animation();
+      this.newAnimation = new NewAnimation();
       this.newAnimation.id = this.animation.id;
       this.newAnimation.title = this.animation.title;
       this.newAnimation.description = this.animation.description;
@@ -333,13 +418,42 @@ public displayedAuthors;
       );
 
       this.newSchedules.forEach((value, index) => {
-        value.animation = animation_id;
+        value.animation = this.newAnimation.id;
+
+        console.log('test value schedule')
+        console.log(value)
 
         this.scheduleservice.addSchedule(value).subscribe(
           // () => this.goBack()
         );
       });
+    } else {
+      this.newAnimation = new NewAnimation();
+      // this.newAnimation.id = this.animation.id;
+      this.newAnimation.title = this.animation.title;
+      this.newAnimation.description = this.animation.description;
+      this.newAnimation.type = this.selectedType;
+      this.newAnimation.location = this.selectedLocation;
+      this.newAnimation.exhibitor = this.selectedExhibitor;
+      this.newAnimation.public = this.selectedPublic;
+      this.newAnimation.author = this.selectedAuthors;
+
+
+      this.animationservice.addAnimation(this.newAnimation).subscribe(
+        // () => this.goBack()
+        animation => {
+          console.log('add new animation')
+          console.log(animation)
+        }
+      );
+
+      // this.newSchedules.forEach((value, index) => {
+      //   value.animation = this.newAnimation.id;
+      //
+      //   this.scheduleservice.addSchedule(value).subscribe(
+      //     // () => this.goBack()
+      //   );
+      // });
     }
   }
-
 }

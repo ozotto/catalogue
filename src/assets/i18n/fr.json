@@ -144,11 +144,11 @@
   "sdl": {
     "name": "Salon du Livre",
     "author": "Auteur",
+    "authors" : "Authors",
     "animation": "Animation",
     "location": "Emplacement",
     "type": "Type",
-    "public": "Public",
-    "author": "Auteur"
+    "public": "Public"
   },
   "commons": {
     "filter" : "Filtre",
@@ -157,6 +157,8 @@
     "go_back" : "Retour en arrière",
     "save" : "Sauver les changements",
     "add" : "Ajouter",
+    "register" : "Enregistrer",
+    "cancel" : "Cancel",
     "validation": "Validation",
     "exhibitor_id": "ID de l'exposant (USI)",
     "company_name": "Nom de Société",
@@ -184,7 +186,10 @@
     "lastname" : "Nom",
     "exhibitor" : "Exposant",
     "description": "Decription",
-    "location": "Emplacement"
+    "location": "Emplacement",
+    "job": "Travail",
+    "image": "Image",
+    "save_and_add_new": "Sauver et en ajouter un nouveau"
   }
 
 }

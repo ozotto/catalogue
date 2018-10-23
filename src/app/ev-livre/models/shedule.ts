@@ -1,3 +1,4 @@
+///<reference path="../../../../node_modules/@types/jasmine/index.d.ts"/>
 import Any = jasmine.Any;
 
 export class Schedule {
