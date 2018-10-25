@@ -110,7 +110,7 @@
           <!--</mat-form-field>-->
 
           <!-- Picture -->
-          <app-fileupload [fileUploadLimit]="1" [rattachedInstanceId]="newAuthor.id" [fieldToUpdate]="image" (authorIdReturned)="getAuthorIdFromFileUpload($event)"></app-fileupload>
+          <app-fileupload *ngIf="animation.author" [fileUploadLimit]="1" [rattachedInstanceId]="newAuthor.id" [fieldToUpdate]="image" (authorIdReturned)="getAuthorIdFromFileUpload($event)"></app-fileupload>
 
           <div class="button-row">
             <button mat-raised-button color="primary" (click)="addAuthor()">{{'commons.register' | translate}}</button> <button mat-raised-button color="warn" (click)="hide_new_author_block()">{{'commons.cancel' | translate}}</button>

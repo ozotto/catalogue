@@ -23,6 +23,7 @@ import {Schedule} from '../../../models/shedule';
 import {Public} from '../../../models/public';
 import {UsersHelper} from '../../../../sys/helpers/users.helper';
 import * as moment from 'moment';
+import {UtilsHelper} from '../../../../sys/helpers/utils.helper';
 
 
 export class DisplayedDate {
@@ -99,6 +100,7 @@ public displayedAuthors;
     private authorservice: AuthorService,
     private permissionshelper: PermissionsHelper,
     private usershelper: UsersHelper,
+    private utilshelper: UtilsHelper,
     private location: Location
   ) {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
@@ -185,7 +187,28 @@ public displayedAuthors;
   getAndDisplayAuthor(id: number) {
     this.authorservice.getAuthor(id).subscribe((author) => {
       this.displayedAuthors.push(author);
+
+      console.log('displayed author in getAndDisplayAuthor');
+      console.log(this.displayedAuthors);
     });
+  }
+
+  updateDiplayAuthor(indexToUpdate) {
+    // this.displayedAuthors.splice(this.displayedAuthors.indexOf(indexToUpdate), 1);
+
+    console.log('indexToUpdate before getAndDisplayAuthor');
+    console.log(this.displayedAuthors);
+    this.getAndDisplayAuthor(indexToUpdate);
+
+
+    console.log('indexToUpdate before remove_element_in_list');
+    console.log(this.displayedAuthors);
+    this.utilshelper.remove_object_in_list(indexToUpdate, this.displayedAuthors);
+
+
+    console.log('indexToUpdate after remove_element_in_list');
+    console.log(this.displayedAuthors);
+
   }
 
   getAuthors() {
@@ -216,11 +239,19 @@ public displayedAuthors;
 
   setAuthor(event) {
 
+    // IF an author is selected ELSE create a new author
     if (event.option.value) {
-      this.selectedAuthors.push(event.option.value);
-      this.getAndDisplayAuthor(event.option.value);
-      this.authorControl.setValue('');
-      this.setFilterAuthor();
+      console.log(this.selectedAuthors.some(e => e === event.option.value))
+      // check if element exist in array
+      if (this.selectedAuthors.some(e => e === event.option.value)) {
+        alert('vous avez déjà ajouté cet auteur')
+        this.authorControl.setValue('');
+      } else {
+        this.selectedAuthors.push(event.option.value);
+        this.getAndDisplayAuthor(event.option.value);
+        this.authorControl.setValue('');
+        this.setFilterAuthor();
+      }
     } else {
       // this.display_new_author_block();
       // this.newAuthor = new Author();
@@ -233,26 +264,8 @@ public displayedAuthors;
   }
 
   addAuthor() {
-    // if author had an id update else add
-    if (this.newAuthor.id) {
-      this.authorservice.updateAuthor(this.newAuthor).subscribe((author) => {
-        // this.displayedAuthors.push(author);
-
-        // setTimeout(function() {
-        //   document.getElementById('input-authors').focus();
-        // }, 0);
-
-        this.selectedAuthors.push(author.id);
-        this.isNewAuthorBlockVisible = false;
-
-        if (this.isNewAuthor) {
-          this.getAndDisplayAuthor(author.id);
-        }
-
-        console.log('addAuthor AVEC image');
-        console.log(author);
-      });
-    } else {
+    if (this.isNewAuthor) {
+      console.log('GNIAAA getAndDisplayAuthor');
       this.authorservice.addAuthor(this.newAuthor).subscribe((author) => {
 
         // setTimeout(function() {
@@ -262,12 +275,47 @@ public displayedAuthors;
         this.selectedAuthors.push(author.id);
         this.isNewAuthorBlockVisible = false;
 
-        if (this.isNewAuthor) {
-          this.getAndDisplayAuthor(author.id);
-        }
+        // if (this.isNewAuthor) {
 
-        console.log('addAuthor SANS image');
-        console.log(author);
+        console.log('getAndDisplayAuthor');
+        this.getAndDisplayAuthor(author.id);
+        // }
+
+        // console.log('addAuthor SANS image');
+        // console.log(author);
+      });
+    } else {
+
+      console.log('GNIAAA updateDiplayAuthor');
+      this.authorservice.updateAuthor(this.newAuthor).subscribe((author) => {
+        // this.displayedAuthors.push(author);
+
+        // setTimeout(function() {
+        //   document.getElementById('input-authors').focus();
+        // }, 0);
+
+
+        // this.selectedAuthors.push(author.id);
+
+        this.isNewAuthorBlockVisible = false;
+
+        // IF author
+        // if (this.isNewAuthor) {
+        //   this.getAndDisplayAuthor(author.id);
+        // } else {
+
+        console.log('updateDiplayAuthor');
+
+        console.log('add author before updateDisplayAuthor');
+        console.log(this.displayedAuthors);
+
+        this.updateDiplayAuthor(author);
+
+
+        console.log('add author after updateDisplayAuthor');
+        console.log(this.displayedAuthors);
+        // }
+
       });
     }
 
@@ -328,11 +376,20 @@ public displayedAuthors;
   }
 
   deleteAuthor(author) {
-    this.selectedAuthors.splice(this.selectedAuthors.indexOf(author.id), 1 );
-    this.displayedAuthors.splice(this.displayedAuthors.indexOf(author), 1 );
+
+    this.utilshelper.remove_id_in_list(author.id, this.selectedAuthors)
+    this.utilshelper.remove_object_in_list(author, this.displayedAuthors)
+
+
+    // this.selectedAuthors.splice(this.selectedAuthors.indexOf(author.id), 1 );
+    // this.displayedAuthors.splice(this.displayedAuthors.indexOf(author), 1 );
   }
 
   alterAuthor(author) {
+
+    console.log('displayed author in alterAuthor');
+    console.log(this.displayedAuthors);
+
     console.log('alter author');
     console.log(author);
 
@@ -346,14 +403,17 @@ public displayedAuthors;
   }
 
   deleteSchedule(schedule) {
-    this.newSchedules.splice(this.newSchedules.indexOf(schedule.id), 1 );
-    this.displayedSchedules.splice(this.displayedSchedules.indexOf(schedule), 1 );
+    this.utilshelper.remove_id_in_list(schedule.id, this.newSchedules)
+    this.utilshelper.remove_object_in_list(schedule, this.displayedSchedules)
 
-    console.log('before deleteSchedule id');
-    console.log(schedule.id);
+    // this.newSchedules.splice(this.newSchedules.indexOf(schedule.id), 1 );
+    // this.displayedSchedules.splice(this.displayedSchedules.indexOf(schedule), 1 );
 
-    console.log('before deleteSchedule value');
-    console.log(schedule);
+    // console.log('before deleteSchedule id');
+    // console.log(schedule.id);
+    //
+    // console.log('before deleteSchedule value');
+    // console.log(schedule);
 
     this.scheduleservice.deleteSchedule(schedule).subscribe(
       // () => this.goBack()
@@ -375,6 +435,8 @@ public displayedAuthors;
   }
 
   private _filterAuthors(value: string): Author[] {
+    console.log("value _filterAuthors");
+    console.log(value);
     const filterValue = value.toLowerCase();
     return this.authors.filter(function (author) {
       if (author.last_name) { return author.last_name.toLowerCase().indexOf(filterValue) === 0}

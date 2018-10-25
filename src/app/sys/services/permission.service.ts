@@ -31,6 +31,9 @@ export class PermissionService {
 
   getExhibitorByUser(): Observable<any> {
     const url = BACKEND_URL + '/exhibitor/exhibitors/';
+    console.log('currentUser')
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(currentUser)
     return this.http.get<any>(url, httpOptions).pipe(
       tap(instance => { }),
       catchError(this.errorsHelper.handleError<any>('getExhibitorByUser'))

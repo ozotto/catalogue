@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  eventName: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,6 +29,13 @@ export class LoginComponent implements OnInit {
 
     // reset login status
     this.authenticationService.logout();
+
+    // store event_name to filter menu
+    // http://127.0.0.1:4200/login?eventName=livre
+    this.eventName = this.route.snapshot.queryParams['eventName'];
+    console.log('event_name');
+    console.log(this.eventName);
+    localStorage.setItem('event_name', 'livre'); // TODO: Quand on sera en prod mettre -> this.eventName ä la place de livre
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

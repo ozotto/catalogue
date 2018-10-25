@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTES } from './sidebar-routes.config';
+import { ROUTES_ARTGENEVE, ROUTES_LIVRE} from './sidebar-routes.config';
 import { RouteInfo } from './sidebar.metadata';
 import { Router, ActivatedRoute } from '@angular/router';
 import {PermissionService} from '../../../services/permission.service';
@@ -20,16 +20,34 @@ export class SidebarComponent implements OnInit {
                 private permissionservice: PermissionService) {
       this.currentPermission = 'user';
 
-      this.permissionservice.getExhibitorByUser().subscribe((permissions) => {
-        console.log('permissions test');
-        console.log(permissions);
-      });
 
     }
 
     ngOnInit() {
         $.getScript('./assets/js/app-sidebar.js');
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        // this.menuItems = ROUTES.filter(menuItem => menuItem);
+
+
+        const event_name = localStorage.getItem('event_name');
+
+        switch (event_name) {
+          case 'livre': {
+            this.menuItems = ROUTES_LIVRE.filter(menuItem => menuItem);
+            break;
+          }
+          case 'artgeneve': {
+            this.menuItems = ROUTES_ARTGENEVE.filter(menuItem => menuItem);
+            break;
+          }
+          default: {
+            //statements;
+            break;
+          }
+        }
+
+
+
+
     }
 
 }

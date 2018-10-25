@@ -2,7 +2,7 @@ import { RouteInfo } from './sidebar.metadata';
 import {CanActivate} from '@angular/router';
 import {AuthGuard} from '../../../guards/auth.guard';
 
-export const ROUTES: RouteInfo[] = [
+export const ROUTES_ARTGENEVE: RouteInfo[] = [
 
     {
         path: '/', title: 'Main', icon: 'ft-layout', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
@@ -17,15 +17,21 @@ export const ROUTES: RouteInfo[] = [
     //         { path: '/artgeneve/galeries', title: 'Galeries', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
     //     ]
     // },
-    {
-        path: '/livre', title: 'SalonDuLivre', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
-        submenu: [
-          { path: '/livre/exhibitors', title: 'Exhibitors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []}, //, currentPermission: 'artgeneve'
-          { path: '/livre/authors', title: 'Authors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-          { path: '/livre/animations', title: 'Animations', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
-        ]
-    },
     /*{
         path: '/changelog', title: 'ChangeLog', icon: 'ft-file', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
     },*/
+];
+
+export const ROUTES_LIVRE: RouteInfo[] = [
+
+  {
+    path: '/', title: 'Main', icon: 'ft-layout', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
+  },
+  {
+    path: '/livre', title: 'SalonDuLivre', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+    submenu: [
+      { path: '/livre/exhibitors', title: 'Exhibitors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
+      { path: '/livre/animations', title: 'Animations', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
+    ]
+  },
 ];

@@ -15,7 +15,7 @@ export class FileuploadComponent implements OnInit {
   @Input() fileUploadLimit: number;
   @Input() rattachedInstanceId: number;
   @Input() fieldToUpdate: string;
-  @Output() authorIdReturned = new EventEmitter<boolean>();
+  @Output() authorIdReturned = new EventEmitter<number>();
   uploadedImages: Picture[];
 
   public uploader: FileUploader;
@@ -27,7 +27,16 @@ export class FileuploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uploader = new FileUploader({url: URL, queueLimit: this.fileUploadLimit});
+    // if rattached to an existing author
+    console.log('this.rattachedInstanceId')
+    console.log(this.rattachedInstanceId)
+
+    if (this.rattachedInstanceId != null) {
+      this.uploader = new FileUploader({url: URL + this.rattachedInstanceId + '/', queueLimit: this.fileUploadLimit, method: 'PUT'});
+    } else {
+      this.uploader = new FileUploader({url: URL, queueLimit: this.fileUploadLimit});
+    }
+      // more options
     this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
       form.append('image', fileItem.file.rawFile);
       form.append(this.fieldToUpdate, this.rattachedInstanceId);
