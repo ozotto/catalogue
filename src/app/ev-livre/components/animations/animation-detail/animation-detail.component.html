@@ -21,8 +21,11 @@
 
         <!-- Animation title -->
         <mat-form-field>
-          <input matInput placeholder="{{'commons.title' | translate}} *" [(ngModel)]="animation.title">
+          <input id="title" name="title" #titleInput matInput placeholder="{{'commons.title' | translate}}" [(ngModel)]="animation.title" required maxlength="80">
+          <mat-hint align="end">{{ titleInput.value?.length || 0 }}/80</mat-hint>
+          <mat-error *ngIf="title.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
+
 
         <!--Types -->
         <mat-form-field>

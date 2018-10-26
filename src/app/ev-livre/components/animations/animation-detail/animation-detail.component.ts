@@ -16,7 +16,7 @@ import {ExhibitorService} from '../../../services/exhibitor.service';
 import {AuthorService} from '../../../services/author.service';
 import {Author} from '../../../models/author';
 import {map, startWith} from 'rxjs/operators';
-import {FormControl} from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {ScheduleService} from '../../../services/schedule.service';
 import {Schedule} from '../../../models/shedule';
@@ -36,6 +36,10 @@ export class AnimationDetailComponent implements OnInit {
 
   authorControl = new FormControl();
   filteredAuthors: Observable<Author[]>;
+
+  //title = new FormControl('', [Validators.required]);
+
+  animationForm;
 
   public animation: Animation;
   public newAnimation: NewAnimation ; // A definir un modèle
@@ -69,7 +73,7 @@ export class AnimationDetailComponent implements OnInit {
 
 
 
-public displayedAuthors;
+  public displayedAuthors;
   public displayedSchedules;
 
   minDate = new Date(2018, 0, 1);
@@ -95,11 +99,17 @@ public displayedAuthors;
   }
 
   ngOnInit() {
+   
     const animation_id = +this.route.snapshot.paramMap.get('id');
     this.BACKEND_URL = BACKEND_URL;
     const isSuperUser = this.permissionshelper.showIfSuperUser();
     this.animation = new Animation();
-     if (!this.isNew) {
+    this.animationForm = new FormGroup({
+      'title' : new FormControl(this.animation.title, [Validators.required])
+      
+    });
+
+    if (!this.isNew) {
       this.getAnimation(animation_id);
     }
 
@@ -123,6 +133,8 @@ public displayedAuthors;
     this.getAuthors();
     this.getSchedules(animation_id);
   }
+
+  get title() { return this.animationForm.get('title'); }
 
   getAnimation(id): void {
     this.animationservice.getAnimation(id).subscribe((animation) => {
@@ -505,4 +517,12 @@ public displayedAuthors;
       // });
     }
   }
+
+
+  getErrorMessage() {
+    return this.title.hasError('required') ? 'You must enter a value' :
+        this.title.hasError('email') ? 'Not a valid email' :
+            '';
+  }
+
 }
