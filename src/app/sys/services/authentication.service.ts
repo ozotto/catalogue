@@ -77,6 +77,7 @@
 //
 //
 import { Injectable } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 import {BACKEND_URL} from '../constants';
@@ -87,7 +88,9 @@ const httpOptions = {
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+      private router: Router ) {
+  }
 
   login(username: string, password: string) {
     console.log("1");
@@ -106,8 +109,10 @@ export class AuthenticationService {
 
   logout() {
     // remove user from local storage to log user out
+    console.log('clic')
     localStorage.removeItem('currentUser');
+    this.router.navigate(['/']);
   }
-
+}
 
 }

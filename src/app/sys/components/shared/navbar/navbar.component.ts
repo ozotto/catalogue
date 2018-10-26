@@ -36,8 +36,9 @@ export class NavbarComponent implements AfterViewChecked{
 
 
 
-    ngAfterViewChecked() {
-
+ /*   ngAfterViewChecked() {
+      console.log("coucou: "+this.currentUser);
+      if(this.currentUser !== null){
         setTimeout(() => {
             const wrapperDiv = document.getElementsByClassName('wrapper')[0];
           const dir = wrapperDiv.getAttribute('dir');
@@ -49,8 +50,8 @@ export class NavbarComponent implements AfterViewChecked{
         }, 3000);
 
         this.currentLanguage = 'en';
-
-    }
+       }
+    }*/
 
     toggleAddClass() {
         if (this.toggleClass === 'ft-maximize') {

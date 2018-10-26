@@ -28,7 +28,7 @@ export const ROUTES_LIVRE: RouteInfo[] = [
     path: '/', title: 'Main', icon: 'ft-layout', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []
   },
   {
-    path: '/livre', title: 'SalonDuLivre', icon: 'ft-align-left', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
+    path: '/livre', title: 'SalonDuLivre', icon: 'ft-align-left', class: 'has-sub open', badge: '', badgeClass: '', isExternalLink: false,
     submenu: [
       { path: '/livre/exhibitors', title: 'Exhibitors', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
       { path: '/livre/animations', title: 'Animations', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: []},
