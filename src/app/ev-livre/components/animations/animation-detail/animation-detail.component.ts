@@ -24,21 +24,8 @@ import {Public} from '../../../models/public';
 import {UsersHelper} from '../../../../sys/helpers/users.helper';
 import * as moment from 'moment';
 import {UtilsHelper} from '../../../../sys/helpers/utils.helper';
+import {DisplayedDate, AddedDate} from '../../../../sys/models/date';
 
-
-export class DisplayedDate {
-  id: number;
-  date: string;
-  hour_start: string;
-  hour_end: string;
-}
-
-
-export class AddedDate {
-  animation: number;
-  date_start: string;
-  date_end: string;
-}
 
 @Component({
   selector: 'app-animation-detail',
