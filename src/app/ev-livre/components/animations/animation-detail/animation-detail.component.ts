@@ -118,7 +118,7 @@ export class AnimationDetailComponent implements OnInit {
 
     this.isNewAuthorBlockVisible = false;
     this.showSpeakers = false;
-    this.showDescAnimation; = false;
+    this.showDescAnimation = false;
 
     this.selectedPublic = new Array<number>();
     this.selectedAuthors = new Array<number>();

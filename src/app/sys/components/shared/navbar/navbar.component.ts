@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from '../../../services/authentication.service';
@@ -12,7 +12,8 @@ import {PermissionsHelper} from '../../../helpers/permissions.helper';
     styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent implements AfterViewChecked{
+//export class NavbarComponent implements AfterViewChecked{
+export class NavbarComponent implements OnInit{
 
     toggleClass = 'ft-maximize';
     placement = 'bottom-right'
@@ -29,7 +30,8 @@ export class NavbarComponent implements AfterViewChecked{
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
-    OnInit() {
+    //OnInit() {
+    ngOnInit(){
       this.currentLanguage = 'en';
       const isSuperUser = this.permissionshelper.showIfAutorized();
     }
