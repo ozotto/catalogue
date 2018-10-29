@@ -51,6 +51,8 @@ export class AnimationDetailComponent implements OnInit {
   public isNewAuthorBlockVisible;
   public isNewAuthor;
 
+  public showSpeakers:
+
   public types;
   public publics;
   public locations;
@@ -114,6 +116,7 @@ export class AnimationDetailComponent implements OnInit {
     }
 
     this.isNewAuthorBlockVisible = false;
+    this.showSpeakers = false;
 
     this.selectedPublic = new Array<number>();
     this.selectedAuthors = new Array<number>();
@@ -523,6 +526,12 @@ export class AnimationDetailComponent implements OnInit {
     return this.title.hasError('required') ? 'You must enter a value' :
         this.title.hasError('email') ? 'Not a valid email' :
             '';
+  }
+
+  validateType(){
+    //Modifier avec les changements de KE
+    //Ajouter le code depuis backend
+    this.selectedType == 13 || this.selectedType == 6 || this.selectedType == 5 ? this.showSpeakers = true : this.showSpeakers = false;
   }
 
 }

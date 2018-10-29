@@ -29,7 +29,7 @@
 
         <!--Types -->
         <mat-form-field>
-          <mat-select placeholder="{{'sdl.type' | translate}} *" [(ngModel)]="selectedType">
+          <mat-select (selectionChange)="validateType()" placeholder="{{'sdl.type' | translate}} *" [(ngModel)]="selectedType">
             <mat-option *ngFor="let type of types" [value]="type.id">
               {{type.title}}
             </mat-option>
@@ -128,6 +128,11 @@
             <img class="example-option-img" [src]="BACKEND_URL+displayedAuthor.thumbnail" height="50" *ngIf="displayedAuthor.thumbnail">
             {{displayedAuthor.first_name}} {{displayedAuthor.last_name}} <span (click)="alterAuthor(displayedAuthor)">[Modifier]</span> <span (click)="deleteAuthor(displayedAuthor)">[Supprimer]</span>
           </div>
+        </div>
+
+        <!-- Speakers -->
+        <div *ngIf="showSpeakers">
+          Add Speakers
         </div>
 
         <!--<mat-form-field class="example-full-width">-->
