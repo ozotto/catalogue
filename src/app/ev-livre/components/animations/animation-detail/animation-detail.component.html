@@ -54,8 +54,9 @@
         </mat-form-field>
 
         <!--Description -->
-        <mat-form-field>
-          <textarea matInput placeholder="{{'commons.description' | translate}} *" [(ngModel)]="animation.description">{{animation.description}}</textarea>
+        <mat-form-field *ngIf="showDescAnimation">
+          <textarea #descInput matInput placeholder="{{'commons.description' | translate}} *" [(ngModel)]="animation.description" maxlength="200">{{animation.description}}</textarea>
+          <mat-hint align="end">{{ descInput.value?.length || 0 }}/200</mat-hint>
         </mat-form-field>
 
 

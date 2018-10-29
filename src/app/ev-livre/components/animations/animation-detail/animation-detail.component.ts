@@ -51,7 +51,8 @@ export class AnimationDetailComponent implements OnInit {
   public isNewAuthorBlockVisible;
   public isNewAuthor;
 
-  public showSpeakers:
+  public showSpeakers;
+  public showDescAnimation;
 
   public types;
   public publics;
@@ -117,6 +118,7 @@ export class AnimationDetailComponent implements OnInit {
 
     this.isNewAuthorBlockVisible = false;
     this.showSpeakers = false;
+    this.showDescAnimation; = false;
 
     this.selectedPublic = new Array<number>();
     this.selectedAuthors = new Array<number>();
@@ -531,7 +533,16 @@ export class AnimationDetailComponent implements OnInit {
   validateType(){
     //Modifier avec les changements de KE
     //Ajouter le code depuis backend
-    this.selectedType == 13 || this.selectedType == 6 || this.selectedType == 5 ? this.showSpeakers = true : this.showSpeakers = false;
+
+    //Show Speakers
+    if(this.selectedType == 13 || this.selectedType == 6 || this.selectedType == 5){
+      this.showSpeakers = true;
+      this.showDescAnimation = true;
+    }else{
+      this.showSpeakers = false;
+      this.showDescAnimation = false;
+    }
+    
   }
 
 }
