@@ -90,6 +90,9 @@ export class AnimationDetailComponent implements OnInit {
   public endHour = "10:00";
   public maxTimeAnimarion = 1;
 
+  public showErrorTime : Boolean;
+  public errorTime : String;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -566,13 +569,31 @@ export class AnimationDetailComponent implements OnInit {
       const startTimePicker = this.atp.open({ time: this.selectedHourStart });
       startTimePicker.afterClose().subscribe(time => {
         this.selectedHourStart = time;
+        this.validateTime();
       });
     }else if(type == 'end'){
       const endTimePicker = this.atp.open({ time: this.selectedHourEnd });
       endTimePicker.afterClose().subscribe(time => {
         this.selectedHourEnd = time;
+        this.validateTime();
       });
     }
+    
+  }
+
+  validateTime(){
+    console.log('test')
+    var start = parseInt(this.selectedHourStart);
+    var end = parseInt(this.selectedHourEnd);
+    if(start > end){
+      this.showErrorTime = true;
+      this.errorTime = "L'heure initiale ne peut pas être plus longue que la derniere heure"
+    }else{
+      this.showErrorTime = false;
+    }
+
+
+
 
   }
 

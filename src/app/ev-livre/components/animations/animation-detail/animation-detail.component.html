@@ -168,6 +168,7 @@
           <!-- Animation add date -->
           <button mat-stroked-button color="primary" (click)="addSchedule()">{{'commons.add' | translate}}</button>
         </div>
+        <mat-error *ngIf="showErrorTime">{{errorTime}}</mat-error>
 
         <!-- Animation dates selected -->
         <div>
