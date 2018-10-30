@@ -189,7 +189,9 @@
     "location": "Location",
     "job": "Work",
     "image": "Picture",
-    "save_and_add_new": "Save and add new"
+    "save_and_add_new": "Save and add new",
+    "timeEnd" : "End time",
+    "timeStart" : "Start time"
   }
 
 }

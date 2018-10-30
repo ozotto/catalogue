@@ -189,6 +189,8 @@
     "location": "Location",
     "job": "Job",
     "image": "Image",
-    "save_and_add_new": "Save and add new"
+    "save_and_add_new": "Save and add new",
+    "timeEnd" : "End time",
+    "timeStart" : "Start time"
   }
 }

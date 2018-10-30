@@ -189,7 +189,9 @@
     "location": "Emplacement",
     "job": "Travail",
     "image": "Image",
-    "save_and_add_new": "Sauver et en ajouter un nouveau"
+    "save_and_add_new": "Sauver et en ajouter un nouveau",
+    "timeEnd" : "Heure final",
+    "timeStart" : "Heure debut"
   }
 
 }

@@ -26,6 +26,7 @@ import * as moment from 'moment';
 import {UtilsHelper} from '../../../../sys/helpers/utils.helper';
 import {DisplayedDate, AddedDate} from '../../../../sys/models/date';
 
+import { AmazingTimePickerService } from 'amazing-time-picker';
 
 @Component({
   selector: 'app-animation-detail',
@@ -71,6 +72,7 @@ export class AnimationDetailComponent implements OnInit {
   public newAuthor;
 
   public selectedDate;
+  //public selectedHourStart : String;
   public selectedHourStart;
   public selectedHourEnd;
 
@@ -79,8 +81,14 @@ export class AnimationDetailComponent implements OnInit {
   public displayedAuthors;
   public displayedSchedules;
 
-  minDate = new Date(2018, 0, 1);
-  maxDate = new Date(2020, 0, 1);
+  //minDate = new Date(2018, 0, 1);
+  // maxDate = new Date(2020, 0, 1);
+  public minDate = new Date(2019, 4, 1);
+  public maxDate = new Date(2019, 4, 5);
+  public startDate = new Date(2019, 4, 1, 9);
+  public startHour = "09:00"
+  public endHour = "10:00";
+  public maxTimeAnimarion = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -95,7 +103,8 @@ export class AnimationDetailComponent implements OnInit {
     private permissionshelper: PermissionsHelper,
     private usershelper: UsersHelper,
     private utilshelper: UtilsHelper,
-    private location: Location
+    private location: Location,
+    private atp: AmazingTimePickerService
   ) {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
 
@@ -122,7 +131,13 @@ export class AnimationDetailComponent implements OnInit {
 
     this.selectedPublic = new Array<number>();
     this.selectedAuthors = new Array<number>();
-    this.selectedDate = new Array<number>();
+    //this.selectedDate = new Array<number>();
+    this.selectedDate = this.startDate;
+    
+
+    this.selectedHourStart = this.startHour;
+    this.selectedHourEnd = this.endHour;
+       
 
     this.newSchedules = new Array<string>();
     this.newAuthor = new Author();
@@ -533,7 +548,7 @@ export class AnimationDetailComponent implements OnInit {
   validateType(){
     //Modifier avec les changements de KE
     //Ajouter le code depuis backend
-
+    console.log('commons')
     //Show Speakers
     if(this.selectedType == 13 || this.selectedType == 6 || this.selectedType == 5){
       this.showSpeakers = true;
@@ -543,6 +558,22 @@ export class AnimationDetailComponent implements OnInit {
       this.showDescAnimation = false;
     }
     
+  }
+
+  openTime(type : string) {
+    
+    if(type == 'start'){
+      const startTimePicker = this.atp.open({ time: this.selectedHourStart });
+      startTimePicker.afterClose().subscribe(time => {
+        this.selectedHourStart = time;
+      });
+    }else if(type == 'end'){
+      const endTimePicker = this.atp.open({ time: this.selectedHourEnd });
+      endTimePicker.afterClose().subscribe(time => {
+        this.selectedHourEnd = time;
+      });
+    }
+
   }
 
 }

@@ -21,6 +21,21 @@ import {AutographDetailComponent} from './components/autographs/autograph-detail
 import {FileUploadModule} from 'ng2-file-upload';
 import {FileuploadComponent} from '../sys/components/shared/fileupload/fileupload.component';
 
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+export const FORMAT_DATE = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -44,6 +59,9 @@ import {FileuploadComponent} from '../sys/components/shared/fileupload/fileuploa
     FileuploadComponent,
   ],
   providers: [
+    //Set format date
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: FORMAT_DATE},
   ]
 })
 export class EvLivreModule {}

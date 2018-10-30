@@ -13,6 +13,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {CheckPermissionDirective} from '../../directives/check-permission.directive';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
 // import {FileuploadComponent} from './fileupload/fileupload.component';
 // import {FileUploadModule} from 'ng2-file-upload';
 
@@ -42,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        AmazingTimePickerModule
         // FileUploadModule,
     ],
     declarations: [

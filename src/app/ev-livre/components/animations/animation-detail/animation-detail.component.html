@@ -157,13 +157,12 @@
 
           <!-- Animation time -->
           <mat-form-field style="margin-right:20px;">
-            <input matInput [(ngModel)]="selectedHourStart" (keyup.enter)="addSchedule()" type="time" min="9:00" max="17:00" placeholder="{{'commons.time' | translate}} *">
+            <input matInput type="time" (click)="openTime('start')" atp-time-picker value="{{selectedHourStart}}" placeholder="{{'commons.timeStart' | translate}} *"/>
           </mat-form-field>
-
-
+          
           <!-- Animation time -->
           <mat-form-field style="margin-right:20px;">
-            <input matInput [(ngModel)]="selectedHourEnd" (keyup.enter)="addSchedule()" type="time" min="9:00" max="17:00" placeholder="{{'commons.time' | translate}} *">
+            <input matInput type="time" (click)="openTime('end')" atp-time-picker value="{{selectedHourEnd}}" placeholder="{{'commons.timeEnd' | translate}} *"/>
           </mat-form-field>
 
           <!-- Animation add date -->
