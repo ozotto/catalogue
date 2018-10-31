@@ -583,7 +583,7 @@ export class AnimationDetailComponent implements OnInit {
 
   validateTime(){
     
-    var startDate, endDate;
+    var startDate, endDate, diff;
 
     startDate = moment(this.selectedDate);
     startDate = startDate.hour(this.selectedHourStart.substr(0,2))
@@ -593,23 +593,16 @@ export class AnimationDetailComponent implements OnInit {
     endDate = endDate.hour(this.selectedHourEnd.substr(0,2))
     endDate = endDate.minute(this.selectedHourEnd.substr(3,4))  
    
-    var diff = endDate.diff(startDate);
-    var d = moment.duration(diff);
-    console.log(diff)
-    //console.log(d)
-
+    diff = endDate.diff(startDate);
+    
     if(startDate > endDate){
       this.showErrorTime = true;
-      this.errorTime = "L'heure initiale ne peut pas être plus longue que la derniere heure"
-    }else{
-      this.showErrorTime = false;
-    }
-
-    if(diff > this.maxTimeAnimation){
+      this.errorTime = "L'heure finale doit être supérieure à l'heure initiale"
+    }else if(diff > this.maxTimeAnimation){
       this.showErrorTime = true;
       this.errorTime = "Les temps maximum autorisö est de 2 heures"
     }else{
-       this.showErrorTime = false; 
+      this.showErrorTime = false; 
     }
 
   }
