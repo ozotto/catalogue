@@ -196,7 +196,7 @@ export class AnimationDetailComponent implements OnInit {
   getLocations() {
     this.locationservice.getLocations().subscribe((locations) => {
       this.locations = locations;
-      console.log('locations');
+      //console.log('locations');
     });
   }
 
@@ -210,26 +210,26 @@ export class AnimationDetailComponent implements OnInit {
     this.authorservice.getAuthor(id).subscribe((author) => {
       this.displayedAuthors.push(author);
 
-      console.log('displayed author in getAndDisplayAuthor');
-      console.log(this.displayedAuthors);
+      /*console.log('displayed author in getAndDisplayAuthor');
+      console.log(this.displayedAuthors);*/
     });
   }
 
   updateDiplayAuthor(indexToUpdate) {
     // this.displayedAuthors.splice(this.displayedAuthors.indexOf(indexToUpdate), 1);
 
-    console.log('indexToUpdate before getAndDisplayAuthor');
-    console.log(this.displayedAuthors);
+    /*console.log('indexToUpdate before getAndDisplayAuthor');
+    console.log(this.displayedAuthors);*/
     this.getAndDisplayAuthor(indexToUpdate);
 
 
-    console.log('indexToUpdate before remove_element_in_list');
-    console.log(this.displayedAuthors);
+    /*console.log('indexToUpdate before remove_element_in_list');
+    console.log(this.displayedAuthors);*/
     this.utilshelper.remove_object_in_list(indexToUpdate, this.displayedAuthors);
 
 
-    console.log('indexToUpdate after remove_element_in_list');
-    console.log(this.displayedAuthors);
+    /*console.log('indexToUpdate after remove_element_in_list');
+    console.log(this.displayedAuthors);*/
 
   }
 
@@ -263,7 +263,7 @@ export class AnimationDetailComponent implements OnInit {
 
     // IF an author is selected ELSE create a new author
     if (event.option.value) {
-      console.log(this.selectedAuthors.some(e => e === event.option.value))
+      //console.log(this.selectedAuthors.some(e => e === event.option.value))
       // check if element exist in array
       if (this.selectedAuthors.some(e => e === event.option.value)) {
         alert('vous avez déjà ajouté cet auteur')
@@ -287,7 +287,7 @@ export class AnimationDetailComponent implements OnInit {
 
   addAuthor() {
     if (this.isNewAuthor) {
-      console.log('GNIAAA getAndDisplayAuthor');
+      //console.log('GNIAAA getAndDisplayAuthor');
       this.authorservice.addAuthor(this.newAuthor).subscribe((author) => {
 
         // setTimeout(function() {
@@ -299,7 +299,7 @@ export class AnimationDetailComponent implements OnInit {
 
         // if (this.isNewAuthor) {
 
-        console.log('getAndDisplayAuthor');
+        //console.log('getAndDisplayAuthor');
         this.getAndDisplayAuthor(author.id);
         // }
 
@@ -308,7 +308,7 @@ export class AnimationDetailComponent implements OnInit {
       });
     } else {
 
-      console.log('GNIAAA updateDiplayAuthor');
+      //console.log('GNIAAA updateDiplayAuthor');
       this.authorservice.updateAuthor(this.newAuthor).subscribe((author) => {
         // this.displayedAuthors.push(author);
 
@@ -326,16 +326,16 @@ export class AnimationDetailComponent implements OnInit {
         //   this.getAndDisplayAuthor(author.id);
         // } else {
 
-        console.log('updateDiplayAuthor');
+        /*console.log('updateDiplayAuthor');
 
         console.log('add author before updateDisplayAuthor');
-        console.log(this.displayedAuthors);
+        console.log(this.displayedAuthors);*/
 
         this.updateDiplayAuthor(author);
 
 
-        console.log('add author after updateDisplayAuthor');
-        console.log(this.displayedAuthors);
+        /*console.log('add author after updateDisplayAuthor');
+        console.log(this.displayedAuthors);*/
         // }
 
       });
@@ -352,10 +352,10 @@ export class AnimationDetailComponent implements OnInit {
       current.hour_start = this.selectedHourStart;
       current.hour_end = this.selectedHourEnd;
 
-      console.log('current');
+     /* console.log('current');
       console.log(this.selectedDate);
       console.log('selectedHourStart');
-      console.log(this.selectedHourStart);
+      console.log(this.selectedHourStart);*/
 
       this.displayedSchedules.push(current);
       // TODO: formater date pour poster au backend
@@ -366,14 +366,14 @@ export class AnimationDetailComponent implements OnInit {
       added.animation = this.animation.id;
 
 
-      console.log('hour')
+      /*console.log('hour')
       console.log(this.selectedHourStart.split(':')[0])
 
       console.log('minute')
       console.log(this.selectedHourStart.split(':')[1])
 
       console.log('added');
-      console.log(added);
+      console.log(added);*/
 
       this.newSchedules.push(added);
 
@@ -383,7 +383,7 @@ export class AnimationDetailComponent implements OnInit {
 
       document.getElementById('input-calendar').focus();
     } else {
-      console.log('MANGNIA');
+      //console.log('MANGNIA');
     }
 
   }
@@ -409,11 +409,11 @@ export class AnimationDetailComponent implements OnInit {
 
   alterAuthor(author) {
 
-    console.log('displayed author in alterAuthor');
+    /*console.log('displayed author in alterAuthor');
     console.log(this.displayedAuthors);
 
     console.log('alter author');
-    console.log(author);
+    console.log(author);*/
 
     this.isNewAuthorBlockVisible = true;
 
@@ -457,8 +457,8 @@ export class AnimationDetailComponent implements OnInit {
   }
 
   private _filterAuthors(value: string): Author[] {
-    console.log("value _filterAuthors");
-    console.log(value);
+    /*console.log("value _filterAuthors");
+    console.log(value);*/
     const filterValue = value.toLowerCase();
     return this.authors.filter(function (author) {
       if (author.last_name) { return author.last_name.toLowerCase().indexOf(filterValue) === 0}
@@ -466,8 +466,8 @@ export class AnimationDetailComponent implements OnInit {
   }
 
   getAuthorIdFromFileUpload(author_id) {
-    console.log('getAuthorIdFromFileUpload a ete appele');
-    console.log(author_id);
+    /*console.log('getAuthorIdFromFileUpload a ete appele');
+    console.log(author_id);*/
     this.newAuthor.id = author_id;
   }
 
@@ -504,8 +504,8 @@ export class AnimationDetailComponent implements OnInit {
       this.newSchedules.forEach((value, index) => {
         value.animation = this.newAnimation.id;
 
-        console.log('test value schedule')
-        console.log(value)
+        /*console.log('test value schedule')
+        console.log(value)*/
 
         this.scheduleservice.addSchedule(value).subscribe(
           // () => this.goBack()
@@ -526,8 +526,8 @@ export class AnimationDetailComponent implements OnInit {
       this.animationservice.addAnimation(this.newAnimation).subscribe(
         // () => this.goBack()
         animation => {
-          console.log('add new animation')
-          console.log(animation)
+          /*console.log('add new animation')
+          console.log(animation)*/
         }
       );
 
@@ -551,7 +551,7 @@ export class AnimationDetailComponent implements OnInit {
   validateType(){
     //Modifier avec les changements de KE
     //Ajouter le code depuis backend
-    console.log('commons')
+    //console.log('commons')
     //Show Speakers
     if(this.selectedType == 13 || this.selectedType == 6 || this.selectedType == 5){
       this.showSpeakers = true;

@@ -26,12 +26,12 @@ export class PermissionsHelper {
 
   public showIfSuperUser () {
     this.permissionservice.getUserInfoByToken().subscribe((currentUser) => {
-      console.log(currentUser);
+      //console.log(currentUser);
       let groups: any[] = [];
 
       groups = currentUser.user.groups;
-      console.log('groups');
-      console.log(groups);
+      /*console.log('groups');
+      console.log(groups);*/
 
       const isModerator = groups.some(e => e.name === 'moderator');
       const isAdmin = groups.some(e => e.name === 'administrator');
@@ -39,12 +39,12 @@ export class PermissionsHelper {
       const hasAccess = isModerator || isAdmin;
 
       if (hasAccess) {
-        console.log("helper");
-        console.log("true");
+        /*console.log("helper");
+        console.log("true");*/
         return true;
       } else {
-        console.log("helper");
-        console.log("false");
+        /*console.log("helper");
+        console.log("false");*/
         return false;
       }
 
@@ -54,7 +54,7 @@ export class PermissionsHelper {
 
   public showIfAutorized () {
     this.permissionservice.getExhibitorByUser().subscribe((currentUser) => {
-      console.log(currentUser);
+      //console.log(currentUser);
 
       // let event: any[] = [];
       //
