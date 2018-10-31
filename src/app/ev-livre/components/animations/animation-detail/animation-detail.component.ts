@@ -85,10 +85,10 @@ export class AnimationDetailComponent implements OnInit {
   // maxDate = new Date(2020, 0, 1);
   public minDate = new Date(2019, 4, 1);
   public maxDate = new Date(2019, 4, 5);
-  public startDate = new Date(2019, 4, 1, 9);
+  public startDate = new Date(2019, 4, 1);
   public startHour = "09:00"
   public endHour = "10:00";
-  public maxTimeAnimarion = 1;
+  public maxTimeAnimation = 7200000; //value in ms
 
   public showErrorTime : Boolean;
   public errorTime : String;
@@ -582,18 +582,35 @@ export class AnimationDetailComponent implements OnInit {
   }
 
   validateTime(){
-    console.log('test')
-    var start = parseInt(this.selectedHourStart);
-    var end = parseInt(this.selectedHourEnd);
-    if(start > end){
+    
+    var startDate, endDate;
+
+    startDate = moment(this.selectedDate);
+    startDate = startDate.hour(this.selectedHourStart.substr(0,2))
+    startDate = startDate.minute(this.selectedHourStart.substr(3,4))
+
+    endDate = moment(this.selectedDate);
+    endDate = endDate.hour(this.selectedHourEnd.substr(0,2))
+    endDate = endDate.minute(this.selectedHourEnd.substr(3,4))  
+   
+    var diff = endDate.diff(startDate);
+    var d = moment.duration(diff);
+    console.log(diff)
+    //console.log(d)
+
+    if(startDate > endDate){
       this.showErrorTime = true;
       this.errorTime = "L'heure initiale ne peut pas être plus longue que la derniere heure"
     }else{
       this.showErrorTime = false;
     }
 
-
-
+    if(diff > this.maxTimeAnimation){
+      this.showErrorTime = true;
+      this.errorTime = "Les temps maximum autorisö est de 2 heures"
+    }else{
+       this.showErrorTime = false; 
+    }
 
   }
 
