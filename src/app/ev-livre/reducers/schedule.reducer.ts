@@ -1,4 +1,3 @@
-/*import { Customer } from '../customers/models/customer';*/
 import {Schedule} from '../models/schedule';
 
 import { Actions, CREATE_CUSTOMER, DELETE_CUSTOMER } from '../actions/schedule.actions';
@@ -13,7 +12,7 @@ const initialState: Schedule = {
 export function reducer(
     state: Schedule[] = [initialState],
     action: Actions) {
-
+    console.log('in reducer')
     switch (action.type) {
         case CREATE_CUSTOMER:
             return [...state, action.payload];

@@ -172,6 +172,12 @@
 
         <!-- Animation dates selected -->
         <div>
+          <div *ngFor="let exaSchedule of exaSchedules | async">
+            <p>{{exaSchedule.date_start}}</p>
+          </div>
+        </div>
+
+        <div>
           <div class="datetime" *ngFor="let displayedSchedule of displayedSchedules">
             {{displayedSchedule.date | date:'MMM d, y' }}
             {{displayedSchedule.hour_start }}
