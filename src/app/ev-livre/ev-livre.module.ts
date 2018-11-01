@@ -2,6 +2,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './reducers/schedule.reducer';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {MaterialSharedModule} from '../sys/modules/material-shared.module';
@@ -44,6 +47,9 @@ export const FORMAT_DATE = {
     MaterialSharedModule,
     ReactiveFormsModule,
     FileUploadModule,
+    StoreModule.forRoot({
+      schedule: reducer
+    })
   ],
   declarations: [
     EvLivreComponent,

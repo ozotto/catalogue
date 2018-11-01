@@ -17,9 +17,13 @@ import {AuthorService} from '../../../services/author.service';
 import {Author} from '../../../models/author';
 import {map, startWith} from 'rxjs/operators';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+
 import {Observable} from 'rxjs/Observable';
+import {Store} from '@ngrx/store';
+import {AppLivreState} from '../../../ev-livre.state';
+
 import {ScheduleService} from '../../../services/schedule.service';
-import {Schedule} from '../../../models/shedule';
+import {Schedule} from '../../../models/schedule';
 import {Public} from '../../../models/public';
 import {UsersHelper} from '../../../../sys/helpers/users.helper';
 import * as moment from 'moment';
@@ -93,6 +97,8 @@ export class AnimationDetailComponent implements OnInit {
   public showErrorTime : Boolean;
   public errorTime : String;
 
+  exaSchedules: Observable<Schedule[]>;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -107,9 +113,12 @@ export class AnimationDetailComponent implements OnInit {
     private usershelper: UsersHelper,
     private utilshelper: UtilsHelper,
     private location: Location,
-    private atp: AmazingTimePickerService
+    private atp: AmazingTimePickerService,
+    private store: Store<AppLivreState>
   ) {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
+    this.exaSchedules = store.select('schedule');
+    console.log(this.exaSchedules)
 
   }
 
