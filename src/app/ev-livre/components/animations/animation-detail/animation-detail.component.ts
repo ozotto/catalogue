@@ -33,6 +33,7 @@ import {UtilsHelper} from '../../../../sys/helpers/utils.helper';
 import {DisplayedDate, AddedDate} from '../../../../sys/models/date';
 
 import { AmazingTimePickerService } from 'amazing-time-picker';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-animation-detail',
@@ -100,7 +101,9 @@ export class AnimationDetailComponent implements OnInit {
   public errorTime : String;
 
   schedules: Observable<Schedule[]>;
-
+  dataSchedules = new MatTableDataSource();
+  displayedColumnsSchedules: string[];
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -120,7 +123,13 @@ export class AnimationDetailComponent implements OnInit {
   ) {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
     this.schedules = store.select('schedule');
-   
+    //console.log(this.schedules)
+    this.displayedColumnsSchedules = ['date', 'start_hour', 'end_hour'];
+    
+    store.select('schedule').subscribe(data => {
+      this.dataSchedules.data = data;
+    });
+
   }
 
   ngOnInit() {

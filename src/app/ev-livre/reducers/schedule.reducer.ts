@@ -10,7 +10,8 @@ const initialState: Schedule = {
 };
 
 export function reducer(
-    state: Schedule[] = [initialState],
+    //state: Schedule[] = [initialState],
+    state: Schedule[] = [],
     action: Actions) {
     console.log('in reducer')
     switch (action.type) {
