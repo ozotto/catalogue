@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Schedule } from '../models/schedule';
 
-export const CREATE_CUSTOMER = 'Customer_Create';
-export const DELETE_CUSTOMER = 'Customer_Delete';
+export const CREATE_SCHEDULE = 'Schedule_Create';
+export const DELETE_SCHEDULE = 'Schedule_Delete';
 
-export class CreateCustomer implements Action {
-    readonly type = CREATE_CUSTOMER;
+export class CreateSchedule implements Action {
+    readonly type = CREATE_SCHEDULE;
 
     constructor(public payload: Schedule) { }
 }
 
-export class DeleteCustomer implements Action {
-    readonly type = DELETE_CUSTOMER;
+export class DeleteSchedule implements Action {
+    readonly type = DELETE_SCHEDULE;
 
     constructor(public id: number) { }
 }
 
-export type Actions = CreateCustomer | DeleteCustomer;
+export type Actions = CreateSchedule | DeleteSchedule;

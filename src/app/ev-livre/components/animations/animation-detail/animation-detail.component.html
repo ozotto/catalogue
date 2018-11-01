@@ -166,14 +166,15 @@
           </mat-form-field>
 
           <!-- Animation add date -->
-          <button mat-stroked-button color="primary" (click)="addSchedule()">{{'commons.add' | translate}}</button>
+          <!-- <button mat-stroked-button color="primary" (click)="addSchedule()">{{'commons.add' | translate}}</button> -->
+          <button mat-stroked-button color="primary" (click)="addSchedule2()">{{'commons.add' | translate}}</button>
         </div>
         <mat-error *ngIf="showErrorTime">{{errorTime}}</mat-error>
 
         <!-- Animation dates selected -->
         <div>
-          <div *ngFor="let exaSchedule of exaSchedules | async">
-            <p>{{exaSchedule.date_start}}</p>
+          <div *ngFor="let schedule of schedules | async">
+            <p>{{schedule.date_start}}</p>
           </div>
         </div>
 

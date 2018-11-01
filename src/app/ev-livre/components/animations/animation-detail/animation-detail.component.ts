@@ -21,6 +21,8 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {Store} from '@ngrx/store';
 import {AppLivreState} from '../../../ev-livre.state';
+import {CreateSchedule, DeleteSchedule} from '../../../actions/schedule.actions';
+
 
 import {ScheduleService} from '../../../services/schedule.service';
 import {Schedule} from '../../../models/schedule';
@@ -97,7 +99,7 @@ export class AnimationDetailComponent implements OnInit {
   public showErrorTime : Boolean;
   public errorTime : String;
 
-  exaSchedules: Observable<Schedule[]>;
+  schedules: Observable<Schedule[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -117,9 +119,8 @@ export class AnimationDetailComponent implements OnInit {
     private store: Store<AppLivreState>
   ) {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
-    this.exaSchedules = store.select('schedule');
-    console.log(this.exaSchedules)
-
+    this.schedules = store.select('schedule');
+   
   }
 
   ngOnInit() {
@@ -191,6 +192,7 @@ export class AnimationDetailComponent implements OnInit {
   }
 
   getTypes() {
+    console.log('get back end')
     this.typeservice.getTypes().subscribe((types) => {
       this.types = types;
     });
@@ -350,8 +352,26 @@ export class AnimationDetailComponent implements OnInit {
       });
     }
 
-  }
+  } 
 
+  addSchedule2(){
+    var newSchedule = new Schedule;
+    var startDate, endDate;
+    
+    startDate = moment(this.selectedDate);
+    startDate = startDate.hour(this.selectedHourStart.substr(0,2))
+    startDate = startDate.minute(this.selectedHourStart.substr(3,4))
+
+    endDate = moment(this.selectedDate);
+    endDate = endDate.hour(this.selectedHourEnd.substr(0,2))
+    endDate = endDate.minute(this.selectedHourEnd.substr(3,4))
+
+    newSchedule.date_start = startDate
+    newSchedule.date_end = endDate
+
+    this.store.dispatch(new CreateSchedule(newSchedule));
+
+  }
 
   addSchedule() {
 
@@ -603,7 +623,7 @@ export class AnimationDetailComponent implements OnInit {
     endDate = endDate.minute(this.selectedHourEnd.substr(3,4))  
    
     diff = endDate.diff(startDate);
-    
+    console.log('kevin')
     if(startDate > endDate){
       this.showErrorTime = true;
       this.errorTime = "L'heure finale doit être supérieure à l'heure initiale"

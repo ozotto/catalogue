@@ -1,6 +1,6 @@
 import {Schedule} from '../models/schedule';
 
-import { Actions, CREATE_CUSTOMER, DELETE_CUSTOMER } from '../actions/schedule.actions';
+import { Actions, CREATE_SCHEDULE, DELETE_SCHEDULE } from '../actions/schedule.actions';
 
 const initialState: Schedule = { 
     id: 10,
@@ -14,10 +14,10 @@ export function reducer(
     action: Actions) {
     console.log('in reducer')
     switch (action.type) {
-        case CREATE_CUSTOMER:
+        case CREATE_SCHEDULE:
             return [...state, action.payload];
 
-        case DELETE_CUSTOMER:
+        case DELETE_SCHEDULE:
             return state.filter(({ id }) => id !== action.id);
 
         default:
