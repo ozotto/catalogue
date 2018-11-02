@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem('event_name', 'livre'); // TODO: Quand on sera en prod mettre -> this.eventName ä la place de livre
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'; 
   }
 
   // convenience getter for easy access to form fields
@@ -87,7 +87,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log('mannheim');
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/livre']);//Valider l'event ayant droit - Modifier par la suite quand on aura l'end point
+          //this.router.navigate([this.returnUrl]);
         },
         error => {
           console.log(error);

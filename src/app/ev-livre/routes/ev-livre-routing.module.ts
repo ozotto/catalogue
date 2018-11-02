@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import {TranslateModule, TranslatePipe} from '@ngx-translate/core';
 
-import { EvLivreComponent } from '../ev-livre.component';
-import { ExhibitorsComponent } from '../components/exhibitors/exhibitors.component';
-import { ExhibitorDetailComponent } from '../components/exhibitors/exhibitor-detail/exhibitor-detail.component';
-import { AuthorsComponent } from '../components/authors/authors.component';
+import {EvLivreComponent} from '../ev-livre.component';
+import {ExhibitorsComponent} from '../components/exhibitors/exhibitors.component';
+import {ExhibitorDetailComponent} from '../components/exhibitors/exhibitor-detail/exhibitor-detail.component';
+import {AuthorsComponent} from '../components/authors/authors.component';
 import {AuthorDetailComponent} from '../components/authors/author-detail/author-detail.component';
 import {AnimationsComponent} from '../components/animations/animations.component';
 import {AnimationDetailComponent} from '../components/animations/animation-detail/animation-detail.component';

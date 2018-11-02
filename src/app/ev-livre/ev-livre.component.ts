@@ -10,6 +10,7 @@ export class EvLivreComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  	console.log('here load data')
   }
 
 }
