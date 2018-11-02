@@ -124,7 +124,7 @@ export class AnimationDetailComponent implements OnInit {
     this.route.params.subscribe( params => this.isNew = _.isEmpty(params) );
     this.schedules = store.select('schedule');
     //console.log(this.schedules)
-    this.displayedColumnsSchedules = ['date', 'start_hour', 'end_hour'];
+    this.displayedColumnsSchedules = ['actions', 'date', 'start_hour', 'end_hour'];
     
     store.select('schedule').subscribe(data => {
       this.dataSchedules.data = data;
@@ -365,8 +365,10 @@ export class AnimationDetailComponent implements OnInit {
 
   addSchedule2(){
     var newSchedule = new Schedule;
-    var startDate, endDate;
-    
+    var startDate, endDate, id;
+    console.log(this.schedules)
+    id = _.isEmpty(this.schedules) ? 1 : 10;
+
     startDate = moment(this.selectedDate);
     startDate = startDate.hour(this.selectedHourStart.substr(0,2))
     startDate = startDate.minute(this.selectedHourStart.substr(3,4))
@@ -375,6 +377,7 @@ export class AnimationDetailComponent implements OnInit {
     endDate = endDate.hour(this.selectedHourEnd.substr(0,2))
     endDate = endDate.minute(this.selectedHourEnd.substr(3,4))
 
+    newSchedule.id = id
     newSchedule.date_start = startDate
     newSchedule.date_end = endDate
 
@@ -462,7 +465,13 @@ export class AnimationDetailComponent implements OnInit {
     this.isNewAuthor = false;
   }
 
+  deleteSchedule2(schedule){
+    console.log(schedule)
+    this.store.dispatch(new DeleteSchedule(schedule.id));
+  }
+
   deleteSchedule(schedule) {
+    console.log('test')
     this.utilshelper.remove_id_in_list(schedule.id, this.newSchedules)
     this.utilshelper.remove_object_in_list(schedule, this.displayedSchedules)
 
