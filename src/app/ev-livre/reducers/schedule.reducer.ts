@@ -19,6 +19,7 @@ export interface State {
     loading: boolean;
     searchTerms: string;
     results: ListPublic[];
+    schedule : Schedule[];
 };
 
 const initialState: State =  {
@@ -29,21 +30,35 @@ const initialState: State =  {
     loading: false,
     searchTerms: '',
     results: [],
+    schedule: []
 }
 
-//export function reducer(state = initialState, action: LivreActions.Actions): State {
-export function reducer(
+export function reducer(state = initialState, action: LivreActions.Actions): State {
+/*export function reducer(
     //state: Schedule[] = [initialState],
     state: Schedule[] = [],
-    action: LivreActions.Actions)  {
+    action: LivreActions.Actions)  {*/
     console.log('in reducer')
 
     switch (action.type) {
-        case LivreActions.CREATE_SCHEDULE:
-            return [...state, action.payload];
+        /*case LivreActions.CREATE_SCHEDULE:
+            return [...state, action.payload];*/
 
-        case LivreActions.DELETE_SCHEDULE:
-            return state.filter(({ id }) => id !== action.id);
+        case LivreActions.CREATE_SCHEDULE: {
+            return {
+                ...state, 
+                schedule : [...state.schedule]           
+            }
+        }
+
+        /*case LivreActions.DELETE_SCHEDULE:
+            return state.filter(({ id }) => id !== action.id);*/
+        case LivreActions.DELETE_SCHEDULE: {
+            return {
+                ...state,
+                schedule : state.schedule.filter(({ id }) => id !== action.id)
+            }
+        }
 
         case LivreActions.GET_PUBLIC: {
             return {
@@ -57,5 +72,4 @@ export function reducer(
             return state;
     }
 }
-
 
