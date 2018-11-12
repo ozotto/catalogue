@@ -11,6 +11,11 @@ import { NutritionService } from ".././services/nutrition.service";*/
 import * as LivreActions from '../actions/schedule.actions';
 import {PublicService} from '../services/public.service';
 
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/catch';
+
 @Injectable()
 
 export class LivreEffects {
@@ -25,13 +30,13 @@ export class LivreEffects {
     );
    */
     
-  @Effect() LoadPublics$: Observable<LivreActions.Actions> = this.actions$
+  /*@Effect() LoadPublics$: Observable<LivreActions.Actions> = this.actions$
     .pipe(
       ofType(LivreActions.GET_PUBLIC),
-      /*switchMap(action  =>  this.publicservice.getPublics()),
+      switchMap(action  =>  this.publicservice.getPublics()),
       map(publics => new LivreActions.SuccessInitPublic(publics)),
-      catchError((err) => of(new LivreActions.ErrorLoadAction(err)))*/
-    );
+      catchError((err) => of(new LivreActions.ErrorLoadAction(err)))
+    );*/
 
   /*@Effect()
   login$ = this.actions$.pipe(
